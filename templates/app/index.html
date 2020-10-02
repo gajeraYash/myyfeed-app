@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HomePage</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <h1>Hello you are app/index.html</h1>
+    {% if webpage_rec %}
+        <table>
+            <thead>
+                <th>Site Name</th>
+                <th>Date Accessed</th>
+            </thead>
+        
+            {% for web in webpage_rec %}
+            <tr>
+                <td>{{ web.name }}</td>
+                <td>{{ web.url }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>NO ACCESS RECORDS FOUND!</p>
+    {% endif %}
+</body>
+
+</html>
