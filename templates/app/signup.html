@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-{% load static %}
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sign Up</title>
+    <title>Sign up Form</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Sign up Page Alpha</h1>
-    
-    <div class="container">
-        <div class="jumbotron">
-            YOU ARE IN /sign-up
+    {% if registered %}
+        <h1>Thank you for registering!</h1>
+    {% else %}
+        <h1>Register Here!</h1>
+        <div class= "container">
+            <form method="POST">
+                {{form.as_p}}
+                {% csrf_token %}
+                <input type="submit" value="Submit">
+            </form>
         </div>
-    </div>
+    {% endif %}
 </body>
 
 </html>
