@@ -1,30 +1,24 @@
-from django.shortcuts import render
+from app.forms import *
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from app.models import *
 from . import forms
 # Create your views here.
 
 def index(request):
-    webpage_list = Webpage.objects.order_by('name')
-    name_dict = {'webpage_rec':webpage_list}
-    return render(request, 'app/index.html', context=name_dict)
+    return render(request, 'app/index.html')
     
 def signup(request):
-    return render(request, 'app/signup.html')
-
-
-def signup_form_view(request):
-    form = forms.signupForm()
-
     if request.method == 'POST':
-        form = forms.signupForm(request.POST)
-
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            print("VALIDATION SUCCESS")
-            print("First Name: "+ form.cleaned_data['fname'])
-            print("Last Name: "+ form.cleaned_data['lname'])
-            print("Email: "+ form.cleaned_data['email'])
-
-
-
-    return render(request, 'app/signupform.html', {'form':form})
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('')
+    else:
+        form = SignUpForm()
+    return render(request, 'app/signup.html', {'form': form})
