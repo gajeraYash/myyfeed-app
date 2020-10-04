@@ -1,6 +1,20 @@
 <h1 align="center">
-  CS 490 - Social Media
+  Social Media App
 </h1>
+<p align='center'>
+  Project for CS490
+</p>
+<div align='center'>
+  <a href="https://github.com/Luna426">
+    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Front-Yelitza-blue'> 
+  </a>
+  <a href="https://github.com/moesaifan99">
+    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Middle-Moe-green'>
+  </a>
+  <a href="https://github.com/gajeraYash">
+    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Back-Yash-orange'>
+  </a>
+</div>
   
 ## Info
 
@@ -18,20 +32,6 @@ Create the environment from the environment.yml file:
 
 Run `python manage.py runserver` for a dev server. Navigate to `http://127.0.0.1:8000/`.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-
 ## Documentation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## UI
-
-[Color Palette](https://colorhunt.co/palette/191933)
-
+To get more help on the Django go check out the [Django Documentation](https://docs.djangoproject.com/en/3.1/) or [DevDocs Django](https://devdocs.io/django~3.0/).
