@@ -20,7 +20,7 @@ def signup(request):
             profile = profile_form.save(commit= False)
             profile.user = user
             profile.save()
-            registerd = True
+            registered = True
         else:
             print(user_form.errors,profile_form.errors)
     else:
