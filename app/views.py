@@ -10,15 +10,22 @@ def index(request):
     return render(request, 'app/index.html')
     
 def signup(request):
+    registered = False
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('')
+        user_form = SignUpForm(request.POST)
+        profile_form = UserProfileDOBForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.save()
+            profile = profile_form.save(commit= False)
+            profile.user = user
+            profile.save()
+            registerd = True
+        else:
+            print(user_form.errors,profile_form.errors)
     else:
-        form = SignUpForm()
-    return render(request, 'app/signup.html', {'form': form})
+        user_form = SignUpForm()
+        profile_form = UserProfileDOBForm()
+    return render(request, 'app/signup.html', {'user_form': user_form, 
+                                                'profile_form':profile_form,
+                                                'registered':registered})

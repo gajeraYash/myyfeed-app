@@ -13,7 +13,8 @@
         <h1>Register Here!</h1>
         <div class= "container">
             <form method="POST">
-                {{form.as_p}}
+                {{user_form.as_p}}
+                {{profile_form.as_p}}
                 {% csrf_token %}
                 <input type="submit" value="Submit">
             </form>
