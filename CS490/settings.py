@@ -16,6 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR.joinpath('templates')
 STATIC_DIR = BASE_DIR.joinpath('static')
+MEDIA_DIR= BASE_DIR.joinpath('media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -124,3 +125,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+#Media files(User uploaded files)
+
+MEDIA_URL= '/media/'
