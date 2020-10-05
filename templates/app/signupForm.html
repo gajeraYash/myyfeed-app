@@ -1,19 +1,56 @@
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sign up Form</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-</head>
-<body>
-    <div class= "container">
-        <form method="POST">
-            {{form.as_p}}
-            {% csrf_token %}
-            <input type="submit" value="Submit">
-        </form>
+<form method="POST">
+    {% csrf_token %}
+    {% if user_form.errors %}
+    <div class='form-row'>
+        <div class="alert col-md-8 alert-warning" role="alert">
+            {{ user_form.errors.get_json_data }}
+        </div>
+    </div>    
+    {% endif %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="username">Username</label>
+            {{user_form.username}}
+            <small>{{user_form.username.help_text}}</small>
+        </div>
     </div>
-</body>
-
-</html>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="first_name">First Name</label>
+            {{user_form.first_name}}
+        </div>
+        <div class="form-group col-md-3">
+            <label for="last_name">Last Name</label>
+            {{user_form.last_name}}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="email">Email</label>
+            {{user_form.email}}
+        </div>
+        <div class="form-group col-md-2">
+            <label for="date_of_birth">Date of Birth</label>
+            <input type="date" name="date_of_birth" class="form-control" required="" id="{{profile_form.date_of_birth.id_for_label}}">
+        </div>
+    </div>
+    <div class="form-row">
+        
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="password1">Password</label>
+            {{user_form.password1}}
+        </div>
+    </div>
+    <div class="form-row">
+        <small>{{user_form.password1.help_text}}</small>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="password2">Confirm Password</label>
+            {{user_form.password2}}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.forms.widgets import DateInput
 from app.models import UserProfile
 
 class SignUpForm(UserCreationForm):
@@ -12,6 +13,15 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['last_name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['username'].widget.attrs.update({'class': 'form-control'})
+        self.fields['email'].widget.attrs.update({'class': 'form-control'})
+        self.fields['password1'].widget.attrs.update({'class': 'form-control'})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control'})
 
     def clean(self):
         email = self.cleaned_data.get('email')
@@ -22,15 +32,17 @@ class SignUpForm(UserCreationForm):
         elif User.objects.filter(email=email).exists():
             raise ValidationError("Email exists")
         return self.cleaned_data
-        
 
-
+    
 class UserProfileDOBForm(forms.ModelForm):
+
     class Meta:
         model = UserProfile
         fields = ('date_of_birth',)
-
         
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['date_of_birth'].widget.attrs.update({'class': 'form-control','type':"date"})
 
 class UserProfileDetailForm(forms.ModelForm):
     class Meta:
