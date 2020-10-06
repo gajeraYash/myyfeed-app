@@ -13,23 +13,8 @@
 
 <body>
     <h1>Hello you are app/index.html</h1>
-    {% if webpage_rec %}
-        <table>
-            <thead>
-                <th>Site Name</th>
-                <th>Date Accessed</th>
-            </thead>
-        
-            {% for web in webpage_rec %}
-            <tr>
-                <td>{{ web.name }}</td>
-                <td>{{ web.url }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>NO ACCESS RECORDS FOUND!</p>
-    {% endif %}
+
+    <h2>You have been logged in</h2>
 </body>
 
 </html>
