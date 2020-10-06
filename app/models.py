@@ -1,3 +1,4 @@
+from app.validators import MinAgeValidator
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.deletion import CASCADE
@@ -6,7 +7,7 @@ from django.db.models.deletion import CASCADE
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
     #additional
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(validators=[MinAgeValidator(18)])
     profile_pic = models.ImageField(upload_to="profile_pics",blank=True)
     user_bio = models.CharField(max_length=256,blank=True)
     user_location = models.CharField(max_length=100,blank=True)

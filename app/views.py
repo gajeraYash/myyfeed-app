@@ -12,6 +12,8 @@ def signup(request):
     if request.method == 'POST':
         user_form = SignUpForm(request.POST)
         profile_form = UserProfileDOBForm(request.POST)
+        data = profile_form.cleaned_data['date_of_birth']
+        print(data)
         if user_form.is_valid() and profile_form.is_valid():
             userGroup = Group.objects.get(name='SiteUser')
             user = user_form.save()
@@ -35,11 +37,9 @@ def signupForm(request):
         user_form = SignUpForm(request.POST)
         profile_form = UserProfileDOBForm(request.POST)
         if user_form.is_valid() and profile_form.is_valid():
-            userGroup = Group.objects.get(name='SiteUser')
             user = user_form.save()
-            userGroup.user_set.add(user)
             user.save()
-            profile = profile_form.save(commit= False)
+            profile = profile_form.save(commit = False)
             profile.user = user
             profile.save()
             registered = True

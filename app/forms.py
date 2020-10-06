@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.forms.widgets import DateInput
 from app.models import UserProfile
+from datetime import date, timedelta
+
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
@@ -18,7 +20,7 @@ class SignUpForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs.update({'class': 'form-control'})
         self.fields['last_name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['username'].widget.attrs.update({'class': 'form-control'})
+        self.fields['username'].widget.attrs.update({'class': 'form-control','aria-describedby':'basic-addon1'})
         self.fields['email'].widget.attrs.update({'class': 'form-control'})
         self.fields['password1'].widget.attrs.update({'class': 'form-control'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control'})
@@ -28,9 +30,9 @@ class SignUpForm(UserCreationForm):
         username = self.cleaned_data.get('username')
 
         if User.objects.filter(username=username).exists():
-            raise ValidationError("Username already in use")
-        elif User.objects.filter(email=email).exists():
-            raise ValidationError("Email exists")
+            raise ValidationError("Username already in use.")
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Email already in use.")
         return self.cleaned_data
 
     
@@ -43,6 +45,7 @@ class UserProfileDOBForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['date_of_birth'].widget.attrs.update({'class': 'form-control','type':"date"})
+
 
 class UserProfileDetailForm(forms.ModelForm):
     class Meta:

@@ -16,45 +16,68 @@
         <h1>Thank you for registering </h1>
     {% else %}
     <div class="container">
-            <form method="POST">
+        <form method="POST" class="row signupform justify-content-center">
+            <div class="col-md-6">
                 {% csrf_token %}
                     {% if user_form.errors %}
                         {% for field in user_form %}
                             {% for error in field.errors %}
-                                <div class="alert col-md-8 alert-danger" role="alert">
+                                <div class="alert alert-danger" role="alert">
                                     <strong>{{ error|escape }}</strong>
                                 </div>
                             {% endfor %}
                         {% endfor %}
                         {% for error in user_form.non_field_errors %}
-                            <div class="alert col-md-8 alert-warning" role="alert">
+                            <div class="alert alert-warning" role="alert">
                                 <strong>{{ error|escape }}</strong>
                             </div>
                         {% endfor %}
                     {% endif %}
+                    {% if profile_form.errors %}
+                        {% for field in profile_form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in profile_form.non_field_errors %}
+                            <div class="alert alert-warning" role="alert">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="username">Username</label>
-                        {{user_form.username}}
-                        <small>{{user_form.username.help_text}}</small>
-                    </div>
+                    <label for="username" class= "userspc">Username</label>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="input-group userspc">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                        </div>
+                        {{user_form.username}}
+                    </div>    
+                </div>
+                <div class="form-row">
+                    <small class="userspc">{{user_form.username.help_text}}</small>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <label for="first_name">First Name</label>
                         {{user_form.first_name}}
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6">
                         <label for="last_name">Last Name</label>
                         {{user_form.last_name}}
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-8">
                         <label for="email">Email</label>
                         {{user_form.email}}
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <label for="date_of_birth">Date of Birth</label>
                         <input type="date" name="date_of_birth" class="form-control" required=""
                             id="{{profile_form.date_of_birth.id_for_label}}">
@@ -64,7 +87,7 @@
 
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="password1">Password</label>
                         {{user_form.password1}}
                     </div>
@@ -73,15 +96,15 @@
                     <small>{{user_form.password1.help_text}}</small>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label for="password2">Confirm Password</label>
                         {{user_form.password2}}
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Register</button>
-            </form>
+            </div>
+        </form>
     </div>
     {% endif %}
-
 
 </body>
