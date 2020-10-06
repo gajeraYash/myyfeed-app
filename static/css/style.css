@@ -1,5 +1,3 @@
 /*Parent CSS STYLE*/
+@import "sign-up-form.css";
 
-form {
-    display: inline-block;
-}
