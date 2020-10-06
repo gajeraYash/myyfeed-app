@@ -21,8 +21,6 @@ def signup(request):
             profile.user = user
             profile.save()
             registered = True
-        else:
-            print(user_form.errors,profile_form.errors)
     else:
         user_form = SignUpForm()
         profile_form = UserProfileDOBForm()
@@ -31,6 +29,7 @@ def signup(request):
                                                 'registered':registered})
 
 def signupForm(request):
+    message = ''
     registered = False
     if request.method == 'POST':
         user_form = SignUpForm(request.POST)
@@ -51,4 +50,5 @@ def signupForm(request):
         profile_form = UserProfileDOBForm()
     return render(request, 'app/signupForm.html', {'user_form' : user_form, 
                                                 'profile_form' : profile_form,
-                                                'registered' : registered})
+                                                'registered' : registered,
+                                                'message' : message})
