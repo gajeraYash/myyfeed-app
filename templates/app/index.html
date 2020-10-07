@@ -1,35 +1,16 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'app/base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HomePage</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-</head>
+{% block title %}Home{% endblock %}
 
-<body>
-    <h1>Hello you are app/index.html</h1>
-    {% if webpage_rec %}
-        <table>
-            <thead>
-                <th>Site Name</th>
-                <th>Date Accessed</th>
-            </thead>
-        
-            {% for web in webpage_rec %}
-            <tr>
-                <td>{{ web.name }}</td>
-                <td>{{ web.url }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>NO ACCESS RECORDS FOUND!</p>
-    {% endif %}
-</body>
-
-</html>
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Hi {{ user.username }}!</h1>
+  <h2>{{ user.first_name}} {{user.last_name}}</h2>
+  <h2>{{ user.email}}</h2>
+  <h3>{{ user.date_of_birth}}</h3>
+  <a href="{% url 'app:logout' %}">Log out</a>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'app:login' %}">Log In</a>
+{% endif %}
+{% endblock %}
