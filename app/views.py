@@ -1,5 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import Group
+
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
@@ -11,34 +10,16 @@ from app.models import *
 
 
 def index(request):
-    return render(request, 'app/index.html')
-
-
-def signup(request):
-    registered = False
-    if request.method == 'POST':
-        user_form = SignUpForm(request.POST)
-        profile_form = UserProfileDOBForm(request.POST)
-        data = profile_form.cleaned_data['date_of_birth']
-        print(data)
-        if user_form.is_valid() and profile_form.is_valid():
-            userGroup = Group.objects.get(name='SiteUser')
-            user = user_form.save()
-            userGroup.user_set.add(user)
-            user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
-            registered = True
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/feed')
     else:
-        user_form = SignUpForm()
-        profile_form = UserProfileDOBForm()
-    return render(request, 'app/signup.html', {'user_form': user_form,
-                                               'profile_form': profile_form,
-                                               'registered': registered})
+        return render(request, 'app/index.html')
+    
 
-
-def signupForm(request):
+@login_required
+def user_feed(request):
+    return render(request,'app/feed.html',{})
+def user_signup(request):
     message = ''
     registered = False
     if request.method == 'POST':
@@ -56,14 +37,13 @@ def signupForm(request):
     else:
         user_form = SignUpForm()
         profile_form = UserProfileDOBForm()
-    return render(request, 'app/signupForm.html', {'user_form': user_form,
+    return render(request, 'app/signup.html', {'user_form': user_form,
                                                    'profile_form': profile_form,
                                                    'registered': registered,
                                                    'message': message})
 
 
 def user_login(request):
-    
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
@@ -71,25 +51,19 @@ def user_login(request):
             password = login_form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             login(request,user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect("/feed")
         else:
             print("Error: Submitting Request")
     else:
         login_form = UserLoginForm()
     
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/feed')
     else:
         return render(request,"app/login.html", {'login_form':login_form})
     
-
 
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
-
-
-@login_required
-def user_feed(request):
-    return render(request,'app/feed.html',{})
