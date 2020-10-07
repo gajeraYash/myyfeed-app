@@ -3,6 +3,7 @@ autopep8 @ file:///tmp/build/80754af9/autopep8_1596578164842/work
 certifi==2020.6.20
 Django @ file:///tmp/build/80754af9/django_1601563330930/work
 Faker @ file:///tmp/build/80754af9/faker_1601653043658/work
+gunicorn==20.0.4
 olefile==0.46
 Pillow @ file:///opt/concourse/worker/volumes/live/be1e8a56-c4be-4ffe-4fa7-5a0e9c460b1a/volume/pillow_1594307312933/work
 psycopg2 @ file:///opt/concourse/worker/volumes/live/c8a4b965-959f-4e6c-7792-4aa881d63c8d/volume/psycopg2_1594305121341/work
