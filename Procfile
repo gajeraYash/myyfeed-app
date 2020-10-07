@@ -1,0 +1,1 @@
+web: gunicorn CS490.wsgi
