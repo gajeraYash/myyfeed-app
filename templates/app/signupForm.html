@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HomePage</title>
+    <title>Sign-up</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -17,7 +17,7 @@
     {% else %}
     <div class="container">
         <form method="POST" class="row signupform justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8 col-lg-6">
                 {% csrf_token %}
                     {% if user_form.errors %}
                         {% for field in user_form %}
@@ -76,6 +76,7 @@
                     <div class="form-group col-md-8">
                         <label for="email">Email</label>
                         {{user_form.email}}
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="date_of_birth">Date of Birth</label>
