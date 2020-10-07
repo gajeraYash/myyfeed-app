@@ -1,5 +1,3 @@
 /*Parent CSS STYLE*/
-
-h1{
-    color:red;
-}
+@import "sign-up-form.css";
+@import "login-form.css";

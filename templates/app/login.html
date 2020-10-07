@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <div class="container login-container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-6 col-lg-4">
+                <h3>Login</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                        {% if login_form.errors %}
+                            {% for field in login_form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in login_form.non_field_errors %}
+                                <div class="alert alert-warning" role="alert">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="form-group">
+                            {{login_form.username}}
+                        </div>
+                        <div class="form-group">
+                            {{login_form.password}}
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary col-12" value="Login" />
+                        </div>
+                </form>
+                <!-- <div class="form-group">
+                    <a href="#" class="btnForgetPwd">Forget Password?</a>
+                </div> -->
+        </div>
+    </div> 
+</body>
