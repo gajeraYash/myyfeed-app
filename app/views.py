@@ -63,6 +63,7 @@ def signupForm(request):
 
 
 def user_login(request):
+    
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
@@ -70,18 +71,23 @@ def user_login(request):
             password = login_form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             login(request,user)
-            return render(request, 'app/index.html')
+            return HttpResponseRedirect('/')
         else:
             print("Error: Submitting Request")
     else:
         login_form = UserLoginForm()
-    return render(request,"app/login.html", {'login_form':login_form})
+    
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    else:
+        return render(request,"app/login.html", {'login_form':login_form})
+    
 
 
 @login_required
 def user_logout(request):
     logout(request)
-    return render(request, 'app/index.html', {})
+    return HttpResponseRedirect('/')
 
 
 @login_required
