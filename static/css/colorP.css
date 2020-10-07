@@ -1,8 +1,3 @@
-/*Parent CSS STYLE*/
-@import "signup.css";
-@import "login.css";
-@import "index.css";
-
 :root {
     --main-primary-color: #64ffda;
     --main-secondary-color: #dceff9;
@@ -13,4 +8,4 @@
     --hover-primary-bg-color: #64ffda33; /*20% Opacity*/
     --shade-bg-color: #030D11;
     --pop-bg-color: #061A22;
-  }
+}
