@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
@@ -56,3 +57,26 @@ class UserProfileDetailForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('profile_pic','user_bio','user_location')
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(max_length=15)
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control','placeholder':'Username'})
+        self.fields['password'].widget.attrs.update({'class': 'form-control','placeholder':'Password'})
+
+    def clean(self, *args, **kwargs):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            
+            if not user:
+                raise forms.ValidationError('Invalid username or password.')
+            if not user.is_active:
+                raise forms.ValidationError('User status is currently inactive')
+
+        return super(UserLoginForm,self).clean(*args, **kwargs)
