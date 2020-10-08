@@ -1,16 +1,16 @@
 {% extends 'app/base.html' %}
 
-{% block title %}Home{% endblock %}
-
+{% block title %}Social Media App{% endblock %}
+{% block description %}Social Media App created for CS:490 @NJIT{% endblock %}
 {% block content %}
-{% if user.is_authenticated %}
-  <h1>Hi {{ user.username }}!</h1>
-  <h2>{{ user.first_name}} {{user.last_name}}</h2>
-  <h2>{{ user.email}}</h2>
-  <h3>{{ user.date_of_birth}}</h3>
-  <a href="{% url 'app:logout' %}">Log out</a>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'app:login' %}">Log In</a>
-{% endif %}
+<section id="landing" class="d-flex flex-column justify-content-center" >
+  <div class="container" >
+      <h1>Social Media App <br><span>Rutgers-Newark & NJIT</span></h1>
+      <p class="p-large">App is running on Django 3.1.2</p>
+      <div class="col">
+        <a type="button" href="{% url 'app:signup' %}" class="btn bt1 btn-outline-primary">Sign up</a>
+        <a type="button" href="{% url 'app:login' %}" class="btn bt2 btn-outline-primary">Login</a>
+      </div>
+  </div>
+</section>
 {% endblock %}
