@@ -18,10 +18,15 @@ def index(request):
 
 @login_required
 def user_feed(request):
-    return render(request,'app/feed.html',{})
+    profile_data = UserProfile.objects.get(user=request.user)
+    return render(request,'app/feed.html',{"profile_data":profile_data})
+
+def user_signup_success(request):
+    registered = True
+    return render(request,'app/signup.html',{'registered': registered})
+
 def user_signup(request):
     message = ''
-    registered = False
     if request.method == 'POST':
         user_form = SignUpForm(request.POST)
         profile_form = UserProfileDOBForm(request.POST)
@@ -31,7 +36,7 @@ def user_signup(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            registered = True
+            return HttpResponseRedirect('/signup/success')
         else:
             message = "Error: Submitting Request"
     else:
@@ -39,7 +44,6 @@ def user_signup(request):
         profile_form = UserProfileDOBForm()
     return render(request, 'app/signup.html', {'user_form': user_form,
                                                    'profile_form': profile_form,
-                                                   'registered': registered,
                                                    'message': message})
 
 

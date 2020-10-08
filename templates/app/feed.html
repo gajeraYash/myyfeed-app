@@ -6,9 +6,13 @@
 {% block content %}
 {% if user.is_authenticated %}
   <h1>Hi {{ user.username }}!</h1>
-  <h2>{{ user.first_name}} {{user.last_name}}</h2>
-  <h2>{{ user.email}}</h2>
-  <h3>{{ user.date_of_birth}}</h3>
+  <h1>Hi {{ user.id }}!</h1>
+  <h2>{{ user.first_name }} {{user.last_name }}</h2>
+  <h2>{{ user.email }}</h2>
+  {% if profile_data %}
+    <h3>{{ profile_data.date_of_birth}}</h3>
+    <h3>{{ profile_data.user_bio}}</h3>
+  {% endif %}
   <a href="{% url 'app:logout' %}">Log out</a>
 {% else %}
   <p>You are not logged in</p>
