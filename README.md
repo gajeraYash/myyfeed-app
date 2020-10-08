@@ -6,13 +6,28 @@
 </p>
 <div align='center'>
   <a href="https://github.com/Luna426">
-    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Front-Yelitza-purple'> 
+    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Front-Yelitza-9cf'> 
   </a>
   <a href="https://github.com/moesaifan99">
-    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Middle-Moe-orange'>
+    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Middle-Moe-yellow'>
   </a>
   <a href="https://github.com/gajeraYash">
     <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Back-Yash-red'>
+  </a>
+</div>
+<br>
+<div align='center'>
+  <a href="https://www.heroku.com/">
+    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/heroku-deployed-green'> 
+  </a>
+  <a href="https://cs-490.herokuapp.com/">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/uptime-robot/status/m786106082-0afa007942fb6755090e7e9d'>
+  </a>
+  <a href="https://cs-490.herokuapp.com/">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/uptime-robot/day/m786106082-0afa007942fb6755090e7e9d'>
+  </a>
+  <a href="https://cs-490.herokuapp.com/">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/uptime-robot/response/m786106082-0afa007942fb6755090e7e9d'>
   </a>
 </div>
   
