@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'app/base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sign-up</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-</head>
+{% block title %}Sign up{% endblock %}
+{% block description %}Form for user sign up for the site{% endblock %}
 
-<body>
+{% block content %}
     {% if registered %}
         <h1>Thank you for registering </h1>
         <a href="{% url 'app:login' %}">Log In</a>
@@ -108,5 +100,4 @@
         </form>
     </div>
     {% endif %}
-
-</body>
+{% endblock %}
