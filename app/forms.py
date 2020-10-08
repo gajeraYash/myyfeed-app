@@ -11,7 +11,7 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, required=True)
-    username = forms.CharField(max_length=15, min_length=3, required=True, help_text="Username can must be between 3 - 15 characters and can contain '_'. ",validators=[
+    username = forms.CharField(max_length=15, min_length=3, required=True, help_text="Username must be between 3 - 15 characters and can contain '_'. ",validators=[
         RegexValidator(
             regex='^(?=.{3,15}$)(?!.*[_]{2})[a-zA-Z0-9_]+$',
             message='Username is invalid!',
