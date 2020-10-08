@@ -1,16 +1,36 @@
 {% extends 'app/base.html' %}
-
+{% load static %}
 {% block title %}Sign up{% endblock %}
 {% block description %}Form for user sign up for the site{% endblock %}
-
+{% block vendor %} 
+<script type="text/javascript" src="{% static 'js/signup.js' %}"></script>
+{% endblock %}
 {% block content %}
+<section id="signup" class="signup">
     {% if registered %}
-        <h1>Thank you for registering </h1>
-        <a href="{% url 'app:login' %}">Log In</a>
+    <div id="success"class="d-flex flex-column justify-content-center">
+        <div class="container">
+            <div class="row register justify-content-center">
+                <h1 class="title">Thank you for signing up!</h1>
+            </div>
+            <div class="row register justify-content-center">
+                <small class="subtitle">You will automatically be redirected to login page, if not click here to <a href="{% url 'app:login' %}">login</a>.</small>
+            </div>
+        </div>
+        <script>
+            function redirect(){
+               window.location.href = "{% url 'app:login' %}";
+            }
+            setTimeout(redirect, 5000); //5000 is equivalent to 5 seconds
+        </script>
+    </div>
     {% else %}
     <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="title">Sign up</h1>
+        </div>
         <form method="POST" class="row signupform justify-content-center">
-            <div class="col-md-8 col-lg-6">
+            <div class="col-10 col-md-8 col-lg-6">
                 {% csrf_token %}
                     {% if user_form.errors %}
                         {% for field in user_form %}
@@ -95,9 +115,12 @@
                         {{user_form.password2}}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-outline-primary">Sign up</button>
+                </div>
             </div>
         </form>
     </div>
     {% endif %}
+</section>
 {% endblock %}

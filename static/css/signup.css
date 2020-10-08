@@ -1,9 +1,65 @@
 /* templates/app/signupForm.html */
+@import "colorP.css";
 
-.userspc{
+#signup {
+    width: 100%;
+    background-color: var(--main-bg-color);
+    background-size: cover;
+    padding-bottom: 120px;
+}
+
+#signup #success {
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+    min-height: 80vh;
+}
+
+#signup .userspc {
     padding-right: 5px;
     padding-left: 5px;
 }
-.signupform{
-    padding-top: 140px;
+
+#signup .subtitle {
+    color: var(--main-secondary-color);
+}
+
+#signup .signupform {
+    color: var(--main-sub-color);
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+}
+
+#signup h1 {
+    margin: 20px 10px 10px 10px;
+    color: var(--main-secondary-color);
+    font-size: 60px;
+    text-align: center;
+}
+
+#signup .btn {
+    color: var(--main-primary-color);
+    width: 150px;
+    font-weight: 600;
+    line-height: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--main-primary-color);
+    padding: 0.7rem 1rem;
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+}
+
+#signup .bt1 {
+    margin-right: 10px;
+}
+
+#signup .bt2 {
+    margin-left: 10px;
+}
+
+#signup .btn:hover {
+    background-color: var(--hover-primary-bg-color);
+}
+
+@media (max-width: 767px) {
+    #signup h1 {
+        font-size: 40px;
+    }
 }
