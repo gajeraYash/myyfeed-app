@@ -1,0 +1,89 @@
+/* templates/app/index.html */
+@import "colorP.css";
+
+#landing {
+    width: 100%;
+    min-height: 100vh;
+    /* Fallback for browsers that do not support Custom Properties */
+    min-height: calc(var(--vh, 1vh) * 100);
+    background-color: var(--main-bg-color);
+    background-size: cover;
+}
+
+#landing h1 {
+    margin: 0;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 50px;
+    color: var(--main-secondary-color);
+}
+
+#landing h1 span {
+    margin: 0;
+    font-size: 35px;
+    font-weight: 700;
+    color: var(--main-secondary-color);
+}
+
+#landing p {
+    color: var(--main-sub-color);
+    margin: 15px 0 0 0;
+    font-size: 25px;
+}
+
+#landing .col {
+    padding: 0px;
+}
+
+#landing .btn {
+    color: var(--main-primary-color);
+    width: 120px;
+    margin-top: 20px;
+    line-height: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--main-primary-color);
+    padding: 0.7rem 1rem;
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+}
+
+#landing .bt1 {
+    margin-right: 10px;
+}
+
+#landing .bt2 {
+    margin-left: 10px;
+}
+
+#landing .btn:hover {
+    background-color: var(--hover-primary-bg-color);
+}
+
+@media (max-width: 767px) {
+    #landing {
+        text-align: center;
+    }
+
+    #landing h1 {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    #landing h1 span {
+        margin: 0;
+        font-size: 25px;
+    }
+
+    #landing p {
+        font-size: 15px;
+    }
+
+    #landing .btn {
+        width: 100px;
+        justify-content: center;
+    }
+
+    #landing .col {
+        margin-top: 15px;
+    }
+}
