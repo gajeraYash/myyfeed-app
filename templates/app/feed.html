@@ -1,7 +1,21 @@
 {% extends 'app/base.html' %}
 
 {% block title %}Feed{% endblock %}
+{% block description %}User feed consisting of announcement, photos, documentation, and etc.{% endblock %}
 
 {% block content %}
-<h3>YOU ARE IN FEED TAB</h3>
+{% if user.is_authenticated %}
+  <h1>Hi {{ user.username }}!</h1>
+  <h1>Hi {{ user.id }}!</h1>
+  <h2>{{ user.first_name }} {{user.last_name }}</h2>
+  <h2>{{ user.email }}</h2>
+  {% if profile_data %}
+    <h3>{{ profile_data.date_of_birth}}</h3>
+    <h3>{{ profile_data.user_bio}}</h3>
+  {% endif %}
+  <a href="{% url 'app:logout' %}">Log out</a>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'app:login' %}">Log In</a>
+{% endif %}
 {% endblock %}
