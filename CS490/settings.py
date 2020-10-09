@@ -137,3 +137,5 @@ STATICFILES_DIRS = [
 #Media files(User uploaded files)
 
 MEDIA_URL= '/media/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
