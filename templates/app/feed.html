@@ -1,11 +1,12 @@
 {% extends 'app/base.html' %}
-
+{% load static %}
 {% block title %}Feed{% endblock %}
 {% block description %}User feed consisting of announcement, photos, documentation, and etc.{% endblock %}
-
+{% block vendor %}<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>{% endblock %}
 {% block content %}
+{% include "app/navbar.html" with user=user active_tab='home'%}
 {% if user.is_authenticated %}
-  <h1>Hi {{ user.username }}!</h1>
+  <!-- <h1>Hi {{ user.username }}!</h1>
   <h1>Hi {{ user.id }}!</h1>
   <h2>{{ user.first_name }} {{user.last_name }}</h2>
   <h2>{{ user.email }}</h2>
@@ -16,6 +17,6 @@
   <a href="{% url 'app:logout' %}">Log out</a>
 {% else %}
   <p>You are not logged in</p>
-  <a href="{% url 'app:login' %}">Log In</a>
+  <a href="{% url 'app:login' %}">Log In</a> -->
 {% endif %}
 {% endblock %}
