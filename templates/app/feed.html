@@ -1,10 +1,8 @@
 {% extends 'app/base.html' %}
-
+{% load static %}
 {% block title %}Feed{% endblock %}
 {% block description %}User feed consisting of announcement, photos, documentation, and etc.{% endblock %}
-
-
-
+{% block vendor %}<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>{% endblock %}
 {% block content %}
 {% include "app/navbar.html" with user=user active_tab='home'%}
 {% if user.is_authenticated %}

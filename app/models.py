@@ -16,10 +16,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-class User_Annoucements(models.Model):
+class UserAnnoucements(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     announcement = models.TextField(max_length=512)
     created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return self.user.username + "\n" + self.announcement + '\n' + self.created
+        return self.user.username + "\n" + self.announcement
