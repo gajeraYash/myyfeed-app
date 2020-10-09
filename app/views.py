@@ -15,11 +15,12 @@ def index(request):
     else:
         return render(request, 'app/index.html')
     
-
-@login_required
 def user_feed(request):
-    profile_data = UserProfile.objects.get(user=request.user)
-    return render(request,'app/feed.html',{"profile_data":profile_data})
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    else:
+        profile_data = UserProfile.objects.get(user=request.user)
+        return render(request,'app/feed.html',{"profile_data":profile_data})
 
 def user_signup_success(request):
     registered = True
