@@ -4,6 +4,7 @@
 @import "index.css";
 @import "colorP.css";
 @import "navbar.css";
+@import "feed.css";
 
 html {
   background-color: var(--main-bg-color);
