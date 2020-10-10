@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from app.models import UserProfile
+from app.models import UserAnnoucements, UserProfile
 
 
 class SignUpForm(UserCreationForm):
@@ -80,3 +80,9 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError('User status is currently inactive')
 
         return super(UserLoginForm,self).clean(*args, **kwargs)
+
+class UserTweet(forms.ModelForm):
+
+    class Meta:
+        model = UserAnnoucements
+        fields = ('announcement',)
