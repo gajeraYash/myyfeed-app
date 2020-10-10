@@ -2,21 +2,42 @@
 {% load static %}
 {% block title %}Feed{% endblock %}
 {% block description %}User feed consisting of announcement, photos, documentation, and etc.{% endblock %}
-{% block vendor %}<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>{% endblock %}
+{% block vendor %}
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/feed.js' %}"></script>
+{% endblock %}
 {% block content %}
 {% include "app/navbar.html" with user=user active_tab='home'%}
-{% if user.is_authenticated %}
-  <!-- <h1>Hi {{ user.username }}!</h1>
-  <h1>Hi {{ user.id }}!</h1>
-  <h2>{{ user.first_name }} {{user.last_name }}</h2>
-  <h2>{{ user.email }}</h2>
-  {% if profile_data %}
-    <h3>{{ profile_data.date_of_birth}}</h3>
-    <h3>{{ profile_data.user_bio}}</h3>
-  {% endif %}
-  <a href="{% url 'app:logout' %}">Log out</a>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'app:login' %}">Log In</a> -->
-{% endif %}
+<section id="feed">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-8 col-lg-8 col-lg-6">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form-control announcementform" name="announcement" rows="3" maxlength="280" required="" id="{{announcement_form.announcement.id_for_label}}" spellcheck="false"></textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-outline-primary">Post</button>
+                    </div>
+                 </form>
+                {% if usertweet_data%}
+                    {% for tweet in usertweet_data %}
+                        <div class="tweet cube-trans">
+                            <div class="name">{{user.first_name}} {{user.last_name}} <span class="user"><span class="username">@{{user.username}}</span></span></div>
+                            <div class="announcement">{{ tweet.announcement }}</div>
+                            <div class="date">{{ tweet.created }}</div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                <div class="tweet cube-trans">
+                    <div class="name">{{user.first_name}} {{user.last_name}}</div>
+                    <div class="announcement">Post your first Tweet!</div>
+                    <div class="date"></div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
