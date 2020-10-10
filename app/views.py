@@ -19,8 +19,22 @@ def user_feed(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/')
     else:
+        if request.method == 'POST':
+            announcement_form = UserTweet(request.POST)
+            if announcement_form.is_valid():
+                user = request.user 
+                announcement = announcement_form.save(commit=False)
+                announcement.user = user
+                announcement.save()
+                return HttpResponseRedirect('/feed')
+            else:
+                print("error")
+        else:
+            announcement_form = UserTweet()
+
         profile_data = UserProfile.objects.get(user=request.user)
-        return render(request,'app/feed.html',{"profile_data":profile_data})
+        usertweet_data = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
+        return render(request,'app/feed.html',{"profile_data":profile_data,"usertweet_data":usertweet_data,"announcement_form":announcement_form})
 
 def user_signup_success(request):
     registered = True

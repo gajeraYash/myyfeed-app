@@ -18,7 +18,7 @@ class UserProfile(models.Model):
 
 class UserAnnoucements(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
-    announcement = models.TextField(max_length=512)
+    announcement = models.TextField(max_length=280)
     created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
