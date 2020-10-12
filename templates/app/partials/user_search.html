@@ -1,0 +1,9 @@
+{% if user_results %}
+THIS WORKED
+{% for user in user_results %}
+<div id='searchresults' class="searchresults cube-trans">
+    <div class="username">{{ user.username }}</div>
+    <div class="name">{{user.first_name}} {{user.last_name}} </div>
+</div>
+{% endfor %}
+{% endif %}
