@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = BASE_DIR.joinpath('templates')
-STATIC_DIR = BASE_DIR.joinpath('static')
-MEDIA_DIR= BASE_DIR.joinpath('media')
+BASE_DIR = Path(__file__).resolve().parent.parent #Location of the Project
+TEMPLATES_DIR = BASE_DIR.joinpath('templates') #Location of the HTML templates
+STATIC_DIR = BASE_DIR.joinpath('static') #Location of the Static (CSS,JS,Vendor)
+MEDIA_DIR= BASE_DIR.joinpath('media') #Location of Images and User served Files
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,9 +26,9 @@ MEDIA_DIR= BASE_DIR.joinpath('media')
 SECRET_KEY = '2a-z11-%&u005h4_h_&=!=4f7olmalkn4#_qb4512u6_n8&&*a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #Till beta production it will be true
 
-ALLOWED_HOSTS = ['cs-490.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['cs-490.herokuapp.com','127.0.0.1'] # Hosted sites ,local site
 
 
 # Application definition
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # compression for images
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'EST'
+TIME_ZONE = 'America/New_York' #Local Time
 
 USE_I18N = True
 
