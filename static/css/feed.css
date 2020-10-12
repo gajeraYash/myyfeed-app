@@ -52,13 +52,13 @@
 
 #feed #searchfield .searchresults{
     color: var(--main-secondary-color);
-    margin: 15px 0px;
+    margin: 10px 0px;
     padding: 10px 15px;
     background-color: var(--shade-bg-color);
     border-radius: 15px;
 }
 #feed #searchfield .searchresults .username{
-    font-size: 14px;
+    font-size: 12px;
 }
 #feed #searchfield .searchresults .name{
     font-size: 12px;
