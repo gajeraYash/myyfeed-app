@@ -41,9 +41,10 @@
                 {% endif %}
             </div>
             <div id="searchfield" class="col-sm-4 col-md-4 col-lg-4">
-                <i id="search-icon" class="bx bx-search-alt-2"></i>
                 <input id="user-input" class="form-control" type="search" placeholder="Search" aria-label="Search">
-
+                <div id="replaceable-content">
+                    {% include "app/partials/user_search.html" %}
+                </div>    
             </div>
         </div>
     </div>
