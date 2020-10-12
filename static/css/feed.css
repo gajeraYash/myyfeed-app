@@ -1,11 +1,11 @@
-#feed{
-    margin-top:100px;
+#feed {
+    margin-top: 100px;
     width: 100%;
     background-color: var(--main-bg-color);
     background-size: cover;
 }
 
-#feed .tweet{
+#feed .tweet {
     color: var(--main-secondary-color);
     margin: 15px 0px;
     padding: 10px 15px;
@@ -13,35 +13,59 @@
     border-radius: 15px;
 }
 
-#feed .name{
+#feed .name {
     font-size: 12px;
 }
-#feed .user{
+
+#feed .user {
     padding-left: 5px;
 }
-#feed .username{
+
+#feed .username {
     color: var(--main-sub-color);
 }
 
-#feed .announcement{
+#feed .announcement {
     font-size: 15px;
     margin: 5px 0px;
 }
 
-#feed .date{
+#feed .date {
     font-size: 10px;
     margin: 5px 0px;
     color: var(--main-sub-color);
     text-align: right;
-    
+
 }
 
-#feed .announcementform{
+#feed .announcementform {
     border-radius: 15px;
 }
-#feed textarea{
+
+#feed textarea {
     resize: none;
 }
-.cube-trans{
-    transition: all 0.25s cubic-bezier(.14,.7,.75,.31);
+
+.cube-trans {
+    transition: all 0.25s cubic-bezier(.14, .7, .75, .31);
+}
+
+#feed #searchfield .searchresults{
+    color: var(--main-secondary-color);
+    margin: 10px 0px;
+    padding: 10px 15px;
+    background-color: var(--shade-bg-color);
+    border-radius: 15px;
+}
+#feed #searchfield .searchresults .username{
+    font-size: 12px;
+}
+#feed #searchfield .searchresults .name{
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    #feed div#searchfield {
+        display: none;
+    }
 }

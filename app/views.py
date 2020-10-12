@@ -1,9 +1,10 @@
 
-from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.http.response import HttpResponseRedirect
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
+from django.db.models import Q
 from app.forms import *
 from app.models import *
 # Create your views here.
@@ -14,6 +15,17 @@ def index(request):
         return HttpResponseRedirect('/feed')
     else:
         return render(request, 'app/index.html')
+
+@login_required
+def user_search(request):
+    user_param = request.GET.get('user_search', None)
+    if user_param:
+        user_q = User.objects.filter(Q(username__icontains=user_param) | Q(first_name__icontains=user_param) | Q(last_name__icontains=user_param)).order_by('username')
+        user_obj_q = list(user_q.values('username','first_name','last_name'))
+        return render(request, 'app/partials/user_search.html', {'user_results':user_obj_q})
+        # return JsonResponse({'user_results':user_obj_q}, safe=False)
+    else:
+        print("No Value Provided")
     
 def user_feed(request):
     if not request.user.is_authenticated:
