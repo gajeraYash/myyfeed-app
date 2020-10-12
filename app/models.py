@@ -22,4 +22,4 @@ class UserAnnoucements(models.Model):
     created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return self.user.username + "\n" + self.announcement
+        return self.user.username + "---" + self.announcement
