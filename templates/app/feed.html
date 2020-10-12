@@ -11,24 +11,27 @@
 <section id="feed">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-10 col-sm-8 col-lg-8 col-lg-6">
+            <div class="col-10 col-sm-10 col-lg-8 col-lg-6">
                 <form method="POST">
                     {% csrf_token %}
                     <div class="form-group">
-                        <textarea class="form-control announcementform" name="announcement" rows="3" maxlength="280" required="" id="{{announcement_form.announcement.id_for_label}}" spellcheck="false"></textarea>
+                        <textarea class="form-control announcementform" name="announcement" rows="3" maxlength="280"
+                            required="" id="{{announcement_form.announcement.id_for_label}}"
+                            spellcheck="false"></textarea>
                     </div>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-outline-primary">Post</button>
                     </div>
-                 </form>
+                </form>
                 {% if usertweet_data%}
-                    {% for tweet in usertweet_data %}
-                        <div class="tweet cube-trans">
-                            <div class="name">{{user.first_name}} {{user.last_name}} <span class="user"><span class="username">@{{user.username}}</span></span></div>
-                            <div class="announcement">{{ tweet.announcement }}</div>
-                            <div class="date">{{ tweet.created }}</div>
-                        </div>
-                    {% endfor %}
+                {% for tweet in usertweet_data %}
+                <div class="tweet cube-trans">
+                    <div class="name">{{user.first_name}} {{user.last_name}} <span class="user"><span
+                                class="username">@{{user.username}}</span></span></div>
+                    <div class="announcement">{{ tweet.announcement }}</div>
+                    <div class="date">{{ tweet.created }}</div>
+                </div>
+                {% endfor %}
                 {% else %}
                 <div class="tweet cube-trans">
                     <div class="name">{{user.first_name}} {{user.last_name}}</div>
@@ -36,6 +39,11 @@
                     <div class="date"></div>
                 </div>
                 {% endif %}
+            </div>
+            <div id="searchfield" class="col-sm-4 col-md-4 col-lg-4">
+                <i id="search-icon" class="bx bx-search-alt-2"></i>
+                <input id="user-input" class="form-control" type="search" placeholder="Search" aria-label="Search">
+
             </div>
         </div>
     </div>
