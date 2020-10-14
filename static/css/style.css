@@ -9,6 +9,7 @@
 
 html {
   background-color: var(--main-bg-color);
+  height:100%;
 }
 
 html:before {
