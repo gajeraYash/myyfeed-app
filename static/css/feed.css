@@ -1,5 +1,5 @@
 #feed {
-    margin-top: 100px;
+    padding: 100px 0px;
     width: 100%;
     background-color: var(--main-bg-color);
     background-size: cover;
@@ -46,10 +46,6 @@
     resize: none;
 }
 
-.cube-trans {
-    transition: all 0.25s cubic-bezier(.14, .7, .75, .31);
-}
-
 #feed #searchfield .searchresults{
     color: var(--main-secondary-color);
     margin: 10px 0px;
@@ -63,8 +59,7 @@
 #feed #searchfield .searchresults .name{
     font-size: 12px;
 }
-
-@media (max-width: 768px) {
+@media only screen and (max-width: 992px) {
     #feed div#searchfield {
         display: none;
     }
