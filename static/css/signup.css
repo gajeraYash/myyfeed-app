@@ -5,6 +5,7 @@
     background-color: var(--main-bg-color);
     background-size: cover;
     padding-bottom: 120px;
+    min-height: 100vh;
 }
 
 #signup #success {
