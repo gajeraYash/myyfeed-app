@@ -3,6 +3,7 @@
     width: 100%;
     background-color: var(--main-bg-color);
     background-size: cover;
+    min-height: 100vh;
 }
 
 #feed .tweet {
