@@ -29,15 +29,30 @@ def user_search(request):
     else:
         print("No Value Provided")
 
+def profile(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("app:index"))
+    else:
+        profile_data_obj = UserProfile.objects.get(user=request.user)
+        user_data_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
+        return render(request,'app/profile.html',{"profile_data":profile_data_obj,"user_data":user_data_obj,})
 
 @login_required
 def user_feed(request):
-    following_list = (Follower.objects.filter(follower = request.user)).values_list('following',flat = True)
-    user_feed_obj = UserAnnoucements.objects.filter(Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
-    # user_obj = User.objects.filter(Q(id__in=following_list) | Q(username=request.user))
-    # user_feed_q = user_feed_obj | user_obj
-    # print(user_feed_q)
-    return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
+    feed_param = request.GET.get('feed_param', None)
+    if feed_param == 'FOLLOWING':
+        following_list = (Follower.objects.filter(follower = request.user)).values_list('following',flat = True)
+        user_feed_obj = UserAnnoucements.objects.filter(Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
+        return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
+    elif feed_param == 'SELF':
+        user_feed_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
+        return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
+    elif feed_param:
+        user_q = User.objects.get(username=feed_param)
+        user_feed_obj = UserAnnoucements.objects.filter(user=user_q).order_by('-created')
+        return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
+    else:
+        print("No Value Provided")
     
 def feed(request):
     if not request.user.is_authenticated:

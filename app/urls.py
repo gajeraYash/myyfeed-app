@@ -13,4 +13,5 @@ urlpatterns = [
     path('feed',views.feed,name="feed"),
     path('user/search',views.user_search,name="user_search"),
     path('user/feed',views.user_feed,name="user_feed"),
+    path('profile',views.profile,name="profile"),
 ] 
