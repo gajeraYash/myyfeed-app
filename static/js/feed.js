@@ -1,13 +1,26 @@
 function get_feed() {
+
     $.ajax({
         url: 'user/feed',
         type: "get",
         cache: true,
+        data: {
+            'feed_param': 'FOLLOWING'
+        },
         dataType: 'html',
         success: function (data) {
             $('#feed-content').html(data)
         }
     });
+    // $.ajax({
+    //     url: 'user/feed',
+    //     type: "get",
+    //     cache: true,
+    //     dataType: 'html',
+    //     success: function (data) {
+    //         $('#feed-content').html(data)
+    //     }
+    // });
 }
 
 get_feed();
@@ -19,7 +32,7 @@ $(document).ready(function () {
 
     setInterval(function () {
         get_feed();
-    }, 50000);
+    }, 5000);
 
     $("#user-input").keyup(function () {
         var user_search = $(this).val();
