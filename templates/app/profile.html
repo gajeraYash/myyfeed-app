@@ -1,0 +1,50 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile - {{user.username}}{% endblock %}
+{% block description %}User profile containing feed and personal info.{% endblock %}
+{% block vendor %}
+{% endblock %}
+{% block content %}
+{% include "app/navbar.html" with user=user active_tab='home'%}
+<section id="profile">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-lg-8 col-lg-6">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form-control announcementform" name="announcement" rows="3" maxlength="280"
+                            required="" id="{{announcement_form.announcement.id_for_label}}"
+                            spellcheck="false"></textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-outline-primary">Post</button>
+                    </div>
+                </form>
+                {% if usertweet_data%}
+                {% for tweet in usertweet_data %}
+                <div class="tweet cube-trans">
+                    <div class="name">{{user.first_name}} {{user.last_name}} <span class="user"><span
+                                class="username">@{{user.username}}</span></span></div>
+                    <div class="announcement">{{ tweet.announcement }}</div>
+                    <div class="date">{{ tweet.created }}</div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="tweet cube-trans">
+                    <div class="name">{{user.first_name}} {{user.last_name}}</div>
+                    <div class="announcement">Post your first Tweet!</div>
+                    <div class="date"></div>
+                </div>
+                {% endif %}
+            </div>
+            <div id="searchfield" class="col-sm-4 col-md-4 col-lg-4">
+                <input id="user-input" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <div id="replaceable-content">
+                    {% include "app/partials/user_search.html" %}
+                </div>    
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
