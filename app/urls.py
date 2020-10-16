@@ -10,6 +10,7 @@ urlpatterns = [
     path('signup/success',views.user_signup_success,name="signup-success"),
     path('login',views.user_login,name="login"),
     path('logout',views.user_logout,name="logout"),
-    path('feed',views.user_feed,name="feed"),
+    path('feed',views.feed,name="feed"),
     path('user/search',views.user_search,name="user_search"),
+    path('user/feed',views.user_feed,name="user_feed"),
 ] 
