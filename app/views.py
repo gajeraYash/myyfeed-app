@@ -44,15 +44,13 @@ def user_feed(request):
         following_list = (Follower.objects.filter(follower = request.user)).values_list('following',flat = True)
         user_feed_obj = UserAnnoucements.objects.filter(Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
         return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
-    elif feed_param == 'SELF':
-        user_feed_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
-        return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
     elif feed_param:
         user_q = User.objects.get(username=feed_param)
         user_feed_obj = UserAnnoucements.objects.filter(user=user_q).order_by('-created')
         return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
     else:
-        print("No Value Provided")
+        user_feed_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
+        return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
     
 def feed(request):
     if not request.user.is_authenticated:
