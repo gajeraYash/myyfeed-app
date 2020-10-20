@@ -5,7 +5,7 @@ function get_feed() {
         type: "get",
         cache: true,
         data: {
-            'feed_param': ''
+            'feed_param': 'FOLLOWING'
         },
         dataType: 'html',
         success: function (data) {
