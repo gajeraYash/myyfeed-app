@@ -3,22 +3,19 @@ function get_feed() {
         url: 'user/feed',
         type: "get",
         cache: true,
+        data: {
+            'feed_param': ''
+        },
         dataType: 'html',
         success: function (data) {
             $('#feed-content').html(data)
         }
     });
+    // 'feed_param': 'FOLLOWING'  Get USER Following Announcements
+    // 'feed_param': ''  Get Self created announcements
+    // 'feed_param': 'username'  Get Other user created announcements
 }
 
-get_feed();
-
 $(document).ready(function () {
-    $('.announcementform').focus(function () {
-        $(this).animate({ rows: 4 },);
-    });
-
-    setInterval(function () {
-        get_feed();
-    }, 50000);
-
+    get_feed();
 });
