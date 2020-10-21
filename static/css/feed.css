@@ -46,6 +46,12 @@
 #feed textarea {
     resize: none;
 }
+/* 
+#feed #feed-content {
+    overflow-y:auto;
+    height: 80vh;
+} */
+
 
 #feed #searchfield .searchresults{
     color: var(--main-secondary-color);
@@ -60,6 +66,7 @@
 #feed #searchfield .searchresults .name{
     font-size: 12px;
 }
+
 @media only screen and (max-width: 992px) {
     #feed div#searchfield {
         display: none;
