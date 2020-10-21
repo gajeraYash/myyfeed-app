@@ -11,7 +11,7 @@ def random_img():
     default_img=MEDIA_DIR.joinpath('default')
     rand = random.choice(listdir(default_img))
     print(path.join(default_img, rand))
-    return path.join(default_img, rand)
+    return path.join('default', rand)
 
 class Follower(models.Model):
     follower = models.ForeignKey(User,on_delete=CASCADE, related_name='following')
