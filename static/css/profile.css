@@ -45,3 +45,14 @@
     background-color: var(--shade-bg-color);
     border-radius: 15px;
 }
+
+#profile #feed-content {
+    overflow-y:auto;
+    height: 80vh;
+}
+
+#profile .profilePic{
+    padding: 10px 0px;
+}
+
+
