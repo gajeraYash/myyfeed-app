@@ -1,41 +1,11 @@
+@import  "partials/user_feed.css";
+
 #profile {
     padding: 100px 0px;
     width: 100%;
     background-color: var(--main-bg-color);
     background-size: cover;
     min-height: 100vh;
-}
-
-#profile .tweet {
-    color: var(--main-secondary-color);
-    margin: 15px 0px;
-    padding: 10px 15px;
-    background-color: var(--shade-bg-color);
-    border-radius: 15px;
-}
-
-#profile .name {
-    font-size: 12px;
-}
-
-#profile .user {
-    padding-left: 5px;
-}
-
-#profile .username {
-    color: var(--main-sub-color);
-}
-
-#profile .announcement {
-    font-size: 15px;
-    margin: 5px 0px;
-}
-
-#profile .date {
-    font-size: 10px;
-    margin: 5px 0px;
-    color: var(--main-sub-color);
-    text-align: right;
 }
 
 #profile .profileBox  {
@@ -55,4 +25,14 @@
     padding: 10px 0px;
 }
 
+#profile .membersince{
+    justify-content: flex-end;
+}
 
+#profile .bio{
+    text-align: center;
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: var(--pop-bg-color);
+    border-radius: 15px;
+}
