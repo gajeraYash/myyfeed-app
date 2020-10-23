@@ -1,13 +1,20 @@
 /*Parent CSS STYLE*/
-@import "signup.css";
-@import "login.css";
-@import "index.css";
-@import "colorP.css";
-@import "navbar.css";
-@import "feed.css";
+@import "partials/footer.css";
+:root {
+  --main-primary-color: #64ffda;
+  --main-secondary-color: #dceff9;
+  --main-sub-color: #828B8F;
+  --main-other-color: #05b2dc;
+  --main-bg-color: #092532;
+
+  --hover-primary-bg-color: #64ffda33; /*20% Opacity*/
+  --shade-bg-color: #030D11;
+  --pop-bg-color: #061A22;
+}
 
 html {
   background-color: var(--main-bg-color);
+  height:100%;
 }
 
 html:before {

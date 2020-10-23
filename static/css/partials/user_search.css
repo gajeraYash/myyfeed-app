@@ -1,0 +1,20 @@
+#searchfield .searchresults{
+    color: var(--main-secondary-color);
+    margin: 10px 0px;
+    padding: 10px 15px;
+    background-color: var(--shade-bg-color);
+    border-radius: 15px;
+}
+#searchfield .searchresults .username{
+    font-size: 14px;
+    color: var(--main-sub-color);
+}
+#searchfield .searchresults .name{
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 992px) {
+    div#searchfield {
+        display: none;
+    }
+}
