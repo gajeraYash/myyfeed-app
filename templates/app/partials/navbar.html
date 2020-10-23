@@ -20,7 +20,7 @@
                   {{user.first_name}} {{user.last_name}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item disabled" href="#">My Profile</a>
+                  <a class="dropdown-item" href="{% url 'app:profile' %}">My Profile</a>
                   <a class="dropdown-item disabled" href="#">Settings</a>
                   <a class="dropdown-item" href="{% url 'app:logout' %}">Log out</a>
                 </div>

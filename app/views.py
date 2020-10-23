@@ -34,8 +34,7 @@ def profile(request):
         return HttpResponseRedirect(reverse("app:index"))
     else:
         profile_data_obj = UserProfile.objects.get(user=request.user)
-        user_data_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
-        return render(request,'app/profile.html',{"profile_data":profile_data_obj,"user_data":user_data_obj,})
+        return render(request,'app/profile.html',{"profile_data":profile_data_obj})
 
 @login_required
 def user_feed(request):
@@ -70,7 +69,7 @@ def feed(request):
             announcement_form = UserTweet()
         profile_data = UserProfile.objects.get(user=request.user)
         usertweet_data = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
-    return render(request,'app/feed.html',{"profile_data":profile_data,"usertweet_data":usertweet_data,"announcement_form":announcement_form})
+    return render(request,'app/feed.html',{"profile_data":profile_data,"announcement_form":announcement_form})
 
 def user_signup_success(request):
     registered = True

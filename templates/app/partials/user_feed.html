@@ -1,10 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/feed.css' %}" type="text/css" media="screen">
 {% if user_feed %}
-    {% for feed in user_feed %}
-        <div class="tweet cube-trans">
-            <div class="name">{{feed.user.first_name}} {{feed.user.last_name}} <span class="user"><span
-                        class="username">@{{feed.user.username}}</span></span></div>
-            <div class="announcement">{{ feed.announcement }}</div>
-            <div class="date">{{ feed.created }}</div>
+{% for feed in user_feed %}
+<div id="post" class="post">
+    <div class="row no-gutters">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-1 user_pic">
+            <img src="{{feed.user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block sizeoption" alt="...">   
         </div>
-    {% endfor %}
+        <div class="col-10 col-sm-10 col-md-10 col-lg-11 offset-lg-0 user_post">
+            <div class="user_post">
+                <div class="name">{{feed.user.first_name}} {{feed.user.last_name}}
+                    <span class="user"><span class="username">@{{feed.user.username}}</span></div>
+                    <div class="announcement">{{ feed.announcement }}</div>
+                    <div class="date">{{ feed.created }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endif %}
