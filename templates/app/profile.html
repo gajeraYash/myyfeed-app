@@ -3,24 +3,49 @@
 {% block title %}Profile - {{user.username}}{% endblock %}
 {% block description %}User profile containing feed and personal info.{% endblock %}
 {% block vendor %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" media="screen">
 <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
 {% block content %}
-{% include "app/navbar.html" with user=user active_tab='home'%}
+{% include "app/partials/navbar.html" with user=user active_tab='home'%}
 <section id="profile">
     <div class="container">
-        <div class="row">
-            <div class="col-4 col-sm-4 col-lg-4 col-lg-4">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-6 col-lg-4">
                 <div id="profile-details" class="profileBox">
-                    <div class="profilePic">
-                        
+                    <div class="profilePic row justify-content-center">
+                        <div class="col-5 col-sm-5 col-md-6 col-lg-6">
+                            <img src="{{profile_data.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block"
+                                alt="...">
+                        </div>
                     </div>
                     <div class="details">
-                        
+                        {% if profile_data.admin %}
+                        <div class="row justify-content-center ">
+                            <h5 class="fullname verified">{{profile_data.user.first_name}}
+                                {{profile_data.user.last_name}} <i class='bx bxs-badge-check'></i></h5>
+                        </div>
+                        {% else %}
+                        <div class="row justify-content-center ">
+                            <h5 class="fullname">{{profile_data.user.first_name}} {{profile_data.user.last_name}} </h5>
+                        </div>
+                        {% endif %}
+                        {% if profile_data.user_bio %}
+                            <div class="row no-gutters">
+                                <p class="col bio">{{profile_data.user_bio}}</p>
+                            </div>
+                        {% endif %}
+                        <div class="col">
+                            <small class="row membersince">MemberSince</small>
+                            <div class="row membersince">
+                                <small>{{profile_data.user.date_joined|date:'b m Y'|capfirst}}</small>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-10 col-sm-10 col-lg-8 col-lg-6">
+            <div class="col-10 col-sm-10 col-md-6 col-lg-8">
                 <div id="feed-content">
                     {% include "app/partials/user_feed.html" %}
                 </div>
