@@ -15,7 +15,6 @@
     <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/Back-Yash-red'>
   </a>
 </div>
-<br>
 <div align='center'>
   <a href="https://www.heroku.com/">
     <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/heroku-deployed-green'> 
@@ -28,6 +27,23 @@
   </a>
   <a href="https://cs-490.herokuapp.com/">
     <img style='padding:0 5px 0 5px' src='https://badgen.net/uptime-robot/response/m786106082-0afa007942fb6755090e7e9d'>
+  </a>
+</div>
+<div align='center'>
+  <a href="https://github.com/gajeraYash/app-cs490">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/commits/gajeraYash/app-cs490'> 
+  </a>
+  <a href="https://github.com/gajeraYash/app-cs490">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/last-commit/gajeraYash/app-cs490'>
+  </a>
+  <a href="https://github.com/gajeraYash/app-cs490">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/issues/gajeraYash/app-cs490'>
+  </a>
+  <a href="https://github.com/gajeraYash/app-cs490">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/open-issues/gajeraYash/app-cs490'>
+  </a>
+  <a href="https://github.com/gajeraYash/app-cs490">
+    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/closed-issues/gajeraYash/app-cs490'>
   </a>
 </div>
   
