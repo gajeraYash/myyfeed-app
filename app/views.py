@@ -23,8 +23,7 @@ def user_search(request):
     user_param = request.GET.get('user_search', None)
     if user_param:
         user_q = User.objects.filter(Q(username__icontains=user_param) | Q(first_name__icontains=user_param) | Q(last_name__icontains=user_param)).order_by('username')[:5]
-        user_obj_q = list(user_q.values('username','first_name','last_name'))
-        return render(request, 'app/partials/user_search.html', {'user_results':user_obj_q})
+        return render(request, 'app/partials/user_search.html', {'user_results':user_q})
         # return JsonResponse({'user_results':user_obj_q}, safe=False)
     else:
         print("No Value Provided")
@@ -34,8 +33,7 @@ def profile(request):
         return HttpResponseRedirect(reverse("app:index"))
     else:
         profile_data_obj = UserProfile.objects.get(user=request.user)
-        user_data_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
-        return render(request,'app/profile.html',{"profile_data":profile_data_obj,"user_data":user_data_obj,})
+        return render(request,'app/profile.html',{"profile_data":profile_data_obj})
 
 @login_required
 def user_feed(request):
@@ -70,7 +68,7 @@ def feed(request):
             announcement_form = UserTweet()
         profile_data = UserProfile.objects.get(user=request.user)
         usertweet_data = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
-    return render(request,'app/feed.html',{"profile_data":profile_data,"usertweet_data":usertweet_data,"announcement_form":announcement_form})
+    return render(request,'app/feed.html',{"profile_data":profile_data,"announcement_form":announcement_form})
 
 def user_signup_success(request):
     registered = True

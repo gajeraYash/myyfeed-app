@@ -29,7 +29,7 @@ $(document).ready(function () {
     //Every 5 seconds update the list of announcements
     setInterval(function () {
         get_feed();
-    }, 5000);
+    }, 50000);
 
     //Disable Line Break
     $(".announcementform").keydown(function (e) {
