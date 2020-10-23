@@ -14,31 +14,33 @@
                 <div id="profile-details" class="profileBox">
                     <div class="profilePic row justify-content-center">
                         <div class="col-5 col-sm-5 col-md-6 col-lg-6">
-                            <img src="{{profile_data.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block" alt="...">
+                            <img src="{{profile_data.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block"
+                                alt="...">
                         </div>
                     </div>
                     <div class="details">
                         {% if profile_data.admin %}
                         <div class="row justify-content-center ">
-                            <h5 class="fullname verified">{{profile_data.user.first_name}} {{profile_data.user.last_name}}  <i class='bx bxs-badge-check' ></i></h5>
+                            <h5 class="fullname verified">{{profile_data.user.first_name}}
+                                {{profile_data.user.last_name}} <i class='bx bxs-badge-check'></i></h5>
                         </div>
                         {% else %}
                         <div class="row justify-content-center ">
-                            <h5 class="fullname">{{profile_data.user.first_name}} {{profile_data.user.last_name}}  </h5>
+                            <h5 class="fullname">{{profile_data.user.first_name}} {{profile_data.user.last_name}} </h5>
                         </div>
                         {% endif %}
-                        <br>
-                        <div class="row">
-                            <h6 class="col bio">{{profile_data.user_bio}}</h6>
-                        </div>
-                        <br>
-                        <div class="col justify-content-right">
-                                <small class="row " >MemberSince</small>
-                            <div class="row">
+                        {% if profile_data.user_bio %}
+                            <div class="row no-gutters">
+                                <p class="col bio">{{profile_data.user_bio}}</p>
+                            </div>
+                        {% endif %}
+                        <div class="col">
+                            <small class="row membersince">MemberSince</small>
+                            <div class="row membersince">
                                 <small>{{profile_data.user.date_joined|date:'b m Y'|capfirst}}</small>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
