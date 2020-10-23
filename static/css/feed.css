@@ -1,4 +1,6 @@
-@import  "partials/user_feed.css";
+@import "partials/user_feed.css";
+@import "partials/navbar.css"; 
+@import "partials/user_search.css"; 
 
 #feed {
     padding: 100px 0px;
@@ -6,24 +8,4 @@
     background-color: var(--main-bg-color);
     background-size: cover;
     min-height: 100vh;
-}
-
-#feed #searchfield .searchresults{
-    color: var(--main-secondary-color);
-    margin: 10px 0px;
-    padding: 10px 15px;
-    background-color: var(--shade-bg-color);
-    border-radius: 15px;
-}
-#feed #searchfield .searchresults .username{
-    font-size: 12px;
-}
-#feed #searchfield .searchresults .name{
-    font-size: 12px;
-}
-
-@media only screen and (max-width: 992px) {
-    #feed div#searchfield {
-        display: none;
-    }
 }
