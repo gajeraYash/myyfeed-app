@@ -1,6 +1,6 @@
 @import "partials/user_feed.css";
 @import "partials/navbar.css"; 
-@import "partials/search.css"; 
+@import "partials/user_search.css"; 
 
 #feed {
     padding: 100px 0px;

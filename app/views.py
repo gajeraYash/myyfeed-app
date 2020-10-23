@@ -23,8 +23,7 @@ def user_search(request):
     user_param = request.GET.get('user_search', None)
     if user_param:
         user_q = User.objects.filter(Q(username__icontains=user_param) | Q(first_name__icontains=user_param) | Q(last_name__icontains=user_param)).order_by('username')[:5]
-        user_obj_q = list(user_q.values('username','first_name','last_name'))
-        return render(request, 'app/partials/user_search.html', {'user_results':user_obj_q})
+        return render(request, 'app/partials/user_search.html', {'user_results':user_q})
         # return JsonResponse({'user_results':user_obj_q}, safe=False)
     else:
         print("No Value Provided")
