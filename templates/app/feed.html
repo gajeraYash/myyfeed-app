@@ -5,6 +5,7 @@
 {% block vendor %}
 <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/feed.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/feed.css' %}" type="text/css" media="screen">
 {% endblock %}
 {% block content %}
 {% include "app/partials/navbar.html" with user=user active_tab='home'%}

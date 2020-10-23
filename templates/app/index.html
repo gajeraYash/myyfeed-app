@@ -1,7 +1,10 @@
 {% extends 'app/base.html' %}
-
+{% load static %}
 {% block title %}Social Media App{% endblock %}
 {% block description %}Social Media App created for CS:490 @NJIT{% endblock %}
+{% block vendor %} 
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="screen">
+{% endblock %}
 {% block content %}
 <section id="landing" class="d-flex flex-column justify-content-center" >
   <div class="container" >

@@ -3,6 +3,7 @@
 {% block title %}Profile - {{user.username}}{% endblock %}
 {% block description %}User profile containing feed and personal info.{% endblock %}
 {% block vendor %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" media="screen">
 <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
 {% block content %}
