@@ -20,29 +20,16 @@
                             spellcheck="false"></textarea>
                     </div>
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-outline-primary">Post</button>
+                        <button type="submit" onclick="get_feed()"class="btn btn-outline-primary">Post</button>
                     </div>
                 </form>
-                {% if usertweet_data%}
-                {% for tweet in usertweet_data %}
-                <div class="tweet cube-trans">
-                    <div class="name">{{user.first_name}} {{user.last_name}} <span class="user"><span
-                                class="username">@{{user.username}}</span></span></div>
-                    <div class="announcement">{{ tweet.announcement }}</div>
-                    <div class="date">{{ tweet.created }}</div>
+                <div id="feed-content">
+                    {% include "app/partials/user_feed.html" %}
                 </div>
-                {% endfor %}
-                {% else %}
-                <div class="tweet cube-trans">
-                    <div class="name">{{user.first_name}} {{user.last_name}}</div>
-                    <div class="announcement">Post your first Tweet!</div>
-                    <div class="date"></div>
-                </div>
-                {% endif %}
             </div>
             <div id="searchfield" class="col-sm-4 col-md-4 col-lg-4">
                 <input id="user-input" class="form-control" type="search" placeholder="Search" aria-label="Search">
-                <div id="replaceable-content">
+                <div id="search-content">
                     {% include "app/partials/user_search.html" %}
                 </div>    
             </div>
