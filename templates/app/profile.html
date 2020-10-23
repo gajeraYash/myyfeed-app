@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile - {{user.username}}{% endblock %}
+{% block description %}User profile containing feed and personal info.{% endblock %}
+{% block vendor %}
+<script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
+{% block content %}
+{% include "app/navbar.html" with user=user active_tab='home'%}
+<section id="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-4 col-sm-4 col-lg-4 col-lg-4">
+                <div id="profile-details" class="profileBox">
+                    <div class="profilePic">
+                        
+                    </div>
+                    <div class="details">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-sm-10 col-lg-8 col-lg-6">
+                <div id="feed-content">
+                    {% include "app/partials/user_feed.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

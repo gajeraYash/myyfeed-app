@@ -1,13 +1,48 @@
+function get_feed() {
+
+    $.ajax({
+        url: 'user/feed',
+        type: "get",
+        cache: true,
+        data: {
+            'feed_param': 'FOLLOWING'
+        },
+        dataType: 'html',
+        success: function (data) {
+            $('#feed-content').html(data)
+        }
+    });
+    // 'feed_param': 'FOLLOWING'  Get USER Following Announcements
+    // 'feed_param': ''  Get Self created announcements
+    // 'feed_param': 'username'  Get Other user created announcements
+}
+
+get_feed();
 
 $(document).ready(function () {
+
+    //extend the announcement box
     $('.announcementform').focus(function () {
         $(this).animate({ rows: 4 },);
     });
+    
+    //Every 5 seconds update the list of announcements
+    setInterval(function () {
+        get_feed();
+    }, 5000);
 
+    //Disable Line Break
+    $(".announcementform").keydown(function (e) {
+        if (e.keyCode == 13 && !e.shiftKey) {
+            e.preventDefault();
+        }
+    });
+
+    //User search function
     $("#user-input").keyup(function () {
         var user_search = $(this).val();
         if (!user_search) {                      //if it is blank. 
-            $("#replaceable-content").empty();
+            $("#search-content").empty();
         } else {
             $.ajax({
                 url: 'user/search',
@@ -16,7 +51,7 @@ $(document).ready(function () {
                 },
                 dataType: 'html',
                 success: function (data) {
-                    $('#replaceable-content').html(data)
+                    $('#search-content').html(data)
                 }
             });
         }

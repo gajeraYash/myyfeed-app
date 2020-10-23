@@ -1,0 +1,10 @@
+{% if user_feed %}
+    {% for feed in user_feed %}
+        <div class="tweet cube-trans">
+            <div class="name">{{feed.user.first_name}} {{feed.user.last_name}} <span class="user"><span
+                        class="username">@{{feed.user.username}}</span></span></div>
+            <div class="announcement">{{ feed.announcement }}</div>
+            <div class="date">{{ feed.created }}</div>
+        </div>
+    {% endfor %}
+{% endif %}
