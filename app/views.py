@@ -18,6 +18,9 @@ def index(request):
     else:
         return render(request, 'app/index.html')
 
+def test_page(request):
+    return render(request, 'app/index.html')
+
 @login_required
 def user_search(request):
     user_param = request.GET.get('user_search', None)
@@ -34,6 +37,13 @@ def profile(request):
     else:
         profile_data_obj = UserProfile.objects.get(user=request.user)
         return render(request,'app/profile.html',{"profile_data":profile_data_obj})
+
+def user_profile(request, username):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("app:index"))
+    else:
+        profile_data_obj = UserProfile.objects.get(username=username)
+        return render(request,'app/user_profile.html',{"profile_data":profile_data_obj})
 
 @login_required
 def user_feed(request):
