@@ -4,7 +4,7 @@
 {% block description %}User profile containing feed and personal info.{% endblock %}
 {% block vendor %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" media="screen">
-<script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/user_profile.js' %}"></script>
 {% endblock %}
 {% block content %}
 {% include "app/partials/navbar.html" with user=user active_tab='home'%}
@@ -25,14 +25,14 @@
                             <h5 class="fullname verified">{{profile_data.user.first_name}}
                                 {{profile_data.user.last_name}} <i class='bx bxs-badge-check'></i></h5>
                         </div>
-                        <!--id tag-->
-                        <div class="row justify-content-center" class="username"> @yp298{{feed.user.username}} </div>
-                       
                         {% else %}
                         <div class="row justify-content-center ">
                             <h5 class="fullname">{{profile_data.user.first_name}} {{profile_data.user.last_name}} </h5>
                         </div>
                         {% endif %}
+                        <div class="row justify-content-center ">
+                            <h5 id#="userID" class="username">{{profile_data.user.username}}</h5>
+                        </div>
                         {% if profile_data.user_bio %}
                             <div class="row no-gutters">
                                 <p class="col bio">{{profile_data.user_bio}}</p>
