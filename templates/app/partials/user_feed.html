@@ -1,9 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/feed.css' %}" type="text/css" media="screen">
 <!--icons link-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"/>
 {% if user_feed %}
 {% for feed in user_feed %}
 <div id="post" class="post">
@@ -30,12 +27,19 @@
                     class="img-fluid mx-auto d-block imgoption" alt="...">
             </div>
             {% endif %}
-            <div class="date">{{ feed.created }}</div>
-            <div class="post-icons"><a href="our comment link here"><i class="far fa-image"></i><i class="far fa-comment"></i></a></div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col">
+                    <div class="post-icons"><i class='bx bx-comment-detail'></i></div>
+                </div>
+                <div class="col">
+                    <div class="date">{{ feed.created }}</div>
+                </div>
+            </div>
+            
         </div>
-        
     </div>
 </div>
 </div>
 {% endfor %}
+
 {% endif %}
