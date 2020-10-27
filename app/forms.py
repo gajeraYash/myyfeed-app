@@ -6,12 +6,14 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from app.models import UserAnnoucements, UserProfile
 
-
+class UsernameField(forms.CharField):
+    def to_python(self, value):
+        return value.lower()
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, required=True)
-    username = forms.CharField(max_length=15, min_length=3, required=True, help_text="Username must be between 3 - 15 characters and can contain '_'. ",validators=[
+    username = UsernameField(max_length=15, min_length=3, required=True, help_text="Username must be between 3 - 15 characters and can contain '_'. ",validators=[
         RegexValidator(
             regex='^(?=.{3,15}$)(?!.*[_]{2})[a-zA-Z0-9_]+$',
             message='Username is invalid!',
@@ -35,7 +37,7 @@ class SignUpForm(UserCreationForm):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
 
-        if User.objects.filter(username=username).exists():
+        if User.objects.filter(username=username.lower()).exists():
             raise ValidationError("Username already in use.")
         if User.objects.filter(email=email).exists():
             raise ValidationError("Email already in use.")
