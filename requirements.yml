@@ -44,4 +44,5 @@ dependencies:
   - zstd=1.4.5
   - pip:
     - whitenoise==5.2.0
+    - django-cleanup==5.1.0
 prefix: /Users/yash/opt/anaconda3/envs/CS490
