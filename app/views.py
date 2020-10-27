@@ -42,8 +42,13 @@ def user_profile(request, username):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("app:index"))
     else:
-        profile_data_obj = UserProfile.objects.get(username=username)
-        return render(request,'app/user_profile.html',{"profile_data":profile_data_obj})
+        if User.objects.filter(username=username).exists():
+            u = User.objects.get(username=username)
+            profile_data_obj = UserProfile.objects.get(user=u)
+            return render(request,'app/user_profile.html',{"profile_data":profile_data_obj})
+        else:
+            print("checked NOP!")
+            return render(request,'app/user_profile.html',{"profile_data":False})
 
 @login_required
 def user_feed(request):
@@ -53,9 +58,12 @@ def user_feed(request):
         user_feed_obj = UserAnnoucements.objects.filter(Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
         return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
     elif feed_param:
-        user_q = User.objects.get(username=feed_param)
-        user_feed_obj = UserAnnoucements.objects.filter(user=user_q).order_by('-created')
-        return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
+        if User.objects.filter(username=feed_param).exists():
+            user_q = User.objects.get(username=feed_param)
+            user_feed_obj = UserAnnoucements.objects.filter(user=user_q).order_by('-created')
+            return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
+        else:
+            return render(request, 'app/partials/user_feed.html')
     else:
         user_feed_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
         return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
