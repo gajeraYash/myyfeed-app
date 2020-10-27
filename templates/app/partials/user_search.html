@@ -3,18 +3,23 @@
 <div id='searchresults' class="searchresults cube-trans">
     <div class="row">
         <div class="col-3">
-            <img src="{{user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block sizeoption" alt="...">
+            <a href="{% url 'app:user_profile' username=user.username %}">
+            <img src="{{user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block sizeoption"
+                alt="...">
+            </a>
         </div>
         <div class="col-9">
-            {% if user.userprofile.admin %}
-            <div class="name">{{ user.first_name}} {{user.last_name}} <i class='bx bxs-badge-check'></i> </div>
-            {% else %}
-            <div class="name">{{ user.first_name}} {{user.last_name}}</div>
-            {% endif %}
-            <div class="username"><span>@</span>{{ user.username }} </div>
+            <a href="{% url 'app:user_profile' username=user.username %}">
+                {% if user.userprofile.admin %}
+                <div class="name">{{ user.first_name}} {{user.last_name}} <i class='bx bxs-badge-check'></i> </div>
+                {% else %}
+                <div class="name">{{ user.first_name}} {{user.last_name}}</div>
+                {% endif %}
+                <div class="username"><span>@</span>{{ user.username }} </div>
+            </a>
         </div>
     </div>
-    
+
 </div>
 {% endfor %}
 {% endif %}
