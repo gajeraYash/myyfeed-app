@@ -25,22 +25,18 @@
                             <h5 class="fullname verified">{{profile_data.user.first_name}}
                                 {{profile_data.user.last_name}} <i class='bx bxs-badge-check'></i></h5>
                         </div>
-                        <!--id tag-->
-                        <div class="row justify-content-center" class="username"> @yp298{{feed.user.username}} </div>
-                        
                         {% else %}
                         <div class="row justify-content-center ">
                             <h5 class="fullname">{{profile_data.user.first_name}} {{profile_data.user.last_name}} </h5>
                              </div> 
                         {% endif %}
                         <div class="row justify-content-center ">
-                            <h5 id#="userID" class="username">{{profile_data.user.username}}</h5>
+                            <h6 class="username">@{{profile_data.user.username}}</h6>
                         </div>
                         {% if profile_data.user_bio %}
                             <div class="row no-gutters">
                                 <p class="col bio">{{profile_data.user_bio}}</p>
                             </div>
-                            
                         {% endif %}
                         <div class="col">
                             <small class="row membersince">MemberSince</small>
