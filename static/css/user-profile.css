@@ -15,12 +15,14 @@
     background-color: var(--shade-bg-color);
     border-radius: 15px;
 }
+
 /*id tag
 .username  {
     color: var(--main-sub-color);
     font-size: 15px;
 }
-*/
+/*end*/
+
 #profile #feed-content {
     overflow-y:auto;
     height: 80vh;
