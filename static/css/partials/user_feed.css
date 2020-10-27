@@ -51,3 +51,15 @@
 #post .user_post {
     padding-left: 10px;
 }
+
+/*comment & pic i*/
+.post-icons i {
+    font-size: 1rem;
+    color: var(--main-sub-color);
+    margin-right: 1rem;
+  }
+
+  .post-icons {
+    margin-top: 1rem;
+  }
+/*end i*/  
