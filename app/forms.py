@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from app.models import UserAnnoucement, UserAnnoucementsImage, UserProfile
+from app.models import UserAnnoucement, UserProfile
 
 class UsernameField(forms.CharField):
     def to_python(self, value):
@@ -87,10 +87,4 @@ class UserTweet(forms.ModelForm):
 
     class Meta:
         model = UserAnnoucement
-        fields = ('announcement',)
-
-class UserTweetIMG(forms.ModelForm):
-
-    class Meta:
-        model = UserAnnoucementsImage
-        fields = ('image',)
+        fields = ('announcement','image')
