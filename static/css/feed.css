@@ -9,3 +9,7 @@
     background-size: cover;
     min-height: 100vh;
 }
+
+#feed .img_upload{
+    color: var(--main-sub-color)
+}

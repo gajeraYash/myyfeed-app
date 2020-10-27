@@ -33,6 +33,9 @@
                             <h5 class="fullname">{{profile_data.user.first_name}} {{profile_data.user.last_name}} </h5>
                              </div> 
                         {% endif %}
+                        <div class="row justify-content-center ">
+                            <h5 id#="userID" class="username">{{profile_data.user.username}}</h5>
+                        </div>
                         {% if profile_data.user_bio %}
                             <div class="row no-gutters">
                                 <p class="col bio">{{profile_data.user_bio}}</p>
@@ -42,7 +45,7 @@
                         <div class="col">
                             <small class="row membersince">MemberSince</small>
                             <div class="row membersince">
-                                <small>{{profile_data.user.date_joined|date:'b m Y'|capfirst}}</small>
+                                <small>{{profile_data.user.date_joined|date:'b d Y'|capfirst}}</small>
                             </div>
                             
                         </div>
