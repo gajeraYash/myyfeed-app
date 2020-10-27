@@ -6,20 +6,25 @@
     <div class="row no-gutters">
         <div class="col-2 col-sm-2 col-md-2 col-lg-1 user_pic">
             <a href="{% url 'app:user_profile' username=feed.user.username %}">
-            <img src="{{feed.user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block sizeoption" alt="...">  
-        </a> 
+                <img src="{{feed.user.userprofile.profile_pic.url}}"
+                    class="rounded-circle img-fluid mx-auto d-block sizeoption" alt="...">
+            </a>
         </div>
         <div class="col-10 col-sm-10 col-md-10 col-lg-11 offset-lg-0 user_post">
-            <div class="user_post">
+            <div class="user_info">
                 <a href="{% url 'app:user_profile' username=feed.user.username %}">
-                <div class="name">{{feed.user.first_name}} {{feed.user.last_name}}
-                    <span class="user"><span class="username">@{{feed.user.username}}</span></div></a>
-                    <div class="announcement">{{ feed.announcement }}</div>
-                    <div class="date">{{ feed.created }}</div>
-                
+                    <div class="name">{{feed.user.first_name}} {{feed.user.last_name}}
+                </a>
+                <a href="{% url 'app:user_profile' username=feed.user.username %}">
+                    <span class="user"><span class="username">@{{feed.user.username}}</span>
+                </a>
             </div>
+            <div class="announcement">{{ feed.announcement }}</div>
+            <div class="date">{{ feed.created }}</div>
+
         </div>
     </div>
+</div>
 </div>
 {% endfor %}
 {% endif %}
