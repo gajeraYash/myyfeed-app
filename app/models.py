@@ -42,10 +42,17 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-class UserAnnoucements(models.Model):
+class UserAnnoucement(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     announcement = models.TextField(max_length=280)
     created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return self.user.username + "---" + self.announcement
+
+class UserAnnoucementsImage(models.Model):
+    post = models.ForeignKey(UserAnnoucement, on_delete=CASCADE)
+    image = models.ImageField(upload_to="user_files", blank=True)
+
+    def __str__(self):
+        return self.post.user.username

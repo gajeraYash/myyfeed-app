@@ -55,17 +55,17 @@ def user_feed(request):
     feed_param = request.GET.get('feed_param', None)
     if feed_param == 'FOLLOWING':
         following_list = (Follower.objects.filter(follower = request.user)).values_list('following',flat = True)
-        user_feed_obj = UserAnnoucements.objects.filter(Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
+        user_feed_obj = UserAnnoucement.objects.filter(Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
         return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
     elif feed_param:
         if User.objects.filter(username=feed_param).exists():
             user_q = User.objects.get(username=feed_param)
-            user_feed_obj = UserAnnoucements.objects.filter(user=user_q).order_by('-created')
+            user_feed_obj = UserAnnoucement.objects.filter(user=user_q).order_by('-created')
             return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
         else:
             return render(request, 'app/partials/user_feed.html')
     else:
-        user_feed_obj = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
+        user_feed_obj = UserAnnoucement.objects.filter(user=request.user).order_by('-created')
         return render(request, 'app/partials/user_feed.html', {'user_feed':user_feed_obj})
     
 def feed(request):
@@ -74,19 +74,22 @@ def feed(request):
     else:
         if request.method == 'POST':
             announcement_form = UserTweet(request.POST)
-            if announcement_form.is_valid():
+            announcement_img = UserTweetIMG(request.POST, request.FILES)
+            if announcement_form.is_valid() & announcement_img.is_valid():
                 user = request.user 
                 announcement = announcement_form.save(commit=False)
                 announcement.user = user
                 announcement.save()
+                announcement_img = announcement_img.save(commit=False)
+                announcement_img.post = announcement
+                announcement_img.save()
                 return HttpResponseRedirect(reverse("app:feed"))
             else:
                 print("error")
         else:
             announcement_form = UserTweet()
-        profile_data = UserProfile.objects.get(user=request.user)
-        usertweet_data = UserAnnoucements.objects.filter(user=request.user).order_by('-created')
-    return render(request,'app/feed.html',{"profile_data":profile_data,"announcement_form":announcement_form})
+            announcement_img = UserTweetIMG()
+    return render(request,'app/feed.html',{"announcement_form":announcement_form, "announcement_img_form":announcement_img})
 
 def user_signup_success(request):
     registered = True
