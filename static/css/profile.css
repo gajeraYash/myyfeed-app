@@ -1,4 +1,4 @@
-@import  "partials/user_feed.css";
+@import "partials/user_feed.css";
 
 #profile {
     padding: 100px 0px;
@@ -8,33 +8,32 @@
     min-height: 100vh;
 }
 
-#profile .profileBox  {
+#profile .profileBox {
     color: var(--main-secondary-color);
     margin: 15px 0px;
     padding: 10px 15px;
     background-color: var(--shade-bg-color);
     border-radius: 15px;
 }
-/*id tag
-.username  {
-    color: var(--main-sub-color);
-    font-size: 15px;
-}
-*/
+
 #profile #feed-content {
-    overflow-y:auto;
+    overflow-y: auto;
     height: 80vh;
 }
 
-#profile .profilePic{
+#profile .username {
+    color: var(--main-sub-color);
+}
+
+#profile .profilePic {
     padding: 10px 0px;
 }
 
-#profile .membersince{
+#profile .membersince {
     justify-content: flex-end;
 }
 
-#profile .bio{
+#profile .bio {
     text-align: center;
     margin: 15px 0px;
     padding: 10px 15px;
