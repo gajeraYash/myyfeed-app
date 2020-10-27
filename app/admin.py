@@ -4,3 +4,4 @@ from app.models import *
 
 admin.site.register(UserProfile)
 admin.site.register(UserAnnoucements)
+admin.site.register(Follower)
