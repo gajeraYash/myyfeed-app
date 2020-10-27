@@ -3,5 +3,6 @@ from app.models import *
 # Register your models here.
 
 admin.site.register(UserProfile)
-admin.site.register(UserAnnoucements)
+admin.site.register(UserAnnoucement)
 admin.site.register(Follower)
+admin.site.register(UserAnnoucementsImage)
