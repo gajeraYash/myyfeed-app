@@ -29,6 +29,11 @@
     padding: 10px 0px;
 }
 
+#profile .userimg{
+    width: 8rem;
+    height: 8rem;
+}
+
 #profile .membersince {
     justify-content: flex-end;
 }
