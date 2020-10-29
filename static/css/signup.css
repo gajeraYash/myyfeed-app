@@ -57,7 +57,20 @@
 #signup .btn:hover {
     background-color: var(--hover-primary-bg-color);
 }
+/**/
 
+#login .bt2 {
+    margin-right: 20px;
+}
+
+#login .bt2 {
+    margin-left: 20px;
+}
+
+#login .btn:hover {
+    background-color: var(--hover-primary-bg-color);
+}
+/**/
 @media (max-width: 767px) {
     #signup h1 {
         font-size: 40px;
