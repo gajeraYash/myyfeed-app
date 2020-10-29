@@ -1,4 +1,4 @@
-#post.post{
+#post.post {
     color: var(--main-secondary-color);
     margin: 15px 0px;
     padding: 10px 15px;
@@ -6,14 +6,13 @@
     border-radius: 15px;
 }
 
-#post .user_post a{
+#post .user_post a {
     text-decoration: none;
     color: var(--main-secondary-color);
 }
 
 #post .name {
-    font-size: 12px;
-    
+    font-size: 14px;
 }
 
 #post .user {
@@ -25,7 +24,7 @@
 }
 
 #post .announcement {
-    font-size: 15px;
+    font-size: 16px;
     margin: 5px 0px;
 }
 
@@ -44,27 +43,39 @@
 #post textarea {
     resize: none;
 }
+
+/* #post .user_pic{
+    width: 75px;
+    display: inline-block;
+} */
 /* 
 #post #post-content {
     overflow-y:auto;
     height: 80vh;
 } */
-#post .sizeoption{
-  width: 100%;
-  max-height: 100%;
+#post .sizeoption {
+    width: 3.8rem;
+    height: 3.8rem;
 }
 
-#post .userimg{
+#post .userimg {
     padding: 20px;
 }
-#post .imgoption{
+
+#post .imgoption {
     width: auto;
     max-height: 50%;
     border-radius: 3%;
     border: 1px solid var(--main-secondary-color);
-  }
+}
 
 #post .user_post {
     padding-left: 10px;
 }
 
+/*comment & pic i*/
+#post .post-icons {
+    color: var(--main-sub-color);
+}
+
+/*end i*/

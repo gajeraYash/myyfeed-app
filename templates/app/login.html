@@ -36,7 +36,10 @@
                     {{login_form.password}}
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-outline-primary col-12" value="Login" />
+                    <button type="submit" class="btn bt btn-outline-primary col-12">Login</button>
+                </div>
+                <div class="row signup justify-content-center">
+                    <p>Don't have an account? <a href="{% url 'app:signup' %}">Sign up</a></p>
                 </div>
             </div>
         </form>
