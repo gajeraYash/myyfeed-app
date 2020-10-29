@@ -36,7 +36,8 @@
 
 #signup .btn {
     color: var(--main-primary-color);
-    width: 150px;
+    margin: 10px 0px;
+    width: 200px;
     font-weight: 600;
     line-height: 1;
     border-width: 1px;
@@ -46,31 +47,18 @@
     transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
 }
 
-#signup .bt1 {
-    margin-right: 10px;
-}
-
-#signup .bt2 {
-    margin-left: 10px;
-}
-
 #signup .btn:hover {
     background-color: var(--hover-primary-bg-color);
 }
-/**/
 
-#login .bt2 {
-    margin-right: 20px;
+#signup .login{
+    color: var(--main-sub-color);
 }
 
-#login .bt2 {
-    margin-left: 20px;
+#signup .login a{
+    color: var(--main-primary-color);
 }
 
-#login .btn:hover {
-    background-color: var(--hover-primary-bg-color);
-}
-/**/
 @media (max-width: 767px) {
     #signup h1 {
         font-size: 40px;
