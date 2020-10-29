@@ -13,7 +13,7 @@ psycopg2==2.8.5
 pycodestyle==2.6.0
 python-dateutil==2.8.1
 pytz==2020.1
-setuptools==49.6.0.post20200925
+setuptools==49.6.0
 six==1.15.0
 sqlparse==0.3.1
 text-unidecode==1.3
