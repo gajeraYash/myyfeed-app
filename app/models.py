@@ -1,10 +1,12 @@
-from django.core.exceptions import ValidationError
-from CS490.settings import MEDIA_DIR
-from app.validators import MinAgeValidator
+from os import listdir,path
+from cloudinary import api
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.deletion import CASCADE
-from os import listdir,path
+from django.core.exceptions import ValidationError
+from CS490.settings import MEDIA_DIR
+from app.validators import MinAgeValidator
+from cloudinary.models import CloudinaryField
 import random
 # Create your models here.
 def random_img():
@@ -35,7 +37,7 @@ class UserProfile(models.Model):
     #additional
 
     date_of_birth = models.DateField(validators=[MinAgeValidator(18)])
-    profile_pic = models.ImageField(upload_to="profile_pics", default=random_img)
+    profile_pic = CloudinaryField(allowed_formats = ['jpg','png','gif'], folder="profile_pics/", default=random_img)
     user_bio = models.CharField(max_length=256,blank=True)
     user_location = models.CharField(max_length=100,blank=True)
 
@@ -47,7 +49,7 @@ class UserProfile(models.Model):
 class UserAnnoucement(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     announcement = models.TextField(max_length=280)
-    image = models.ImageField(upload_to="user_files", blank=True)
+    image = CloudinaryField(allowed_formats = ['jpg','png'], folder="user_files/", blank=True)
     created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
