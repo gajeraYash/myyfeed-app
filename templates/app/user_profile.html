@@ -15,7 +15,7 @@
                 <div id="profile-details" class="profileBox">
                     <div class="profilePic row justify-content-center">
                         <div class="col-5 col-sm-5 col-md-6 col-lg-6">
-                            <img src="{{profile_data.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block"
+                            <img src="{{profile_data.profile_pic.url}}" class="rounded-circle userimg img-fluid mx-auto d-block"
                                 alt="...">
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         </div>
                         {% endif %}
                         <div class="row justify-content-center ">
-                            <h5 id#="userID" class="username">{{profile_data.user.username}}</h5>
+                            <h6 class="username">@{{profile_data.user.username}}</h6>
                         </div>
                         {% if profile_data.user_bio %}
                             <div class="row no-gutters">

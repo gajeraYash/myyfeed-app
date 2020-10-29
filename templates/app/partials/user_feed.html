@@ -1,5 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/feed.css' %}" type="text/css" media="screen">
+<!--icons link-->
 {% if user_feed %}
 {% for feed in user_feed %}
 <div id="post" class="post">
@@ -26,10 +27,19 @@
                     class="img-fluid mx-auto d-block imgoption" alt="...">
             </div>
             {% endif %}
-            <div class="date">{{ feed.created }}</div>
+            <div class="row no-gutters justify-content-center">
+                <div class="col">
+                    <div class="post-icons"><i class='bx bx-comment-detail'></i></div>
+                </div>
+                <div class="col">
+                    <div class="date">{{ feed.created }}</div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
 </div>
 {% endfor %}
+
 {% endif %}

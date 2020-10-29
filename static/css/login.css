@@ -32,8 +32,12 @@
     background-color: var(--hover-primary-bg-color);
 }
 
-.cube-trans{
-    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+#login .signup{
+    color: var(--main-sub-color);
+}
+
+#login .signup a{
+    color: var(--main-primary-color);
 }
 
 @media (max-width: 767px) {
