@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent #Location of the Project
 TEMPLATES_DIR = BASE_DIR.joinpath('templates') #Location of the HTML templates
@@ -28,7 +28,7 @@ SECRET_KEY = '2a-z11-%&u005h4_h_&=!=4f7olmalkn4#_qb4512u6_n8&&*a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #Till beta production it will be true
 
-ALLOWED_HOSTS = ['cs-490.herokuapp.com','127.0.0.1'] # Hosted sites ,local site
+ALLOWED_HOSTS = ['cs-490.herokuapp.com','127.0.0.1','localhost'] # Hosted sites ,local site
 
 
 # Application definition
@@ -41,7 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app', #importing app
+    'django_cleanup.apps.CleanupConfig',
+    'cloudinary'
+    
 ]
+
+cloudinary.config(
+  cloud_name = "hmqodbmxs", 
+  api_key = "567656591493169", 
+  api_secret = "j3t1fNiLt2rCH9n6aXlPIkil1YU" ,
+  secure = True
+)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

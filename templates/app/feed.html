@@ -13,16 +13,24 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-sm-10 col-lg-8 col-lg-6">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
                         <textarea class="form-control announcementform" name="announcement" rows="3" maxlength="280"
                             required="" id="{{announcement_form.announcement.id_for_label}}"
                             spellcheck="false"></textarea>
                     </div>
-                    <div class="form-group text-right">
-                        <button type="submit" onclick="get_feed()"class="btn btn-outline-primary">Post</button>
+                    <div class="row">
+                        <div class="col img_upload">
+                            <input type="file" name="image" accept="image/*" id="{{announcement_form.image.id_for_label}}">
+                        </div>
+                        <div class="col">
+                            <div class="form-group text-right">
+                                <button type="submit" onclick="get_feed()"class="btn btn-outline-primary">Post</button>
+                            </div>
+                        </div>
                     </div>
+                    
                 </form>
                 <div id="feed-content">
                     {% include "app/partials/user_feed.html" %}
