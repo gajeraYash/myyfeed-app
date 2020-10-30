@@ -62,6 +62,10 @@
     padding: 20px;
 }
 
+#post .userfile{
+    padding: 0px 10px;
+}
+
 #post .imgoption {
     width: auto;
     max-height: 50%;
