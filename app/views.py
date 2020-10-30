@@ -1,7 +1,4 @@
-
-from typing import List
 from django.http.response import HttpResponseRedirect
-from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -79,7 +76,7 @@ def feed(request):
                 announcement = announcement_form.save(commit=False)
                 announcement.user = user
                 announcement.save()
-                return HttpResponseRedirect(reverse("app:feed"))
+                return HttpResponseRedirect("/feed")
             else:
                 print("error")
         else:
