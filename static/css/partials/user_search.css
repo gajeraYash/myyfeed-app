@@ -17,6 +17,11 @@
     color: var(--main-secondary-color);
 }
 
+#searchfield .userimg{
+    width: 3.8rem;
+    height: 3.8rem;
+}
+
 @media only screen and (max-width: 992px) {
     div#searchfield {
         display: none;
