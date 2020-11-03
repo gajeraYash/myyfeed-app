@@ -3,22 +3,22 @@
 #profile {
     padding: 100px 0px;
     width: 100%;
-    background-color: var(--main-bg-color);
+    background-color: var(--main-background);
     background-size: cover;
     min-height: 100vh;
 }
 
 #profile .profileBox  {
-    color: var(--main-secondary-color);
+    color: var(--main-text);
     margin: 15px 0px;
     padding: 10px 15px;
-    background-color: var(--shade-bg-color);
+    background-color: var(--main-bg-shade);
     border-radius: 15px;
 }
 
 /*id tag
 .username  {
-    color: var(--main-sub-color);
+    color: var(--main-subtext);
     font-size: 15px;
 }
 /*end*/
@@ -40,6 +40,6 @@
     text-align: center;
     margin: 15px 0px;
     padding: 10px 15px;
-    background-color: var(--pop-bg-color);
+    background-color: var(--main-bg-shade);
     border-radius: 15px;
 }
