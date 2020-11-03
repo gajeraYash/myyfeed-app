@@ -1,19 +1,18 @@
 /*Parent CSS STYLE*/
 @import "partials/footer.css";
 :root {
-  --main-primary-color: #64ffda;
-  --main-secondary-color: #dceff9;
-  --main-sub-color: #828B8F;
-  --main-other-color: #05b2dc;
-  --main-bg-color: #092532;
+  --main-primary: #EAC435;
+  --main-text: #dceff9;
+  --main-subtext: #828B8F;
+  --main-other-color: #03CEA4;
+  --main-background: #1B2D4B;
 
-  --hover-primary-bg-color: #64ffda33; /*20% Opacity*/
-  --shade-bg-color: #030D11;
-  --pop-bg-color: #061A22;
+  --main-primary-hover: #EAC43533; /*20% Opacity*/
+  --main-bg-shade: #030D11;
 }
 
 html {
-  background-color: var(--main-bg-color);
+  background-color: var(--main-background);
   height:100%;
 }
 
@@ -22,6 +21,6 @@ html:before {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: var(--main-bg-color);
+  background-color: var(--main-background);
   z-index: -1;
 }
