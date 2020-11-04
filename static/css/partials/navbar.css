@@ -1,5 +1,5 @@
 nav#navbar {
-    padding: 15px 5% 15px 5%;
+    padding: 15px 20px;
     background-color: var(--main-background);
     position: fixed;
     top: 0;
@@ -7,12 +7,9 @@ nav#navbar {
     z-index: 1;
 }
 
-a.navbar-brand {
-    color: var(--main-text) !important;
-}
 
 a#navbardrop {
-    color: var(--main-text) !important;
+    color: var(--main-text);
 }
 
 #navbar .btn {
@@ -30,8 +27,15 @@ a#navbardrop {
     background-color: var(--main-primary-hover);
 }
 
-.longdivv {
-    min-height: 15000px;
+#navbar .message {
+    color: var(--main-text);
+}
+#navbar a:hover {
+    color: var(--main-primary);
+}
+
+#navbar a#navbardrop:hover {
+    color: var(--main-primary);
 }
 
 .nav-down {
@@ -45,7 +49,7 @@ a#navbardrop {
 }
 
 .nav-init {
-    padding: 10px 5% 10px 5%;
+    padding: 10px 20px;
     -webkit-box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
     -moz-box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
     box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
@@ -56,7 +60,3 @@ a#navbardrop {
     position: fixed;
     color: var(--main-text)    
 }*/
-.nav-icon {
-    color: var(--main-text);
-    font-size: 2.5rem;
-}

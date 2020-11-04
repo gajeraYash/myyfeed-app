@@ -9,7 +9,9 @@
     background-size: cover;
     min-height: 100vh;
 }
-
+#feed textarea#id_announcement{
+    resize: none;
+}
 #feed .img_upload{
     color: var(--main-subtext)
 }
