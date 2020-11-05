@@ -1,0 +1,83 @@
+@import "partials/navbar.css";
+#userpost {
+    padding: 100px 0px;
+    width: 100%;
+    background-color: var(--main-background);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+#userpost #post.post {
+    color: var(--main-text);
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: var(--main-bg-shade);
+    border-radius: 15px;
+}
+
+#userpost #post .user_post a {
+    text-decoration: none;
+    color: var(--main-text);
+}
+
+#userpost #post .name {
+    font-size: 14px;
+}
+
+#userpost #post .user {
+    padding-left: 5px;
+}
+
+#userpost #post .username {
+    color: var(--main-subtext);
+}
+
+#userpost #post .announcement {
+    font-size: 16px;
+    margin: 5px 0px;
+}
+
+#userpost #post .date {
+    font-size: 10px;
+    margin: 5px 0px;
+    color: var(--main-subtext);
+    text-align: right;
+
+}
+
+/* #post .user_pic{
+    width: 75px;
+    display: inline-block;
+} */
+/* 
+#post #post-content {
+    overflow-y:auto;
+    height: 80vh;
+} */
+#userpost #post .sizeoption {
+    width: 5.0rem;
+    height: 5.0rem;
+}
+
+#userpost #post .user_pic{
+    display: inline-block;
+}
+
+#userpost #post .userimg {
+    padding: 20px;
+}
+
+#userpost #post .userfile{
+    padding: 0px 10px;
+}
+
+#userpost #post .imgoption {
+    width: auto;
+    max-height: 50%;
+    border-radius: 3%;
+    border: 1px solid var(--main-text);
+}
+
+#userpost #post .user_post {
+    padding-left: 10px;
+}
