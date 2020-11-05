@@ -13,14 +13,13 @@
 
 #post .name {
     font-size: 14px;
-}
-
-#post .user {
-    padding-left: 5px;
+    display: inline-block;
 }
 
 #post .username {
     color: var(--main-subtext);
+    display: inline-block;
+    padding-left: 5px;
 }
 
 #post .announcement {
@@ -40,10 +39,6 @@
     border-radius: 15px;
 }
 
-#post textarea {
-    resize: none;
-}
-
 /* #post .user_pic{
     width: 75px;
     display: inline-block;
@@ -54,12 +49,16 @@
     height: 80vh;
 } */
 #post .sizeoption {
-    width: 3.8rem;
-    height: 3.8rem;
+    width: 4rem;
+    height: 4rem;
 }
 
-#post .userimg {
+#post .user {
     padding: 20px;
+}
+
+#post .user_pic{
+    display: inline-block;
 }
 
 #post .userfile{

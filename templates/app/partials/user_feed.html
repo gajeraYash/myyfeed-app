@@ -5,38 +5,44 @@
 {% for feed in user_feed %}
 <div id="post" class="post">
     <div class="row no-gutters">
-        <div class="col-2 col-sm-2 col-md-2 col-lg-1 user_pic">
+        <div class="user_pic">
             <a href="{% url 'app:user_profile' username=feed.user.username %}">
                 <img src="{{feed.user.userprofile.profile_pic.url}}"
                     class="rounded-circle img-fluid mx-auto d-block sizeoption" alt="...">
             </a>
         </div>
-        <div class="col-10 col-sm-10 col-md-10 col-lg-11 offset-lg-0 user_post">
+        <div class="col user_post">
             <div class="user_info">
+                {% if feed.user.userprofile.admin %}
                 <a href="{% url 'app:user_profile' username=feed.user.username %}">
-                    <div class="name">{{feed.user.first_name}} {{feed.user.last_name}}
+                    <div class="name">{{feed.user.first_name}} {{feed.user.last_name}} <i
+                            class='bx bxs-badge-check'></i></div>
                 </a>
+                {% else %}
+                <div class="name">{{feed.user.first_name}} {{feed.user.last_name}}</div>
+                {% endif %}
                 <a href="{% url 'app:user_profile' username=feed.user.username %}">
-                    <span class="user"><span class="username">@{{feed.user.username}}</span>
+                    <div class="username">@{{feed.user.username}}</div>
                 </a>
             </div>
             <div class="announcement">{{ feed.announcement }}</div>
             {%if feed.image %}
             <div class="userfile">
-                <img src="{{feed.image.url}}"
-                    class="img-fluid mx-auto d-block imgoption" alt="...">
+                <img src="{{feed.image.url}}" class="img-fluid mx-auto d-block imgoption" alt="...">
             </div>
             {% endif %}
             <div class="row comment no-gutters justify-content-center">
                 <div class="col">
-                    <div class="post-icons d-inline"><i class='bx bx-comment-detail'></i></div>
-                    <div class="d-inline">Comment</div>
+                    <a href="{%url 'app:user_post' post=feed.id%}">
+                        <div class="post-icons d-inline"><i class='bx bx-comment-detail'></i></div>
+                        <div class="d-inline">Comment</div>
+                    </a>
                 </div>
                 <div class="col">
                     <div class="date">{{ feed.created }}</div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

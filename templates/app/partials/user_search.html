@@ -2,13 +2,13 @@
 {% for user in user_results %}
 <div id='searchresults' class="searchresults cube-trans">
     <div class="row">
-        <div class="col-3">
+        <div class="d-inline-block px-2">
             <a href="{% url 'app:user_profile' username=user.username %}">
                 <img src="{{user.userprofile.profile_pic.url}}"
                     class="rounded-circle img-fluid mx-auto d-block userimg sizeoption" alt="...">
             </a>
         </div>
-        <div class="col-9">
+        <div class="col">
             <div class="row">
                 <a href="{% url 'app:user_profile' username=user.username %}">
                     {% if user.userprofile.admin %}
