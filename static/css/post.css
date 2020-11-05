@@ -1,4 +1,13 @@
-#post.post {
+@import "partials/navbar.css";
+#userpost {
+    padding: 100px 0px;
+    width: 100%;
+    background-color: var(--main-background);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+#userpost #post.post {
     color: var(--main-text);
     margin: 15px 0px;
     padding: 10px 15px;
@@ -6,37 +15,34 @@
     border-radius: 15px;
 }
 
-#post .user_post a {
+#userpost #post .user_post a {
     text-decoration: none;
     color: var(--main-text);
 }
 
-#post .name {
+#userpost #post .name {
     font-size: 14px;
-    display: inline-block;
 }
 
-#post .username {
-    color: var(--main-subtext);
-    display: inline-block;
+#userpost #post .user {
     padding-left: 5px;
 }
 
-#post .announcement {
+#userpost #post .username {
+    color: var(--main-subtext);
+}
+
+#userpost #post .announcement {
     font-size: 16px;
     margin: 5px 0px;
 }
 
-#post .date {
+#userpost #post .date {
     font-size: 10px;
     margin: 5px 0px;
     color: var(--main-subtext);
     text-align: right;
 
-}
-
-#post .announcementform {
-    border-radius: 15px;
 }
 
 /* #post .user_pic{
@@ -48,37 +54,30 @@
     overflow-y:auto;
     height: 80vh;
 } */
-#post .sizeoption {
-    width: 4rem;
-    height: 4rem;
+#userpost #post .sizeoption {
+    width: 5.0rem;
+    height: 5.0rem;
 }
 
-#post .user {
-    padding: 20px;
-}
-
-#post .user_pic{
+#userpost #post .user_pic{
     display: inline-block;
 }
 
-#post .userfile{
+#userpost #post .userimg {
+    padding: 20px;
+}
+
+#userpost #post .userfile{
     padding: 0px 10px;
 }
 
-#post .imgoption {
+#userpost #post .imgoption {
     width: auto;
     max-height: 50%;
     border-radius: 3%;
     border: 1px solid var(--main-text);
 }
 
-#post .user_post {
+#userpost #post .user_post {
     padding-left: 10px;
 }
-
-/*comment & pic i*/
-#post .comment {
-    color: var(--main-subtext);
-}
-
-/*end i*/
