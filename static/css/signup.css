@@ -2,7 +2,7 @@
 
 #signup {
     width: 100%;
-    background-color: var(--main-bg-color);
+    background-color: var(--main-background);
     background-size: cover;
     padding-bottom: 120px;
     min-height: 100vh;
@@ -19,44 +19,44 @@
 }
 
 #signup .subtitle {
-    color: var(--main-secondary-color);
+    color: var(--main-text);
 }
 
 #signup .signupform {
-    color: var(--main-sub-color);
+    color: var(--main-subtext);
     transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
 }
 
 #signup h1 {
     margin: 20px 10px 10px 10px;
-    color: var(--main-secondary-color);
+    color: var(--main-text);
     font-size: 60px;
     text-align: center;
 }
 
 #signup .btn {
-    color: var(--main-primary-color);
+    color: var(--main-primary);
     margin: 10px 0px;
     width: 200px;
     font-weight: 600;
     line-height: 1;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--main-primary-color);
+    border-color: var(--main-primary);
     padding: 0.7rem 1rem;
     transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
 }
 
 #signup .btn:hover {
-    background-color: var(--hover-primary-bg-color);
+    background-color: var(--main-primary-hover);
 }
 
 #signup .login{
-    color: var(--main-sub-color);
+    color: var(--main-subtext);
 }
 
 #signup .login a{
-    color: var(--main-primary-color);
+    color: var(--main-primary);
 }
 
 @media (max-width: 767px) {

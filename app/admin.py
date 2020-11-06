@@ -5,3 +5,4 @@ from app.models import *
 admin.site.register(UserProfile)
 admin.site.register(UserAnnoucement)
 admin.site.register(Follower)
+admin.site.register(UserComment)

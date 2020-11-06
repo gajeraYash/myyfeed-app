@@ -1,4 +1,4 @@
-<nav id='navbar' class="navbar navbar-expand-lg navbar-dark">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
         aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'app:feed' %}">Home</a>
+                <a class="nav-link" href="{% url 'app:feed' %}"><i class='bx bxs-home'></i> Home</a>
             <!--s
                   <li class="row no-gutters justify-content-right"></li>
                  <li id="searchfield" class="col">
@@ -21,19 +21,17 @@
                     <i class="fas fa-envelope"></i>
                 </a>
             </li> -->
-            <div class="row no-gutters justify-content-center"></div>
-            <li class="col">
-                <a class="nav-message" href ="{% url 'app:message' %}">
-                <div class="nav-icon"><i class='bx bx-chat'></i></div></a>
+            <li class="nav-item">
+                <a class="nav-link message" href ="{% url 'app:message' %}"><i class='bx bx-chat'></i> Message</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  {{user.first_name}} {{user.last_name}}
+                    <i class='bx bxs-user'></i> {{user.first_name}} {{user.last_name}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="{% url 'app:profile' %}">My Profile</a>
-                  <a class="dropdown-item disabled" href="#">Settings</a>
-                  <a class="dropdown-item" href="{% url 'app:logout' %}">Log out</a>
+                  <a class="dropdown-item" href="{% url 'app:profile' %}"><i class='bx bxs-user-detail'></i> My Profile</a>
+                  <a class="dropdown-item disabled" href="#"><i class='bx bxs-wrench'></i> Settings</a>
+                  <a class="dropdown-item" href="{% url 'app:logout' %}"><i class='bx bx-log-out'></i> Log out</a>
                 </div>
               </li>
         </ul>

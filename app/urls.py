@@ -17,4 +17,5 @@ urlpatterns = [
     path('test',views.test_page,name="testpage"),
     path('user/<str:username>',views.user_profile,name="user_profile"),
     path('message',views.message,name="message"),
+    path('post/<int:post>',views.user_post,name="user_post"),
 ] 
