@@ -151,6 +151,3 @@ MEDIA_URL= '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-#Channels
-
