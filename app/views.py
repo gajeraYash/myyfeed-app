@@ -9,7 +9,7 @@ from app.models import *
 from django.contrib import messages
 # Create your views here.
 
-
+#push
 def index(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/feed')
