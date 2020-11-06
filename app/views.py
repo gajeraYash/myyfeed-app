@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from app.forms import *
 from app.models import *
+from django.contrib import messages
 # Create your views here.
 
 
@@ -133,3 +134,15 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+#Message Request Below
+
+
+
+def message(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("app:message"))
+    else:
+        profile_data_obj = UserProfile.objects.get(user=request.user)
+        return render(request,'app/message.html',{"profile_data":profile_data_obj})
