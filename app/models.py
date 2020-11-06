@@ -43,8 +43,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-    def get_fields(self):
-        return [(field.name, field.value_to_string(self)) for field in UserProfile._meta.fields]
 
 class UserAnnoucement(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
@@ -53,8 +51,14 @@ class UserAnnoucement(models.Model):
     created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return self.user.username + "---" + self.announcement
+        return self.user.username + "-->" + self.announcement
 
-    def get_queryset(self):
-        print("Get Field Called")
-        return UserAnnoucement.objects.all()
+
+class UserComment(models.Model):
+    post = models.ForeignKey(UserAnnoucement, on_delete=CASCADE)
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    comment = models.TextField(max_length=280)
+    created = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return self.user.username + "  --Commented on--> " + self.post.announcement 
