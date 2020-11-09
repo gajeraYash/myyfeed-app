@@ -88,3 +88,9 @@ class UserTweet(forms.ModelForm):
     class Meta:
         model = UserAnnoucement
         fields = ('announcement','image')
+
+
+class UserCommentForm(forms.ModelForm):
+    class Meta:
+        model = UserComment
+        fields = ('comment',)

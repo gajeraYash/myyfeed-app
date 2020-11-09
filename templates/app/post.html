@@ -44,6 +44,12 @@
                 </div>
             </div>
         </div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-outline-primary">Post</button>
+            
+        </form>
         {% for reply in comment%}
             <div class="comment">
                 {{reply.user.username}}
