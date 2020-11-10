@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app', #importing app
     'django_cleanup.apps.CleanupConfig',
-    'cloudinary'
+    'cloudinary',
+    'channels',
     
 ]
 
@@ -85,6 +86,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CS490.wsgi.application'
 
+ASGI_APPLICATION = 'CS490.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
