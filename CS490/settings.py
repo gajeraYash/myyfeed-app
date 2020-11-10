@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'app', #importing app
     'django_cleanup.apps.CleanupConfig',
     'cloudinary',
-    'channels',
-    
 ]
 
 cloudinary.config(
@@ -85,8 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CS490.wsgi.application'
-
-ASGI_APPLICATION = 'CS490.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
