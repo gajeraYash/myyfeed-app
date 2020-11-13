@@ -15,9 +15,16 @@ def index(request):
     else:
         return render(request, 'app/index.html')
 
-
 def test_page(request):
     return render(request, 'app/index.html')
+
+def message(request):
+    return render(request, 'app/message.html')
+
+def room(request, room_name):
+    return render(request, 'app/room.html', {
+        'room_name': room_name
+    })
 
 
 @login_required
@@ -102,11 +109,23 @@ def user_post(request, post):
         if UserAnnoucement.objects.get(id=post):
             post_obj = UserAnnoucement.objects.get(id=post)
             comment_obj = UserComment.objects.filter(post = post_obj)
-            return render(request,'app/post.html',{"post":post_obj,"comment":comment_obj})
+            if request.method == "POST":
+                comment_form = UserCommentForm(request.POST)
+                if comment_form.is_valid():
+                    user = request.user
+                    comment = comment_form.save(commit=False)
+                    comment.user = user
+                    comment.post = post_obj
+                    comment.save()
+                    return HttpResponseRedirect(request.path_info)
+                else:
+                    print("error in posting comment")
+            else:
+                comment_form = UserCommentForm()
+            return render(request,'app/post.html',{"post":post_obj,"comment":comment_obj,"comment_form":comment_form})
         else:
             print("checked NOP!")
-            return render(request,'app/post.html',{"post_comment":False})
-
+            return render(request,'app/post.html',{"post":False})
 
 def user_signup_success(request):
     registered = True
@@ -138,7 +157,7 @@ def user_login(request):
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
-            username = login_form.cleaned_data['username']
+            username = login_form.cleaned_data['username'].lower()
             password = login_form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             login(request,user)
