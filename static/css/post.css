@@ -94,19 +94,23 @@
 }
 
 .name_reply{
-    color: whitesmoke;
+    color: var(--main-subtext);
     margin: 5px;
     position: relative;
     left: 6px;
     top: 7px;
 }
 
+.name_reply b{
+    color: whitesmoke;
+
+}
+
 
 .comment{
-    color:red;
+    color: white;
     margin-left: 10px;
     margin: 10px;
-    max-width: max-content;
 }
 
 .created{
@@ -154,4 +158,8 @@
     left: 30px;
     max-width: 20vh;
     border-radius: 50%;
+}
+
+#userpost{
+    padding-bottom: 180px;
 }
