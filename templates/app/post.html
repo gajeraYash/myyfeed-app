@@ -3,8 +3,8 @@
 {% block title %}POST{% endblock %}
 {% block description %}User post consisting of announcement, photos, documentation, and etc.{% endblock %}
 {% block vendor %}
-<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/post.css' %}" type="text/css" media="screen">
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 {% endblock %}
 {% block content %}
 {% include "app/partials/navbar.html" with user=user active_tab=''%}
@@ -35,7 +35,7 @@
                             <img src="{{post.image.url}}" class="img-fluid mx-auto d-block imgoption" alt="...">
                         </div>
                         {% endif %}
-                        <div class="row comment no-gutters justify-content-center">
+                        <div class="row no-gutters justify-content-center">
                             <div class="col">
                                 <div class="date">{{ post.created }}</div>
                             </div>
@@ -44,15 +44,30 @@
                 </div>
             </div>
         </div>
+        <br>
+        
         {% for reply in comment%}
-            <div class="comment">
-                {{reply.user.username}}
+        
+        <div id="comment" class="comment_1">
+            <img src="{{reply.user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block profilePIC" alt="...">
+            
+            <div class="container-fluid name_reply">
                 {{reply.user.first_name}}
                 {{reply.user.last_name}}
+                @{{reply.user.username}}
+            </div>
+            <div class="col comment">
                 {{reply.comment}}
+            </div>
+            <div class="created">
                 {{reply.created}}
             </div>
+            
+            
+        </div>
             {% endfor %}
     </div>
 </section>
+
+
 {% endblock %}

@@ -39,9 +39,9 @@
                             </div>
                         {% endif %}
                         <div class="col">
-                            <small class="row membersince">MemberSince</small>
+                            <small class="row membersince">Member Since</small>
                             <div class="row membersince">
-                                <small>{{profile_data.user.date_joined|date:'b m Y'|capfirst}}</small>
+                                <small>{{profile_data.user.date_joined|date:'b-d-Y'|capfirst}}</small>
                             </div>
                         </div>
 
