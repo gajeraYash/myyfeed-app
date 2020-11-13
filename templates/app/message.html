@@ -1,0 +1,125 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+
+{% block vendor %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="message/css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/message.css' %}" type="text/css" media="screen">
+
+
+{% endblock %}
+
+{% block content %}
+{% include "app/partials/navbar.html" with user=user active_tab='home'%}
+
+
+<section id="message">
+
+
+    <body>
+        <div class="container">
+            <div class="Title1">
+            <h3 class= "text-center">Messenger</h3>
+            </div>
+            </div>
+            <div class="container">
+
+        <div class="messaging">
+              <div class="inbox_msg">
+                <div class="inbox_people">
+                  <div class="headind_srch">
+                    <div class="recent_heading">
+                      <h4>Recent</h4>
+                    </div>
+                    <div class="srch_bar">
+                      <div class="stylish-input-group">
+                        <input type="text" class="search-bar"  placeholder="Search" >
+                        <span class="input-group-addon">
+                        <button type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span> </div>
+                    </div>
+                  </div>
+                  <div class="inbox_chat">
+                    <div class="chat_list active_chat">
+                      <div class="chat_people">
+                        <div id="profile-details" class="chat_img">
+                        <img src="{{profile_data.profile_pic.url}}"class="rounded-circle img-fluid userimg mx-auto d-block">
+                     </div>
+                        <div class="chat_ib">
+                            <a href="{% url 'app:user_profile' username=user.username %}">
+                                {% if user.userprofile.admin %}
+                                <div class="name d-inline-block">{{ user.first_name}} {{user.last_name}} <i
+                                        class='bx bxs-badge-check'></i> </div>
+                                {% else %}
+                                <div class="name d-inline-block">{{ user.first_name}} {{user.last_name}}</div>
+                                {% endif %}
+                            </a>
+                            <span class="time_date"> 11:01 AM    |    November 1</span>
+
+                          <p>Hi, this is a test message.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mesgs">
+                  <div class="msg_history">
+                    <div class="incoming_msg">
+                      <div class="incoming_msg_img"> <img src="" alt=""> </div>
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>Hi There</p>
+                          <span class="time_date"> 11:01 AM    |    November 1</span></div>
+                      </div>
+                    </div>
+                    <div class="outgoing_msg">
+                        <div class="outgoing_msg_img"></div>
+                      <div class="sent_msg">
+                        <p>How is it going?</p>
+                        <span class="time_date"> 11:01 AM    |    November 1</span> </div>
+                    </div>
+                    <div class="incoming_msg">
+                      <div class="incoming_msg_img"> <img src="" alt=""> </div>
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>I'm doing well.  Thanks for asking!</p>
+                          <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
+                      </div>
+                    </div>
+                    <div class="outgoing_msg">
+                      <div class="sent_msg">
+                        <p>Ofcourse! Take care.</p>
+                        <span class="time_date"> 11:01 AM    |    Today</span> </div>
+                    </div>
+                    <div class="incoming_msg">
+                      <div class="incoming_msg_img"> <img src="" alt=""> </div>
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>Bye bye now.  </p>
+                          <span class="time_date"> 11:01 AM    |    Today</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="type_msg">
+                    <div class="input_msg_write">
+                      <input type="text" class="write_msg" placeholder="Type a message" />
+                      <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i><font size= "2">post</font></button>
+                    </div>
+                  </div>
+                </div>
+            </div>              
+            </div> 
+        </div>
+            
+            </body>
+    
+    
+    
+</section>    
+{% endblock %}
+    
