@@ -44,10 +44,14 @@
                 </div>
             </div>
         </div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-outline-primary">Post</button>
+            
+        </form>
         <br>
-        
         {% for reply in comment%}
-        
         <div id="comment" class="comment_1">
             <img src="{{reply.user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block profilePIC" alt="...">
             
