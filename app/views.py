@@ -8,7 +8,7 @@ from app.forms import *
 from app.models import *
 # Create your views here.
 
-
+#push
 def index(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/feed')
