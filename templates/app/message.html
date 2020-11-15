@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
-</head>
-<body>
-    What chat room would you like to enter?<br>
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Social Media App{% endblock %}
+{% block description %}Social Media App created for CS:490 @NJIT{% endblock %}
+{% block vendor %} 
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="screen">
+{% endblock %}
+{% block content %}
+What chat room would you like to enter?<br>
     <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
-
+    <input id="room-name-submit" type="button" value="Enter"><br>
+    Threads
+    {% for thread in thread_obj %}
+    {% if user != thread.first %}
+    <ul>
+    <li>{{thread.first.username}}
+    {{thread.first.first_name}}</li>
+    {% else %}
+    <li>{{thread.second.username}}
+    {{thread.second.first_name}}</li>
+</ul>
+    {% endif %}
+    {% endfor %}
     <script>
         document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
@@ -22,5 +34,4 @@
             window.location.pathname = '/message/' + roomName + '/';
         };
     </script>
-</body>
-</html>
+{% endblock %}
