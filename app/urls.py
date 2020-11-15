@@ -29,6 +29,6 @@ urlpatterns = [
     path('user/<str:username>', views.user_profile, name="user_profile"),
 
     # messages
-    path('message', views.message, name="message"),
-    path('message/<str:room_name>/', views.room, name='room'),
+    path('message', views.msgthread, name="message"),
+    path('message/<str:username>/', views.ThreadView.as_view(), name='room'),
 ]
