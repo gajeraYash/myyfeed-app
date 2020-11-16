@@ -31,9 +31,6 @@ def msgthread(request):
         thread_obj = Thread.objects.by_user(request.user)
         return render(request, 'app/message.html', {'thread_obj':thread_obj})
 
-
-
-
 class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
     template_name = 'app/room.html'
     form_class = ComposeMSGForm
@@ -82,6 +79,17 @@ def user_search(request):
     else:
         print("No Value Provided")
 
+@login_required
+def msg_user(request):
+    user_param = request.GET.get('msg_user', None)
+    if user_param:
+        user_q = User.objects.filter(Q(username__icontains=user_param) | Q(
+            first_name__icontains=user_param) | Q(last_name__icontains=user_param)).order_by('username').exclude(username=request.user.username)[:5]
+        print(user_q)
+        return render(request, 'app/partials/msg_user.html', {'user_results': user_q})
+        # return JsonResponse({'user_results':user_obj_q}, safe=False)
+    else:
+        print("No Value Provided")
 
 def profile(request):
     if not request.user.is_authenticated:
