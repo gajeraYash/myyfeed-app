@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app', #importing app
-    'django_cleanup.apps.CleanupConfig',
     'cloudinary',
     'channels',
 ]
