@@ -1,50 +1,74 @@
-<!-- chat/templates/chat/room.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
-</head>
-<body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Social Media App{% endblock %}
+{% block description %}Social Media App created for CS:490 @NJIT{% endblock %}
+{% block vendor %} 
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="screen">
+{% endblock %}
+{% block content %}
+Thread for {% if user != object.first %}
+        {{object.first.username}}
+        {{object.first.first_name}}
+        {% else %}
+        {{object.second.username}}
+        {{object.second.first_name}}
+        {% endif %}
+    </h3>
+    <ul id="chat-items">
+        {% for chat in object.chatmessage_set.all %}
+
+        <li>{{ chat.message }} via {{ chat.user }}</li>
+
+        {% endfor %}
+    </ul>
+
+    <form id="form" method="POST">
+        {% csrf_token %} {{form.as_p }}
+        <input type="submit" class="btn btn-primary" />
+    </form>
     <script>
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        console.log(window.location)
+        var loc = window.location
+        const formData =$("#form")
+        const msgInput =$("#id_message")
+        var chatli = $("#chat-items")
+        var wsStart = "ws://";
+        if (loc.protocol == "https:") {
+            wsStart = "wss://";
+        }
+        var endpoint = wsStart + loc.host + "/ws" + loc.pathname;
+        console.log(endpoint);
 
-        const chatSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/ws/message/'
-            + roomName
-            + '/'
-        );
 
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+        const socket = new WebSocket(endpoint);
+
+        socket.onmessage = function (e) {
+            console.log("message", e);
+            var recieveMsg = JSON.parse(e.data)
+            chatli.append("<li>" + recieveMsg.message + ' via ' + recieveMsg.username + "</li>")
         };
 
-        chatSocket.onclose = function(e) {
-            console.error('Chat socket closed unexpectedly');
+
+        socket.onopen = function (e) {
+            console.log("open", e);
+            formData.submit(function(event){
+                event.preventDefault()
+                var msgTxt = msgInput.val()
+                console.log(msgTxt)
+                msgDict= {
+                    'message' : msgTxt
+                }
+                socket.send(JSON.stringify(msgDict))
+                msgInput.val('')
+            })
         };
 
-        document.querySelector('#chat-message-input').focus();
-        document.querySelector('#chat-message-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#chat-message-submit').click();
-            }
+        socket.onerror = function (e) {
+            console.log("error", e);
         };
 
-        document.querySelector('#chat-message-submit').onclick = function(e) {
-            const messageInputDom = document.querySelector('#chat-message-input');
-            const message = messageInputDom.value;
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-            messageInputDom.value = '';
+        socket.onclose = function (e) {
+            console.log("close", e);
         };
     </script>
-</body>
-</html>
+{% endblock %}
