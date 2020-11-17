@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['www.myyfeed.com','cs-490.herokuapp.com','127.0.0.1','localhost
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app', #importing app
-    'django_cleanup.apps.CleanupConfig',
     'cloudinary',
-    'channels',
 ]
 
 cloudinary.config(
@@ -83,7 +82,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CS490.wsgi.application'
 
-ASGI_APPLICATION = 'CS490.asgi.application'
+ASGI_APPLICATION = 'CS490.routing.application'
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
