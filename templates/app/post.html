@@ -7,7 +7,7 @@
 <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 {% endblock %}
 {% block content %}
-{% include "app/partials/navbar.html" with user=user active_tab=''%}
+{% include "app/partials/navbar.html" with user=user active_tab='home'%}
 
 <section id="userpost">
     <div class="row justify-content-center">
@@ -35,6 +35,12 @@
                             <img src="{{post.image.url}}" class="img-fluid mx-auto d-block imgoption" alt="...">
                         </div>
                         {% endif %}
+                        <div class="container comment_like">
+                            <div class="row">
+                                <div class="commentSection"><button id="formButton">Comment</button></div>
+                                <div class="likeSection"><button id="formButton1">Like</button></div>
+                            </div>
+                        </div>
                         <div class="row no-gutters justify-content-center">
                             <div class="col">
                                 <div class="date">{{ post.created }}</div>
@@ -44,20 +50,22 @@
                 </div>
             </div>
         </div>
-        <form method="POST">
+        <form id="form1" method="POST" class="commentPost">
             {% csrf_token %}
             {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-outline-primary">Post</button>
+            <button type="submit" class="btn btn-outline-primary postButton">Post</button>
             
         </form>
         <br>
         {% for reply in comment%}
         <div id="comment" class="comment_1">
-            <img src="{{reply.user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block profilePIC" alt="...">
             
+            <a href="{% url 'app:user_profile' username=reply.user.username %}">
+            <img src="{{reply.user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block profilePIC" alt="...">
             <div class="container-fluid name_reply">
-                <b><b>{{reply.user.first_name}}</b></b>
-                <b><b>{{reply.user.last_name}}</b></b>
+                <b>{{reply.user.first_name}}</b>
+                <b>{{reply.user.last_name}}</b>
+            </a>
                 @{{reply.user.username}}
             </div>
             <br>
@@ -70,9 +78,18 @@
             
             
         </div>
+
+
+
+
             {% endfor %}
     </div>
 </section>
+        <script>
+            $("#formButton").click(function(){
+        $("#form1").toggle();
+    });
+        </script>
 
 
 {% endblock %}
