@@ -12,9 +12,10 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 import app.routing
+import django
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CS490.settings")
-
+django.setup()
 application = ProtocolTypeRouter({
     "websocket": AllowedHostsOriginValidator(
         AuthMiddlewareStack(
