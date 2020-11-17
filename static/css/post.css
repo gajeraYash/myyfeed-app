@@ -87,10 +87,10 @@
     border-radius: 20px;
     border: 5px solid black;
     width: auto;
-    color: blue;
     margin: 20px;
     margin-left: 15%;
-    
+    background: var(--main-bg-shade);
+    ;
 }
 
 .name_reply{
@@ -111,6 +111,7 @@
     color: white;
     margin-left: 10px;
     margin: 10px;
+    
 }
 
 .created{
@@ -162,4 +163,57 @@
 
 #userpost{
     padding-bottom: 180px;
+}
+
+
+.commentPost textarea{
+    padding: -10px;
+    height: 55px;
+    width: 100%;
+    background: var(--main-bg-shade);
+    color: white;
+    position: relative;
+    bottom: 40px;
+    border-radius: 15px;
+    border-color: black;
+    
+}
+
+.likeSection{
+    position: relative;
+    left: 10px;    
+}  
+
+.comment_like{
+    position: relative;
+    right: 95px;
+    height: auto;
+    padding-top: 30px;
+    top: 25px;
+}
+
+.postButton{
+    position: relative;
+    bottom: 40px;
+    margin-bottom: -20px;
+    float: right;
+}
+
+#form1{
+    display: none;
+}
+
+#formButton{
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color:#1F1E1E;
+    color: white;
+
+}
+#formButton1{
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color:#1F1E1E;
+    color: white;
+
 }
