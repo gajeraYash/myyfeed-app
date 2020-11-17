@@ -1,37 +1,41 @@
 nav#navbar {
-    padding: 15px 5% 15px 5%;
-    background-color: var(--main-bg-color);
+    padding: 15px 20px;
+    background-color: var(--main-background);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1;
 }
 
-a.navbar-brand {
-    color: var(--main-secondary-color) !important;
-}
 
 a#navbardrop {
-    color: var(--main-secondary-color) !important;
+    color: var(--main-text);
 }
 
 #navbar .btn {
-    color: var(--main-primary-color);
+    color: var(--main-primary);
     font-weight: 600;
     line-height: 1;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--main-primary-color);
+    border-color: var(--main-primary);
     padding: 0.7rem 1rem;
     transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
 }
 
 #navbar .btn:hover {
-    background-color: var(--hover-primary-bg-color);
+    background-color: var(--main-primary-hover);
 }
 
-.longdivv {
-    min-height: 15000px;
+#navbar .message {
+    color: var(--main-text);
+}
+#navbar a:hover {
+    color: var(--main-primary);
+}
+
+#navbar a#navbardrop:hover {
+    color: var(--main-primary);
 }
 
 .nav-down {
@@ -45,7 +49,7 @@ a#navbardrop {
 }
 
 .nav-init {
-    padding: 10px 5% 10px 5%;
+    padding: 10px 20px;
     -webkit-box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
     -moz-box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
     box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
@@ -54,9 +58,5 @@ a#navbardrop {
 /*
 .message-box i{
     position: fixed;
-    color: var(--main-secondary-color)    
+    color: var(--main-text)    
 }*/
-.nav-icon {
-    color: var(--main-secondary-color);
-    font-size: 2.5rem;
-}

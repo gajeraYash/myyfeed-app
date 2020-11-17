@@ -1,0 +1,165 @@
+@import "partials/navbar.css";
+#userpost {
+    padding: 150px 50px;
+    max-width: 100%;
+    height: auto;
+    background-color: var(--main-background);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+#userpost #post.post {
+    color: var(--main-text);
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: var(--main-bg-shade);
+    border-radius: 15px;
+}
+
+#userpost #post .user_post a {
+    text-decoration: none;
+    color: var(--main-text);
+}
+
+#userpost #post .name {
+    font-size: 14px;
+}
+
+#userpost #post .user {
+    padding-left: 5px;
+}
+
+#userpost #post .username {
+    color: var(--main-subtext);
+}
+
+#userpost #post .announcement {
+    font-size: 16px;
+    margin: 5px 0px;
+}
+
+#userpost #post .date {
+    font-size: 10px;
+    margin: 5px 0px;
+    color: var(--main-subtext);
+    text-align: end;
+
+}
+
+/* #post .user_pic{
+    width: 75px;
+    display: inline-block;
+} */
+/* 
+#post #post-content {
+    overflow-y:auto;
+    height: 80vh;
+} */
+#userpost #post .sizeoption {
+    width: 5.0rem;
+    height: 5.0rem;
+}
+
+#userpost #post .user_pic{
+    display: inline-block;
+}
+
+#userpost #post .userimg {
+    padding: 20px;
+}
+
+#userpost #post .userfile{
+    padding: 0px 10px;
+}
+
+#userpost #post .imgoption {
+    width: auto;
+    max-height: 50%;
+    border-radius: 3%;
+    border: 1px solid var(--main-text);
+}
+
+#userpost #post .user_post {
+    padding-left: 10px;
+}
+
+#comment{
+    border-radius: 20px;
+    border: 5px solid black;
+    width: auto;
+    color: blue;
+    margin: 20px;
+    margin-left: 15%;
+    
+}
+
+.name_reply{
+    color: var(--main-subtext);
+    margin: 5px;
+    position: relative;
+    left: 6px;
+    top: 7px;
+}
+
+.name_reply b{
+    color: whitesmoke;
+
+}
+
+
+.comment{
+    color: white;
+    margin-left: 10px;
+    margin: 10px;
+}
+
+.created{
+    margin: 5px;
+    text-align: end;
+    margin-right: 8px;
+    font-size: x-small;
+    color: var(--main-subtext);
+
+}
+
+.profilePIC{
+    position: relative;
+    float: left;
+    margin: 5px;
+    width: 45px;
+    height: auto;
+    left: 1px;
+    height: auto;
+    padding: 4px;
+
+
+}
+
+
+
+
+.comment_1:before{
+    content: '';
+	position: absolute;
+	background: black;
+    left: 25px;
+    height:40vh;
+    width: 5px;
+
+
+}
+.comment_1:after{
+    content: '';
+	width: 10%;
+	height: 5px;
+	background: black;
+    position: absolute;
+    margin-top: -50px;
+    left: 30px;
+    max-width: 20vh;
+    border-radius: 50%;
+}
+
+#userpost{
+    padding-bottom: 180px;
+}

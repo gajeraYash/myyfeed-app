@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from app.models import UserAnnoucement, UserProfile
+from app.models import UserAnnoucement, UserComment, UserProfile
 
 class UsernameField(forms.CharField):
     def to_python(self, value):
@@ -70,7 +70,8 @@ class UserLoginForm(forms.Form):
         self.fields['password'].widget.attrs.update({'class': 'form-control','placeholder':'Password'})
 
     def clean(self, *args, **kwargs):
-        username = self.cleaned_data.get('username')
+        username = self.cleaned_data.get('username').lower()
+        print(username)
         password = self.cleaned_data.get('password')
 
         if username and password:
@@ -84,7 +85,15 @@ class UserLoginForm(forms.Form):
         return super(UserLoginForm,self).clean(*args, **kwargs)
 
 class UserTweet(forms.ModelForm):
-
     class Meta:
         model = UserAnnoucement
         fields = ('announcement','image')
+
+
+class UserCommentForm(forms.ModelForm):
+    class Meta:
+        model = UserComment
+        fields = ('comment',)
+
+class ComposeMSGForm(forms.Form):
+    message = forms.CharField(max_length=280)

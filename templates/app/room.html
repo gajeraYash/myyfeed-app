@@ -1,0 +1,74 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Social Media App{% endblock %}
+{% block description %}Social Media App created for CS:490 @NJIT{% endblock %}
+{% block vendor %} 
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="screen">
+{% endblock %}
+{% block content %}
+Thread for {% if user != object.first %}
+        {{object.first.username}}
+        {{object.first.first_name}}
+        {% else %}
+        {{object.second.username}}
+        {{object.second.first_name}}
+        {% endif %}
+    </h3>
+    <ul id="chat-items">
+        {% for chat in object.chatmessage_set.all %}
+
+        <li>{{ chat.message }} via {{ chat.user }}</li>
+
+        {% endfor %}
+    </ul>
+
+    <form id="form" method="POST">
+        {% csrf_token %} {{form.as_p }}
+        <input type="submit" class="btn btn-primary" />
+    </form>
+    <script>
+        console.log(window.location)
+        var loc = window.location
+        const formData =$("#form")
+        const msgInput =$("#id_message")
+        var chatli = $("#chat-items")
+        var wsStart = "ws://";
+        if (loc.protocol == "https:") {
+            wsStart = "wss://";
+        }
+        var endpoint = wsStart + loc.host + "/ws" + loc.pathname;
+        console.log(endpoint);
+
+
+        const socket = new WebSocket(endpoint);
+
+        socket.onmessage = function (e) {
+            console.log("message", e);
+            var recieveMsg = JSON.parse(e.data)
+            chatli.append("<li>" + recieveMsg.message + ' via ' + recieveMsg.username + "</li>")
+        };
+
+
+        socket.onopen = function (e) {
+            console.log("open", e);
+            formData.submit(function(event){
+                event.preventDefault()
+                var msgTxt = msgInput.val()
+                console.log(msgTxt)
+                msgDict= {
+                    'message' : msgTxt
+                }
+                socket.send(JSON.stringify(msgDict))
+                msgInput.val('')
+            })
+        };
+
+        socket.onerror = function (e) {
+            console.log("error", e);
+        };
+
+        socket.onclose = function (e) {
+            console.log("close", e);
+        };
+    </script>
+{% endblock %}
