@@ -94,3 +94,6 @@ class UserCommentForm(forms.ModelForm):
     class Meta:
         model = UserComment
         fields = ('comment',)
+
+class ComposeMSGForm(forms.Form):
+    message = forms.CharField(max_length=280)
