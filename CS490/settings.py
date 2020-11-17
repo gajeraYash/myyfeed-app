@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import cloudinary
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent #Location of the Project
 TEMPLATES_DIR = BASE_DIR.joinpath('templates') #Location of the HTML templates
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = ['www.myyfeed.com','cs-490.herokuapp.com','127.0.0.1','localhost
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app', #importing app
-    'django_cleanup.apps.CleanupConfig',
     'cloudinary',
-    'channels',
 ]
 
 cloudinary.config(
@@ -82,12 +82,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CS490.wsgi.application'
 
-ASGI_APPLICATION = 'CS490.asgi.application'
+ASGI_APPLICATION = 'CS490.routing.application'
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [('localhost', 6379)],
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }

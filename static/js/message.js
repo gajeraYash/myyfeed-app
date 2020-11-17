@@ -1,19 +1,19 @@
-  //User search function
-  $("#user-input").keyup(function () {
-    var user_search = $(this).val();
-    if (!user_search) {                      //if it is blank. 
-        $("#search-content").empty();
-    } else {
-        $.ajax({
-            url: 'user/search',
-            data: {
-                'user_search': user_search
-            },
-            dataType: 'html',
-            success: function (data) {
-                $('#search-content').html(data)
-            }
-        });
-    }
-});
+$(document).ready(function () {
+    $("#user-input").keyup(function () {
+        var msg_user = $(this).val();
+        if (!msg_user) {                      //if it is blank. 
+            $("#search-content").empty();
+        } else {
+            $.ajax({
+                url: 'message/search',
+                data: {
+                    'msg_user': msg_user
+                },
+                dataType: 'html',
+                success: function (data) {
+                    $('#search-content').html(data)
+                }
+            });
+        }
+    });
 });

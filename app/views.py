@@ -1,4 +1,5 @@
 from django.http.response import HttpResponseRedirect
+from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -6,6 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from app.forms import *
 from app.models import *
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormMixin
+
+from django.views.generic import DetailView, ListView
 # Create your views here.
 
 #push
@@ -18,14 +24,49 @@ def index(request):
 def test_page(request):
     return render(request, 'app/index.html')
 
-def message(request):
-    return render(request, 'app/message.html')
+def msgthread(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('app:index'))
+    else:
+        thread_obj = Thread.objects.by_user(request.user)
+        return render(request, 'app/message.html', {'thread_obj':thread_obj})
 
-def room(request, room_name):
-    return render(request, 'app/room.html', {
-        'room_name': room_name
-    })
+class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
+    template_name = 'app/room.html'
+    form_class = ComposeMSGForm
+    success_url = './'
 
+    def get_queryset(self):
+        return Thread.objects.by_user(self.request.user)
+
+    def get_object(self):
+        other_username  = self.kwargs.get("username")
+        obj, created = Thread.objects.get_or_new(self.request.user, other_username)
+        if obj == None:
+            raise Http404
+        return obj
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.get_form()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        thread = self.get_object()
+        user = self.request.user
+        message = form.cleaned_data.get("message")
+        ChatMessage.objects.create(user=user, thread=thread, message=message)
+        return super().form_valid(form)
 
 @login_required
 def user_search(request):
@@ -38,6 +79,17 @@ def user_search(request):
     else:
         print("No Value Provided")
 
+@login_required
+def msg_user(request):
+    user_param = request.GET.get('msg_user', None)
+    if user_param:
+        user_q = User.objects.filter(Q(username__icontains=user_param) | Q(
+            first_name__icontains=user_param) | Q(last_name__icontains=user_param)).order_by('username').exclude(username=request.user.username)[:5]
+        print(user_q)
+        return render(request, 'app/partials/msg_user.html', {'user_results': user_q})
+        # return JsonResponse({'user_results':user_obj_q}, safe=False)
+    else:
+        print("No Value Provided")
 
 def profile(request):
     if not request.user.is_authenticated:
@@ -177,14 +229,3 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
-
-#Message Request Below
-
-
-
-def message(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("app:message"))
-    else:
-        profile_data_obj = UserProfile.objects.get(user=request.user)
-        return render(request,'app/message.html',{"profile_data":profile_data_obj})
