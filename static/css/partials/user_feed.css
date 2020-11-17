@@ -1,26 +1,25 @@
 #post.post {
-    color: var(--main-secondary-color);
+    color: var(--main-text);
     margin: 15px 0px;
     padding: 10px 15px;
-    background-color: var(--shade-bg-color);
+    background-color: var(--main-bg-shade);
     border-radius: 15px;
 }
 
 #post .user_post a {
     text-decoration: none;
-    color: var(--main-secondary-color);
+    color: var(--main-text);
 }
 
 #post .name {
     font-size: 14px;
-}
-
-#post .user {
-    padding-left: 5px;
+    display: inline-block;
 }
 
 #post .username {
-    color: var(--main-sub-color);
+    color: var(--main-subtext);
+    display: inline-block;
+    padding-left: 5px;
 }
 
 #post .announcement {
@@ -31,17 +30,13 @@
 #post .date {
     font-size: 10px;
     margin: 5px 0px;
-    color: var(--main-sub-color);
+    color: var(--main-subtext);
     text-align: right;
 
 }
 
 #post .announcementform {
     border-radius: 15px;
-}
-
-#post textarea {
-    resize: none;
 }
 
 /* #post .user_pic{
@@ -54,12 +49,16 @@
     height: 80vh;
 } */
 #post .sizeoption {
-    width: 3.8rem;
-    height: 3.8rem;
+    width: 4rem;
+    height: 4rem;
 }
 
-#post .userimg {
+#post .user {
     padding: 20px;
+}
+
+#post .user_pic{
+    display: inline-block;
 }
 
 #post .userfile{
@@ -70,7 +69,7 @@
     width: auto;
     max-height: 50%;
     border-radius: 3%;
-    border: 1px solid var(--main-secondary-color);
+    border: 1px solid var(--main-text);
 }
 
 #post .user_post {
@@ -78,8 +77,8 @@
 }
 
 /*comment & pic i*/
-#post .post-icons {
-    color: var(--main-sub-color);
+#post .comment {
+    color: var(--main-subtext);
 }
 
 /*end i*/
