@@ -32,8 +32,11 @@ class ChatConsumer(AsyncConsumer):
             user = self.scope['user']
             response = {
                 'message': msg,
-                'username': user.username
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name
             }
+            print(response)
             await self.msg_create(user, msg)
             # broadcast message event
             await self.channel_layer.group_send(
