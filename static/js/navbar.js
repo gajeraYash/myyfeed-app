@@ -2,7 +2,6 @@ $(document).ready(function () {
   var last_scroll_top = 0;
   $(window).scroll(function () {
     var scroll_top = $(window).scrollTop();
-    console.log(scroll_top);
     if (scroll_top <= 5) {
       $('#navbar').removeClass("nav-init")
     } else if (scroll_top > 5 && scroll_top < 250) {

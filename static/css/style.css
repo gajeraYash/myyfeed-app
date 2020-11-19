@@ -24,3 +24,7 @@ html:before {
   background-color: var(--main-background);
   z-index: -1;
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}
