@@ -10,7 +10,7 @@
 
 #userpost #post.post {
     color: var(--main-text);
-    margin: 15px 0px;
+    margin: 10px 0px;
     padding: 10px 15px;
     background-color: var(--main-bg-shade);
     border-radius: 15px;
@@ -40,7 +40,7 @@
 
 #userpost #post .date {
     font-size: 10px;
-    margin: 5px 0px;
+    margin: 10px 0px;
     color: var(--main-subtext);
     text-align: end;
 
@@ -74,7 +74,7 @@
 
 #userpost #post .imgoption {
     width: auto;
-    max-height: 50%;
+    max-height: 500px;
     border-radius: 3%;
     border: 1px solid var(--main-text);
 }
@@ -83,83 +83,27 @@
     padding-left: 10px;
 }
 
-#comment{
+#userpost #form .comment_area{
+    resize: none;
+    width: 100%;
+    padding: 10px 10px;
     border-radius: 20px;
-    border: 5px solid black;
-    width: auto;
-    color: blue;
-    margin: 20px;
-    margin-left: 15%;
-    
+    margin-top: 10px;
 }
 
-.name_reply{
-    color: var(--main-subtext);
-    margin: 5px;
-    position: relative;
-    left: 6px;
-    top: 7px;
+#userpost #form .commentbtn{
+    margin-top: 10px;
 }
 
-.name_reply b{
-    color: whitesmoke;
-
-}
-
-
-.comment{
-    color: white;
-    margin-left: 10px;
-    margin: 10px;
-}
-
-.created{
-    margin: 5px;
-    text-align: end;
-    margin-right: 8px;
-    font-size: x-small;
-    color: var(--main-subtext);
-
-}
-
-.profilePIC{
-    position: relative;
-    float: left;
-    margin: 5px;
-    width: 45px;
-    height: auto;
-    left: 1px;
-    height: auto;
-    padding: 4px;
-
-
-}
-
-
-
-
-.comment_1:before{
-    content: '';
-	position: absolute;
-	background: black;
-    left: 25px;
-    height:40vh;
-    width: 5px;
-
-
-}
-.comment_1:after{
-    content: '';
-	width: 10%;
-	height: 5px;
-	background: black;
+#comment .replyicon {
+    font-size: x-large;
     position: absolute;
-    margin-top: -50px;
-    left: 30px;
-    max-width: 20vh;
-    border-radius: 50%;
+    right: 0% ;
+    top: 0%;
+    color: var(--main-subtext);
 }
 
-#userpost{
-    padding-bottom: 180px;
+#comment .commentimg{
+    width: 4.0rem;
+    height: 4.0rem;
 }

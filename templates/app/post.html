@@ -7,11 +7,10 @@
 <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 {% endblock %}
 {% block content %}
-{% include "app/partials/navbar.html" with user=user active_tab=''%}
-
+{% include "app/partials/navbar.html" with user=user active_tab='home'%}
 <section id="userpost">
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col col-md-10 col-lg-8">
             <div id="post" class="post">
                 <div class="row no-gutters">
                     <div class="user_pic">
@@ -44,35 +43,53 @@
                 </div>
             </div>
         </div>
-        <form method="POST">
+        <form id="form" method="POST">
             {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-outline-primary">Post</button>
-            
+            <div class="col">
+                <div class="row">
+                    <textarea class="comment_area" name="comment" rows="2" maxlength="280" required=""
+                        id="{{comment_form.comment.id_for_label}}" spellcheck="false"></textarea>
+                </div>
+                <div class="row justify-content-end">
+                    <button type="submit" class="btn btn-outline-primary commentbtn">Comment</button>
+                </div>
+            </div>
         </form>
-        <br>
         {% for reply in comment%}
-        <div id="comment" class="comment_1">
-            <img src="{{reply.user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid mx-auto d-block profilePIC" alt="...">
-            
-            <div class="container-fluid name_reply">
-                <b><b>{{reply.user.first_name}}</b></b>
-                <b><b>{{reply.user.last_name}}</b></b>
-                @{{reply.user.username}}
+        <div id="comment">
+            <div class="row justify-content-end no-gutters">
+                <div class="col-10 col-sm-10 col-md-11 col-lg-11">
+                    <div id="post" class="post">
+                        <div class="row no-gutters">
+                            <div class="user_pic">
+                                <a href="{% url 'app:user_profile' username=reply.user.username %}">
+                                    <img src="{{reply.user.userprofile.profile_pic.url}}"
+                                        class="rounded-circle img-fluid mx-auto d-block commentimg" alt="...">
+                                </a>
+                            </div>
+                            <div class="col user_post">
+                                <div class="user_info">
+                                    <a href="{% url 'app:user_profile' username=post.user.username %}">
+                                        <div class="name">{{reply.user.first_name}} {{reply.user.last_name}}
+                                    </a>
+                                    <a href="{% url 'app:user_profile' username=post.user.username %}">
+                                        <span class="user"><span class="username">@{{reply.user.username}}</span>
+                                    </a>
+                                    <i class='bx bx-reply bx-rotate-180 replyicon' ></i>
+                                </div>
+                                <div class="announcement">{{ reply.comment }}</div>
+                                <div class="row no-gutters justify-content-center">
+                                    <div class="col">
+                                        <div class="date">{{ reply.created }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
-            <div class="col comment">
-                {{reply.comment}}
-            </div>
-            <div class="created">
-                {{reply.created}}
-            </div>
-            
-            
         </div>
-            {% endfor %}
+        {% endfor %}
     </div>
 </section>
-
-
 {% endblock %}

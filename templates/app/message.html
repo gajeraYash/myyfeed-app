@@ -5,8 +5,10 @@
 {% block vendor %}
 <link rel="stylesheet" href="{% static 'css/message.css' %}" type="text/css" media="screen">
 <script type="text/javascript" src="{% static 'js/message.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 {% endblock %}
 {% block content %}
+{% include "app/partials/navbar.html" with user=user active_tab='home'%}
 <section id="message">
     <div class="container">
         <div class="row justify-content-center">
