@@ -49,7 +49,10 @@
 #landing .bt1 {
     margin-right: 10px;
 }
-
+#landing .logo .banner{
+    height: 100px;
+    width: auto;
+}
 #landing .bt2 {
     margin-left: 10px;
 }
@@ -84,5 +87,9 @@
 
     #landing .col {
         margin-top: 15px;
+    }
+    #landing .logo .banner{
+        height: auto;
+        width: 100%;
     }
 }
