@@ -25,7 +25,7 @@
                     <div class="username">@{{feed.user.username}}</div>
                 </a>
             </div>
-            <div class="announcement">{{ feed.announcement }}</div>
+            <div class="announcement">{{ feed.announcement|safe }}</div>
             {%if feed.image %}
             <div class="userfile">
                 <img src="{{feed.image.url}}" class="img-fluid mx-auto d-block imgoption" alt="...">
