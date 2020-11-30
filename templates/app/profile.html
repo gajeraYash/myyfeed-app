@@ -1,6 +1,6 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}Profile - {{user.username}}{% endblock %}
+{% block title %}{{profile_data.user.first_name}} {{profile_data.user.last_name}} - @{{profile_data.user.username}}{% endblock %}
 {% block description %}User profile containing feed and personal info.{% endblock %}
 {% block vendor %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" media="screen">
