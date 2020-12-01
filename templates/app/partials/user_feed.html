@@ -13,14 +13,13 @@
         </div>
         <div class="col user_post">
             <div class="user_info">
-                {% if feed.user.userprofile.admin %}
+                
                 <a href="{% url 'app:user_profile' username=feed.user.username %}">
-                    <div class="name">{{feed.user.first_name}} {{feed.user.last_name}} <i
-                            class='bx bxs-badge-check'></i></div>
+                    <div class="name">{{feed.user.first_name}} {{feed.user.last_name}}
+                        {% if feed.user.userprofile.admin %} 
+                        <i class='bx bxs-badge-check'></i></div>
+                        {% endif %}
                 </a>
-                {% else %}
-                <div class="name">{{feed.user.first_name}} {{feed.user.last_name}}</div>
-                {% endif %}
                 <a href="{% url 'app:user_profile' username=feed.user.username %}">
                     <div class="username">@{{feed.user.username}}</div>
                 </a>
