@@ -43,11 +43,31 @@
                             <div class="row membersince">
                                 <small>{{profile_data.user.date_joined|date:'b d Y'|capfirst}}</small>
                             </div>
-                            
                         </div>
-
-                    </div>
+                    </div>   
+                </div>
+                <div class="options">
                     
+                    <div class="row no-gutters justify-content-center">
+                        {% if profile_data.user != user %}
+                        <div class="col text-center">
+                            <a href="{% url 'app:follow' username=profile_data.user.username %}" class="btn w-75 btn-outline-primary">
+                                {% if user_follow == True %}
+                                Following <i class='bx bx-check'></i>
+                                {% else %}
+                                Follow
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col text-center">
+                            <a href="{% url 'app:chat_room' username=profile_data.user.username %}" class="btn w-75 btn-outline-primary">Message</a>
+                        </div>
+                        {% else %}
+                        <div class="col">
+                            <a type="submit" class="btn w-100 btn-outline-primary">Edit Profile</a>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="col-10 col-sm-10 col-md-6 col-lg-8">

@@ -23,6 +23,29 @@ function get_feed() {
     // 'feed_param': 'username'  Get Other user created announcements
 }
 
+
+function follow_user(username) {
+    
+    var params = {
+        url: 'follow/' + username,
+        type: "get",
+        cache: true,
+        data: {
+            'feed_param': username
+        },
+        dataType: 'html',
+        success: function (data) {
+            $('#feed-content').html(data)
+        }
+    };
+    if (username == 'profile'){
+        params.url = 'user/feed'
+        params.data.feed_param = ''; 
+    }
+    console.log('DATA FOR:', params.data.feed_param);
+    $.ajax(params);
+}
+
 $(document).ready(function () {
     get_feed();
 });
