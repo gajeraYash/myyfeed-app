@@ -1,0 +1,84 @@
+#post.post {
+    color: var(--main-text);
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: var(--main-bg-shade);
+    border-radius: 15px;
+}
+
+#post .user_post a {
+    text-decoration: none;
+    color: var(--main-text);
+}
+
+#post .name {
+    font-size: 14px;
+    display: inline-block;
+}
+
+#post .username {
+    color: var(--main-subtext);
+    display: inline-block;
+    padding-left: 5px;
+}
+
+#post .announcement {
+    font-size: 16px;
+    margin: 5px 0px;
+}
+
+#post .date {
+    font-size: 10px;
+    margin: 5px 0px;
+    color: var(--main-subtext);
+    text-align: right;
+
+}
+
+#post .announcementform {
+    border-radius: 15px;
+}
+
+/* #post .user_pic{
+    width: 75px;
+    display: inline-block;
+} */
+/* 
+#post #post-content {
+    overflow-y:auto;
+    height: 80vh;
+} */
+#post .sizeoption {
+    width: 4rem;
+    height: 4rem;
+}
+
+#post .user {
+    padding: 20px;
+}
+
+#post .user_pic{
+    display: inline-block;
+}
+
+#post .userfile{
+    padding: 0px 10px;
+}
+
+#post .imgoption {
+    width: auto;
+    max-height: 50%;
+    border-radius: 3%;
+    border: 1px solid var(--main-text);
+}
+
+#post .user_post {
+    padding-left: 10px;
+}
+
+/*comment & pic i*/
+#post .comment {
+    color: var(--main-subtext);
+}
+
+/*end i*/

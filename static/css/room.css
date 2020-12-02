@@ -1,0 +1,100 @@
+@import "partials/navbar.css";
+
+#room{
+    padding: 100px 0px;
+    width: 100%;
+    background-color: var(--main-background);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+#room .chatbox {
+    color: var(--main-text);
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: var(--main-bg-shade);
+    border-radius: 15px;
+}
+
+#room .chatbox .user_info{
+    padding: 10px 0px;
+    margin: 0px;
+}
+
+#room .chatbox .user_info a{
+    text-decoration: none;
+    color: var(--main-text);
+}
+
+#room .chatbox .user_info .userimg{
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+#room .chatbox .user_info .user_fname{
+    padding: 0px;
+    margin: 0px;
+}
+
+#room .chatbox .user_info .user_username{
+    color: var(--main-subtext);
+    padding: 0px;
+    margin: 0px;
+}
+
+.chatbubble {
+    margin-top: 10px;
+    list-style: none;
+    position: relative;
+	max-width: 80%;
+	padding: .5em 1em;
+    border-radius: 1rem;
+    float: left;
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+}
+
+.chatbubble::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	bottom: 100%;
+	border: .5rem solid transparent;
+	border-top: none;
+	filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+} 
+
+.recieve{
+    color: #000000;
+    background-color:  #ffffff;
+}
+.recieve::before {
+    border-bottom-color: #ffffff;
+	left: 1em; 
+} 
+
+.sent{
+    color: #ffffff;
+    background-color: #5fc9f8;
+}
+.sent::before {
+    border-bottom-color: #5fc9f8;
+	right: 1em; 
+} 
+
+#room .chatbox .inputmsg {
+    margin-top: 20px;
+}
+
+#room .chatbox .inputmsg .msgarea{
+    width: 100%;
+    border-radius: 20px;
+    padding: 7px 10px;
+    overflow: hidden;
+    resize: none;
+}
+
+#room .chatbox .inputmsg .sendicon{
+    border-radius: 100px;
+    margin-left: 10px
+}

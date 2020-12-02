@@ -1,34 +1,22 @@
-<!DOCTYPE html>
+{% extends 'app/base.html' %}
 {% load static %}
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HomePage</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-    <h1>Hello you are app/index.html</h1>
-    {% if webpage_rec %}
-        <table>
-            <thead>
-                <th>Site Name</th>
-                <th>Date Accessed</th>
-            </thead>
-        
-            {% for web in webpage_rec %}
-            <tr>
-                <td>{{ web.name }}</td>
-                <td>{{ web.url }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>NO ACCESS RECORDS FOUND!</p>
-    {% endif %}
-</body>
-
-</html>
+{% block title %}Social Media App{% endblock %}
+{% block description %}Social Media App created for CS:490 @NJIT{% endblock %}
+{% block vendor %} 
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="screen">
+{% endblock %}
+{% block content %}
+<section id="landing" class="d-flex flex-column justify-content-center" >
+  <div class="container" >
+    <div class="logo">
+      <img src="{% static "assets/logo/banner.png"%}" alt=".." class="banner">
+    </div>
+      <!-- <h1>Social Media App <br><span>Rutgers-Newark & NJIT</span></h1> -->
+      <p class="p-large">App is running on Django 3.1.2</p>
+      <div class="col">
+        <a href="{% url 'app:signup' %}" class="btn bt1 btn-outline-primary">Sign up</a>
+        <a href="{% url 'app:login' %}" class="btn bt2 btn-outline-primary">Login</a>
+      </div>
+  </div>
+</section>
+{% endblock %}
