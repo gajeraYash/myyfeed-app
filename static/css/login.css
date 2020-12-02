@@ -1,0 +1,47 @@
+/* templates/app/login.html */
+
+
+#login {
+    width: 100%;
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    background-color: var(--main-background);
+    background-size: cover;
+}
+
+#login h1 {
+    margin: 20px 10px 20px 10px;
+    color: var(--main-text);
+    font-size: 60px;
+    text-align: center;
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+}
+
+#login .btn {
+    color: var(--main-primary);
+    font-weight: 600;
+    line-height: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--main-primary);
+    padding: 0.7rem 1rem;
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+}
+
+#login .btn:hover {
+    background-color: var(--main-primary-hover);
+}
+
+#login .signup{
+    color: var(--main-subtext);
+}
+
+#login .signup a{
+    color: var(--main-primary);
+}
+
+@media (max-width: 767px) {
+    #login h1 {
+        font-size: 50px;
+    }
+}

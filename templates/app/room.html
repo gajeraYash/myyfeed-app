@@ -1,0 +1,192 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Message:
+{% if user != object.first %}
+@{{object.first.username}}
+{% else %}
+@{{object.second.username}}
+{% endif %}
+{% endblock %}
+{% block description %}Instant or Direct Message to User{% endblock %}
+{% block vendor %}
+<link rel="stylesheet" href="{% static 'css/room.css' %}" type="text/css" media="screen">
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/room.js' %}"></script>
+{% endblock %}
+{% block content %}
+<input type="hidden" id="loggedUser" value="{{user.username}}">
+{% include "app/partials/navbar.html" with user=user active_tab='message'%}
+<section id="room">
+    <div class="row justify-content-center">
+        <div class="col col-sm-10 col-md-8 col-lg-6">
+            <div class="chatbox">
+                <div class="user_info row no-gutters">
+                    <div class="col ">
+
+                        {% if user != object.first %}
+                        <div class="row justify-content-center">
+                            <div class="user_pic">
+                                <a href="{% url 'app:user_profile' username=object.first.username %}">
+                                    <img src="{{object.first.userprofile.profile_pic.url}}"
+                                        class="rounded-circle img-fluid mx-auto d-block userimg" alt="...">
+                                </a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row justify-content-center">
+                            <div class="user_pic">
+                                <a href="{% url 'app:user_profile' username=object.second.username %}">
+                                    <img src="{{object.second.userprofile.profile_pic.url}}"
+                                        class="rounded-circle img-fluid mx-auto d-block userimg" alt="...">
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if user != object.first %}
+                        <div class="row no-gutters text-center">
+                            <div class="w-100">
+                                <h4 class="user_fname d-block">
+                                    <a href="{% url 'app:user_profile' username=object.first.username %}">
+                                        {{object.first.first_name}} {{object.first.last_name}}
+                                        {% if object.first.userprofile.admin %}
+                                        <i class='bx bxs-badge-check'></i>
+                                        {% endif %}
+                                    </a></h4>
+                            </div>
+                            <div class="w-100">
+                                <small class="user_username d-block"><a
+                                        href="{% url 'app:user_profile' username=object.first.username %}">@{{object.first.username}}</a></small>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row no-gutters text-center">
+                            <div class="w-100">
+                                <h4 class="user_fname d-block">
+                                    <a href="{% url 'app:user_profile' username=object.second.username %}">
+                                        {{object.second.first_name}} {{object.second.last_name}}
+                                        {% if object.second.userprofile.admin %}
+                                        <i class='bx bxs-badge-check'></i>
+                                        {% endif %}
+                                    </a></h4>
+                            </div>
+                            <div class="w-100">
+                                <small class="user_username d-block"><a
+                                        href="{% url 'app:user_profile' username=object.second.username %}">@{{object.second.username}}</a></small>
+                            </div>
+
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="chat_msg">
+                    <div id="chat-items" class="col">
+                        {% for chat in object.chatmessage_set.all %}
+                        {% if chat.user == user %}
+                        <div class="row justify-content-end">
+                            {{ chat.user.first_name }} {{ chat.user.last_name }}
+                        </div>
+                        <div class="row justify-content-end">
+                            <li class="chatbubble sent">{{ chat.message }}</li>
+                        </div>
+                        {% else %}
+                        <div class="row justify-content-start">
+                            {{ chat.user.first_name }} {{ chat.user.last_name }}
+                        </div>
+                        <div class="row justify-content-start">
+                            <li class="chatbubble recieve">{{ chat.message }}</li>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <form id="form" method="POST">
+                    {% csrf_token %}
+                    <div class="inputmsg row no-gutters">
+                        <div class="col">
+                            <input  placeholder="Message" type="text" class="msgarea"
+                                name="message" maxlength="280" required=""
+                                id="{{form.message.id_for_label}}">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-primary sendicon"><i
+                                    class='bx bx-send'></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var loggedUser = "{{user.username}}";
+        console.log("room.js")
+        console.log(window.location)
+        var loc = window.location
+        const formData = $("#form")
+        const msgInput = $("#id_message")
+        var chatli = $("#chat-items")
+        var wsStart = "ws://";
+        if (loc.protocol == "https:") {
+            wsStart = "wss://";
+        }
+        var endpoint = wsStart + loc.host + "/ws" + loc.pathname;
+        console.log(endpoint);
+
+        const socket = new WebSocket(endpoint);
+
+        socket.onmessage = function (e) {
+            console.log("message", e);
+            var recieveMsg = JSON.parse(e.data)
+            console.log(recieveMsg)
+            console.log(loggedUser)
+            if (recieveMsg.username == loggedUser) {
+                chatli.append(
+                    "<div class=\"row justify-content-end\">"
+                    + recieveMsg.first_name + ' ' + recieveMsg.last_name
+                    + "</div>" +
+                    "<div class=\"row justify-content-end\">"
+                    + "<li class=\"chatbubble sent\">"
+                    + recieveMsg.message
+                    + "</li>"
+                    + "</div>")
+            } else {
+                chatli.append(
+                    "<div class=\"row justify-content-start\">"
+                    + recieveMsg.first_name + ' ' + recieveMsg.last_name
+                    + "</div>" +
+                    "<div class=\"row justify-content-start\">"
+                    + "<li class=\"chatbubble recieve\">"
+                    + recieveMsg.message
+                    + "</li>"
+                    + "</div>")
+            }
+
+        };
+
+
+        socket.onopen = function (e) {
+            console.log("open", e);
+            formData.submit(function (event) {
+                event.preventDefault()
+                var msgTxt = msgInput.val()
+                console.log(msgTxt)
+                msgDict = {
+                    'message': msgTxt
+                }
+                socket.send(JSON.stringify(msgDict))
+                msgInput.val('')
+            })
+        };
+
+        socket.onerror = function (e) {
+            console.log("error", e);
+        };
+
+        socket.onclose = function (e) {
+            console.log("close", e);
+        };
+    </script>
+
+</section>
+
+{% endblock %}

@@ -1,5 +1,30 @@
 /*Parent CSS STYLE*/
+@import "partials/footer.css";
+:root {
+  --main-primary: #2EC4B6;
+  --main-text: #ffffff;
+  --main-subtext: #7A7978;
+  --main-other-color: #C2E812;
+  --main-background: #223A44;
 
-h1{
-    color:red;
+  --main-primary-hover: #2EC4B633; /*20% Opacity*/
+  --main-bg-shade: #1F1E1E;
+}
+
+html {
+  background-color: var(--main-background);
+  height:100%;
+}
+
+html:before {
+  content: '';
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-background);
+  z-index: -1;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }

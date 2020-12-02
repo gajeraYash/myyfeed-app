@@ -58,7 +58,7 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
-
+static/files
 # Flask stuff:
 instance/
 .webassets-cache
@@ -134,3 +134,4 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+.vscode/settings.json

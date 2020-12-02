@@ -1,0 +1,17 @@
+@import "partials/user_feed.css";
+@import "partials/navbar.css"; 
+@import "partials/user_search.css"; 
+
+#feed {
+    padding: 100px 0px;
+    width: 100%;
+    background-color: var(--main-background);
+    background-size: cover;
+    min-height: 100vh;
+}
+#feed textarea#id_announcement{
+    resize: none;
+}
+#feed .img_upload{
+    color: var(--main-subtext)
+}

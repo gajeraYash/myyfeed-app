@@ -1,0 +1,29 @@
+#searchfield .searchresults{
+    color: var(--main-text);
+    margin: 10px 0px;
+    padding: 10px 15px;
+    background-color: var(--main-bg-shade);
+    border-radius: 15px;
+}
+#searchfield .searchresults .username{
+    font-size: 14px;
+    color: var(--main-subtext);
+}
+#searchfield .searchresults .name{
+    font-size: 16px;
+}
+#searchfield .searchresults a{
+    text-decoration: none;
+    color: var(--main-text);
+}
+
+#searchfield .userimg{
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+@media only screen and (max-width: 992px) {
+    div#searchfield {
+        display: none;
+    }
+}

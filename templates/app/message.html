@@ -1,0 +1,95 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Message{% endblock %}
+{% block description %}Direct message and instant messaging between users.{% endblock %}
+{% block vendor %}
+<link rel="stylesheet" href="{% static 'css/message.css' %}" type="text/css" media="screen">
+<script type="text/javascript" src="{% static 'js/message.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+{% endblock %}
+{% block content %}
+{% include "app/partials/navbar.html" with user=user active_tab='home'%}
+<section id="message">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="title">Message</h1>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-8 col-lg-6">
+                <div class="searh">
+                    <input id="user-input" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <div id="search-content">
+                        <div class="row">
+                            {% include "app/partials/user_search.html" %}
+                        </div>
+                    </div>
+                </div>
+                {% for thread in thread_obj %}
+                {% if user != thread.first %}
+                <div id="thread">
+                    <div class="row">
+                        <div class="d-inline-block px-2">
+                            <a href="{% url 'app:chat_room' username=thread.first.username %}">
+                                <img src="{{thread.first.userprofile.profile_pic.url}}"
+                                    class="rounded-circle img-fluid mx-auto d-block userimg" alt="...">
+                            </a>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <a href="{% url 'app:chat_room' username=thread.first.username %}">
+                                    {% if thread.first.userprofile.admin %}
+                                    <div class="name d-inline-block">{{ thread.first.first_name}}
+                                        {{thread.first.last_name}} <i class='bx bxs-badge-check'></i> </div>
+                                    {% else %}
+                                    <div class="name d-inline-block">{{ thread.first.first_name}}
+                                        {{thread.first.last_name}}</div>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="{% url 'app:chat_room' username=thread.first.username %}">
+                                    <div class="username d-inline-block"><span>@</span>{{ thread.first.username }}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div id="thread">
+                    <div class="row">
+                        <div class="d-inline-block px-2">
+                            <a href="{% url 'app:chat_room' username=thread.second.username %}">
+                                <img src="{{thread.second.userprofile.profile_pic.url}}"
+                                    class="rounded-circle img-fluid mx-auto d-block userimg" alt="...">
+                            </a>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <a href="{% url 'app:chat_room' username=thread.second.username %}">
+                                    {% if thread.second.userprofile.admin %}
+                                    <div class="name d-inline-block">{{ thread.second.first_name}}
+                                        {{thread.second.last_name}} <i class='bx bxs-badge-check'></i> </div>
+                                    {% else %}
+                                    <div class="name d-inline-block">{{ thread.second.first_name}}
+                                        {{thread.second.last_name}}</div>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="{% url 'app:chat_room' username=thread.second.username %}">
+                                    <div class="username d-inline-block"><span>@</span>{{ thread.second.username }}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

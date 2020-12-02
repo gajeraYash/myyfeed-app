@@ -1,0 +1,62 @@
+nav#navbar {
+    padding: 15px 20px;
+    background-color: var(--main-background);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+
+a#navbardrop {
+    color: var(--main-text);
+}
+
+#navbar .btn {
+    color: var(--main-primary);
+    font-weight: 600;
+    line-height: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--main-primary);
+    padding: 0.7rem 1rem;
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+}
+
+#navbar .btn:hover {
+    background-color: var(--main-primary-hover);
+}
+
+#navbar .message {
+    color: var(--main-text);
+}
+#navbar a:hover {
+    color: var(--main-primary);
+}
+
+#navbar a#navbardrop:hover {
+    color: var(--main-primary);
+}
+
+.nav-down {
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-up {
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-init {
+    padding: 10px 20px;
+    -webkit-box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
+    -moz-box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
+    box-shadow: 0px 10px 10px -2px rgba(3, 13, 17, 0.75);
+    transition: all 0.5s ease-in-out;
+}
+/*
+.message-box i{
+    position: fixed;
+    color: var(--main-text)    
+}*/
