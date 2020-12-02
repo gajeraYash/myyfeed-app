@@ -32,4 +32,7 @@ urlpatterns = [
     path('message', views.msgthread, name="message"),
     path('message/search', views.msg_user, name="msguser"),
     path('message/<str:username>/', views.ThreadView.as_view(), name='chat_room'),
+
+    #follow
+    path('follow/<str:username>/', views.follow, name='follow'),
 ]

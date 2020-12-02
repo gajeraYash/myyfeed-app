@@ -7,11 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from app.forms import *
 from app.models import *
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormMixin
-
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView
 # Create your views here.
 
 #push
@@ -69,6 +67,16 @@ class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
         return super().form_valid(form)
 
 @login_required
+def follow(request, username):
+    follow_user = User.objects.get(username=username)
+    if len(Follower.objects.filter(follower=request.user, following=follow_user)) > 0:
+        instance = Follower.objects.get(follower=request.user, following=follow_user)
+        instance.delete()
+    else:
+        Follower.objects.create(follower=request.user, following=follow_user)
+    return HttpResponseRedirect('/user/'+username)
+
+@login_required
 def user_search(request):
     user_param = request.GET.get('user_search', None)
     if user_param:
@@ -106,10 +114,11 @@ def user_profile(request, username):
         if User.objects.filter(username=username).exists():
             u = User.objects.get(username=username)
             profile_data_obj = UserProfile.objects.get(user=u)
-            return render(request, 'app/user_profile.html', {"profile_data": profile_data_obj})
+            following = True if len(Follower.objects.filter(follower=request.user, following=u)) > 0 else False
+            return render(request, 'app/profile.html', {"profile_data": profile_data_obj, "user_follow": following})
         else:
             print("checked NOP!")
-            return render(request, 'app/user_profile.html', {"profile_data": False})
+            return render(request, 'app/profile.html', {"profile_data": False})
 
 
 @login_required
