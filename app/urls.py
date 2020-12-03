@@ -26,6 +26,7 @@ urlpatterns = [
 
     # profile
     path('profile', views.profile, name="profile"),
+    path('profile/edit', views.edit_profile, name="profile_edit"),
     path('user/<str:username>', views.user_profile, name="user_profile"),
 
     # messages
