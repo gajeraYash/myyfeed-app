@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.urls.base import is_valid_path
 from app.forms import *
 from app.models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -106,6 +107,25 @@ def profile(request):
         profile_data_obj = UserProfile.objects.get(user=request.user)
         return render(request, 'app/profile.html', {"profile_data": profile_data_obj})
 
+def edit_profile(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("app:login"))
+    else:
+        if request.method == 'POST':
+            user_info_form = UserInfoDetailForm(request.POST, instance= request.user)
+            user_profile_form = UserProfileDetailForm(request.POST, request.FILES, instance= request.user.userprofile)
+            if (user_info_form.is_valid() and user_profile_form.is_valid()):
+            
+                user_info_form.save()
+                user_profile_form.save()
+                return HttpResponseRedirect(reverse("app:profile"))
+            else:
+                print("error while editing profile")
+        else:
+            user_info_form = UserInfoDetailForm(instance= request.user)
+            user_profile_form = UserProfileDetailForm(instance= request.user.userprofile)
+        return render(request, 'app/editprofile.html', {"profile_form": user_profile_form, "user_info": user_info_form})
+        
 
 def user_profile(request, username):
     if not request.user.is_authenticated:

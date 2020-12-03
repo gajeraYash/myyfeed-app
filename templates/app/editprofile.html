@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Edit Profile{% endblock %}
+{% block description %}User profile containing feed and personal info.{% endblock %}
+{% block vendor %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" media="screen">
+{% endblock %}
+{% block content %}
+<section id="profile">
+<form method="POST" enctype="multipart/form-data" class="justify-content-center">
+{% csrf_token %}
+{{profile_form.as_p}}
+{{user_info.as_p}}
+<button type="submit" class="btn btn-outline-primary">Save</button>
+</form>
+
+</section>
+
+{% endblock %}

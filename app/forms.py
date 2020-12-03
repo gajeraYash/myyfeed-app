@@ -58,7 +58,13 @@ class UserProfileDOBForm(forms.ModelForm):
 class UserProfileDetailForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('profile_pic','user_bio','user_location')
+        fields = ('profile_pic','user_bio')
+
+
+class UserInfoDetailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name')
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(max_length=15)
