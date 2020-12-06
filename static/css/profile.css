@@ -1,13 +1,5 @@
 @import "partials/user_feed.css";
 
-#profile {
-    padding: 100px 0px;
-    width: 100%;
-    background-color: var(--main-background);
-    background-size: cover;
-    min-height: 100vh;
-}
-
 #profile .profileBox {
     color: var(--main-text);
     margin: 15px 0px;
