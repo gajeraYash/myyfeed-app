@@ -1,20 +1,11 @@
 @import "partials/navbar.css";
 @import "partials/msg_user.css";
 
-#message{
-  width: 100%;
-  min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 100);
-  background-color: var(--main-background);
-  background-size: cover;
-}
-
 #message h1 {
   margin: 20px 10px 40px 10px;
   color: var(--main-text);
   font-size: 40px;
 }
-
 
 /* Thread */
 #message #thread{

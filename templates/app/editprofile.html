@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" media="screen">
 {% endblock %}
 {% block content %}
-<section id="profile">
+<section id="profile" class="f-section">
 <form method="POST" enctype="multipart/form-data" class="justify-content-center">
 {% csrf_token %}
 {{profile_form.as_p}}
