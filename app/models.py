@@ -45,7 +45,7 @@ class UserProfile(models.Model):
 
     date_of_birth = models.DateField(validators=[MinAgeValidator(18)])
     profile_pic = CloudinaryField(allowed_formats=['jpg', 'png', 'gif'], folder="profile_pics/", default=random_img)
-    user_bio = models.CharField(max_length=256, blank=True)
+    user_bio = models.TextField(max_length=256, blank=True)
 
     def __str__(self):
         return self.user.username

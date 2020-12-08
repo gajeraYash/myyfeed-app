@@ -16,7 +16,7 @@
 {% block content %}
 <input type="hidden" id="loggedUser" value="{{user.username}}">
 {% include "app/partials/navbar.html" with user=user active_tab='message'%}
-<section id="room">
+<section id="room" class="f-section">
     <div class="row justify-content-center">
         <div class="col col-sm-10 col-md-8 col-lg-6">
             <div class="chatbox">

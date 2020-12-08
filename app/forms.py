@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.forms.widgets import FileInput
 from app.models import UserAnnoucement, UserComment, UserProfile
 
 class UsernameField(forms.CharField):
@@ -59,12 +60,15 @@ class UserProfileDetailForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('profile_pic','user_bio')
+        widgets = {
+            'profile_pic': FileInput(attrs={'name':'image', 'accept': 'image/*'})
+        }
 
 
 class UserInfoDetailForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name')
+        fields = ('first_name', 'last_name')
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(max_length=15)
