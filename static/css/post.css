@@ -1,12 +1,4 @@
 @import "partials/navbar.css";
-#userpost {
-    padding: 150px 50px;
-    max-width: 100%;
-    height: auto;
-    background-color: var(--main-background);
-    background-size: cover;
-    min-height: 100vh;
-}
 
 #userpost #post.post {
     color: var(--main-text);

@@ -1,0 +1,37 @@
+#editprofile h1{
+    color: var(--main-text)
+}
+
+#editprofile .lbl {
+    color: var(--main-text);
+    padding-top: 10px;
+}
+
+#editprofile .current-picture{
+    padding: 5px 0px;
+}
+
+#editprofile .userimg{
+    width: 8rem;
+    height: 8rem;
+}
+
+#editprofile label{
+    color: var(--main-subtext);
+}
+
+#editprofile .user-detail-info{
+    padding: 5px 0px;
+}
+
+#editprofile .user-detail-info .row{
+    padding: 3px 0px;
+}
+
+#editprofile .user-detail-info label{
+    margin: 0px 0px;
+}
+
+#editprofile button{
+    margin: 5px 0px;
+}
