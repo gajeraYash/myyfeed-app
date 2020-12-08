@@ -1,13 +1,5 @@
 @import "partials/navbar.css";
 
-#room{
-    padding: 100px 0px;
-    width: 100%;
-    background-color: var(--main-background);
-    background-size: cover;
-    min-height: 100vh;
-}
-
 #room .chatbox {
     color: var(--main-text);
     margin: 15px 0px;

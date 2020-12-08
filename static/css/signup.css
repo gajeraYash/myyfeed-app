@@ -1,13 +1,5 @@
 /* templates/app/signupForm.html */
 
-#signup {
-    width: 100%;
-    background-color: var(--main-background);
-    background-size: cover;
-    padding-bottom: 120px;
-    min-height: 100vh;
-}
-
 #signup #success {
     transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
     min-height: 80vh;

@@ -1,19 +1,89 @@
-{% extends 'app/base.html' %}
-{% load static %}
-{% block title %}Edit Profile{% endblock %}
-{% block description %}User profile containing feed and personal info.{% endblock %}
+{% extends 'app/base.html' %} 
+{% load static %} 
+{% block title %}Edit Profile{% endblock %} 
+{% block description %}User profile containing feed and personal info.{% endblock %} 
 {% block vendor %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" media="screen">
-{% endblock %}
+<link rel="stylesheet" href="{% static 'css/editprofile.css' %}" type="text/css" media="screen" />
+{% endblock %} 
 {% block content %}
-<section id="profile">
-<form method="POST" enctype="multipart/form-data" class="justify-content-center">
-{% csrf_token %}
-{{profile_form.as_p}}
-{{user_info.as_p}}
-<button type="submit" class="btn btn-outline-primary">Save</button>
-</form>
-
+<section id="editprofile" class="f-section justify-content-center">
+    <div class="row no-gutters">
+        <div class="col  ">
+            <div class="row justify-content-center no-gutters">
+                <h1>Edit Profile</h1>
+            </div>
+            <div class="row justify-content-center no-gutters">
+                <form method="POST" enctype="multipart/form-data" class="justify-content-center">
+                    {% csrf_token %} 
+                    {% if user_info.errors %}
+                        {% for field in user_info %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in user_info.non_field_errors %}
+                            <div class="alert alert-warning" role="alert">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %} 
+                    {% endif %} 
+                    {% if profile_form.errors %} 
+                        {% for field in profile_form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %} 
+                        {% for error in profile_form.non_field_errors%}
+                            <div class="alert alert-warning" role="alert">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %} 
+                    {% endif %} 
+                    <div class="row lbl no-gutters justify-content-center">
+                        <h4 for="{{profile_form.profile_pic.id_for_label}}">Profile Picture</h4>
+                    </div>
+                    <div class="current-picture">
+                        <div class="row no-gutters justify-content-center">
+                            <label>Currently:</label>
+                        </div>
+                        <div class="row no-gutters justify-content-center">
+                            <img src="{{user.userprofile.profile_pic.url}}" class="rounded-circle img-fluid userimg mx-auto d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="upload-picture">
+                        {{profile_form.profile_pic.as_widget}}
+                    </div>
+                    <div class="row lbl no-gutters justify-content-center">
+                        <h4>User Details</h4>
+                    </div>
+                    <div class="user-detail-info">
+                        <div class="row no-gutters">
+                            <label>Username:</label>
+                            <input type="text" name="username" value="{{user.username}}" class="w-100" disabled="true">
+                        </div>
+                        <div class="row no-gutters">
+                            <label>First Name:</label>
+                            <input type="text" name="first_name" value="{{user_info.first_name.value}}" class="w-100" maxlength="150" id="{{user_info.first_name.id_for_label}}">
+                        </div>
+                        <div class="row no-gutters">
+                            <label>Last Name:</label>
+                            <input type="text" name="last_name" value="{{user_info.last_name.value}}"  class="w-100" smaxlength="150" id="{{user_info.last_name.id_for_label}}">
+                        </div>
+                        <div class="row no-gutters">
+                            <label>Bio:</label>
+                            <textarea name="user_bio" class="w-100" rows="2" maxlength="256" id="{{profile_form.user_bio.id_for_label}}" spellcheck="false">{{profile_form.user_bio.value}}</textarea>
+                        </div>
+                    </div>
+                    <div class="row no-gutters justify-content-center">
+                        <button type="submit" class="btn btn-outline-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
-
 {% endblock %}
