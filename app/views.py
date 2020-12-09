@@ -1,9 +1,10 @@
-from django.http.response import HttpResponseRedirect
+from typing import Counter
+from django.http.response import HttpResponseRedirect, JsonResponse
 from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
 from django.urls.base import is_valid_path
 from app.forms import *
@@ -11,6 +12,7 @@ from app.models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormMixin
 from django.views.generic import DetailView
+from django.db.models import Count
 # Create your views here.
 
 #push
@@ -144,24 +146,30 @@ def user_profile(request, username):
 @login_required
 def user_feed(request):
     feed_param = request.GET.get('feed_param', None)
+    liked = Like.objects.filter(user= request.user)
     if feed_param == 'FOLLOWING':
         following_list = (Follower.objects.filter(
             follower=request.user)).values_list('following', flat=True)
-        user_feed_obj = UserAnnoucement.objects.select_related().filter(
+        user_feed_obj = UserAnnoucement.objects.select_related().prefetch_related('like_set').filter(
             Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
-        return render(request, 'app/partials/user_feed.html', {'user_feed': user_feed_obj})
+        
+        print(user_feed_obj[0].announcement in liked)
+        like_count = user_feed_obj.annotate(num_likes=Count('like'))
+        return render(request, 'app/partials/user_feed.html', {'user_feed': user_feed_obj , 'like_count': like_count, 'liked':liked})
     elif feed_param:
         if User.objects.filter(username=feed_param).exists():
             user_q = User.objects.get(username=feed_param)
             user_feed_obj = UserAnnoucement.objects.filter(
                 user=user_q).order_by('-created')
-            return render(request, 'app/partials/user_feed.html', {'user_feed': user_feed_obj})
+            like_count = user_feed_obj.annotate(num_likes=Count('like'))
+            return render(request, 'app/partials/user_feed.html', {'user_feed': user_feed_obj, 'like_count': like_count, 'liked':liked })
         else:
             return render(request, 'app/partials/user_feed.html')
     else:
         user_feed_obj = UserAnnoucement.objects.filter(
             user=request.user).order_by('-created')
-        return render(request, 'app/partials/user_feed.html', {'user_feed': user_feed_obj})
+        like_count = user_feed_obj.annotate(num_likes=Count('like'))
+        return render(request, 'app/partials/user_feed.html', {'user_feed': user_feed_obj, 'like_count': like_count, 'liked':liked})
 
 
 def feed(request):
@@ -183,6 +191,25 @@ def feed(request):
     return render(request, 'app/feed.html', {"announcement_form": announcement_form, })
 
 
+def like(request, post):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    else:
+        if UserAnnoucement.objects.get(id=post):
+            post_obj = UserAnnoucement.objects.get(id=post)
+            user = request.user
+            new_like, created = Like.objects.get_or_create(user=user, post=post_obj)
+            if not created:
+                instance = Like.objects.get(user=user, post=post_obj)
+                instance.delete()
+                return HttpResponseRedirect("/feed")
+            else:
+                return HttpResponseRedirect("/feed")
+        else:
+            print("error")
+                
+
+
 def user_post(request, post):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("app:index"))
@@ -190,6 +217,7 @@ def user_post(request, post):
         if UserAnnoucement.objects.get(id=post):
             post_obj = UserAnnoucement.objects.get(id=post)
             comment_obj = UserComment.objects.filter(post = post_obj)
+            number_of_likes = post_obj.like_set.all().count()
             if request.method == "POST":
                 comment_form = UserCommentForm(request.POST)
                 if comment_form.is_valid():
@@ -203,7 +231,7 @@ def user_post(request, post):
                     print("error in posting comment")
             else:
                 comment_form = UserCommentForm()
-            return render(request,'app/post.html',{"post":post_obj,"comment":comment_obj,"comment_form":comment_form})
+            return render(request,'app/post.html',{"post":post_obj,"comment":comment_obj,"comment_form":comment_form, 'likes_count':number_of_likes})
         else:
             print("checked NOP!")
             return render(request,'app/post.html',{"post":False})

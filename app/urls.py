@@ -36,4 +36,7 @@ urlpatterns = [
 
     #follow
     path('follow/<str:username>/', views.follow, name='follow'),
+
+    #like
+    path('post/like/<int:post>', views.like, name='like'),
 ]
