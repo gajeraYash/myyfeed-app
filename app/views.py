@@ -146,14 +146,12 @@ def user_profile(request, username):
 @login_required
 def user_feed(request):
     feed_param = request.GET.get('feed_param', None)
-    liked = Like.objects.filter(user= request.user)
+    liked = list(Like.objects.filter(user= request.user).values_list('post',flat=True))
     if feed_param == 'FOLLOWING':
         following_list = (Follower.objects.filter(
             follower=request.user)).values_list('following', flat=True)
-        user_feed_obj = UserAnnoucement.objects.select_related().prefetch_related('like_set').filter(
+        user_feed_obj = UserAnnoucement.objects.all().select_related().prefetch_related('like_set').filter(
             Q(user=request.user) | Q(user__in=following_list)).order_by('-created')
-        
-        print(user_feed_obj[0].announcement in liked)
         like_count = user_feed_obj.annotate(num_likes=Count('like'))
         return render(request, 'app/partials/user_feed.html', {'user_feed': user_feed_obj , 'like_count': like_count, 'liked':liked})
     elif feed_param:
