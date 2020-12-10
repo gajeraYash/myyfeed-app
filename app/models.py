@@ -70,6 +70,14 @@ class UserComment(models.Model):
     def __str__(self):
         return self.user.username + "  --Commented on--> " + self.post.announcement
 
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    post = models.ForeignKey(UserAnnoucement, on_delete=CASCADE)
+    created = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return self.user.username + "  --Liked on--> " + self.post.announcement
+
 class ThreadManager(models.Manager):
     def by_user(self, user):
         qlookup = Q(first=user) | Q(second=user)
