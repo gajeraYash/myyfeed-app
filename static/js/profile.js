@@ -1,7 +1,7 @@
 function get_feed() {
     var username = window.location.pathname.split("/").pop();
     var params = {
-        url: 'feed',
+        url: '/user/feed',
         type: "get",
         cache: true,
         data: {
@@ -13,7 +13,7 @@ function get_feed() {
         }
     };
     if (username == 'profile'){
-        params.url = 'user/feed'
+        // params.url = 'user/feed'
         params.data.feed_param = ''; 
     }
     console.log('DATA FOR:', params.data.feed_param);
@@ -21,6 +21,23 @@ function get_feed() {
     // 'feed_param': 'FOLLOWING'  Get USER Following Announcements
     // 'feed_param': ''  Get Self created announcements
     // 'feed_param': 'username'  Get Other user created announcements
+}
+
+function like(post_id) {
+    $.ajax({
+        url: '/post/like',
+        type: "POST",
+        cache: true,
+        data: {
+            'post_id': post_id, 'operation': 'like_submit',
+        },
+        dataType: 'json',
+        success: function(response){
+            console.log(response)
+            console.log('LikeStatus', response.liked)
+            get_feed()
+        }
+});
 }
 
 

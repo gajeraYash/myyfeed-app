@@ -63,19 +63,19 @@
                     <div class="user-detail-info">
                         <div class="row no-gutters">
                             <label>Username:</label>
-                            <input type="text" name="username" value="{{user.username}}" class="w-100" disabled="true">
+                            <input type="text" name="username" value="{{user.username}}" class="w-100 form-control" disabled="true">
                         </div>
                         <div class="row no-gutters">
                             <label>First Name:</label>
-                            <input type="text" name="first_name" value="{{user_info.first_name.value}}" class="w-100" maxlength="150" id="{{user_info.first_name.id_for_label}}">
+                            <input type="text" name="first_name" value="{{user_info.first_name.value}}" class="w-100 form-control" maxlength="150" id="{{user_info.first_name.id_for_label}}">
                         </div>
                         <div class="row no-gutters">
                             <label>Last Name:</label>
-                            <input type="text" name="last_name" value="{{user_info.last_name.value}}"  class="w-100" smaxlength="150" id="{{user_info.last_name.id_for_label}}">
+                            <input type="text" name="last_name" value="{{user_info.last_name.value}}"  class="w-100 form-control" smaxlength="150" id="{{user_info.last_name.id_for_label}}">
                         </div>
                         <div class="row no-gutters">
                             <label>Bio:</label>
-                            <textarea name="user_bio" class="w-100" rows="2" maxlength="256" id="{{profile_form.user_bio.id_for_label}}" spellcheck="false">{{profile_form.user_bio.value}}</textarea>
+                            <textarea name="user_bio" class="w-100 form-control" rows="2" maxlength="256" id="{{profile_form.user_bio.id_for_label}}" spellcheck="false">{{profile_form.user_bio.value}}</textarea>
                         </div>
                     </div>
                     <div class="row no-gutters justify-content-center">
