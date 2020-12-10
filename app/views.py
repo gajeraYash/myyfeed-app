@@ -1,6 +1,6 @@
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.http import Http404, HttpResponseForbidden
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -14,6 +14,7 @@ from django.db.models import Count
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 #push
@@ -275,6 +276,29 @@ def change_password(request):
     return render(request, 'app/change_password.html', {
         'form': form
     })
+
+@login_required
+@csrf_exempt
+def like_ajax(request):
+    if request.method == "POST":
+        if request.POST.get("operation") == "like_submit" and request.is_ajax():
+            post_id = request.POST.get("post_id", None)
+            if UserAnnoucement.objects.get(id=post_id):
+                post_obj = UserAnnoucement.objects.get(id=post_id)
+                user = request.user
+                new_like, created = Like.objects.get_or_create(user=user, post=post_obj)
+                if not created:
+                    instance = Like.objects.get(user=user, post=post_obj)
+                    instance.delete()
+                    liked = False
+                else:
+                    liked = True
+                ctx = {"post_id": post_id, "liked": liked}
+                return JsonResponse(ctx)
+            else:
+                print("error")
+
+
 
 
 def user_login(request):

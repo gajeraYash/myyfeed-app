@@ -39,6 +39,7 @@ urlpatterns = [
 
     #like
     path('post/like/<int:post>', views.like, name='like'),
+    path('post/like', views.like_ajax, name='like_ajax'),
 
     #password change
     path('password', views.change_password, name='password_change'),
