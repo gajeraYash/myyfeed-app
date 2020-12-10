@@ -1,18 +1,19 @@
-from typing import Counter
-from django.http.response import HttpResponseRedirect, JsonResponse
+from django.http.response import HttpResponseRedirect
 from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.urls.base import is_valid_path
 from app.forms import *
 from app.models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormMixin
 from django.views.generic import DetailView
 from django.db.models import Count
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 # Create your views here.
 
 #push
@@ -207,7 +208,7 @@ def like(request, post):
             print("error")
                 
 
-
+@login_required
 def user_post(request, post):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("app:index"))
@@ -258,6 +259,22 @@ def user_signup(request):
     return render(request, 'app/signup.html', {'user_form': user_form,
                                                    'profile_form': profile_form,
                                                    'message': message})
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return HttpResponseRedirect(reverse('app:password_change'))
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'app/change_password.html', {
+        'form': form
+    })
 
 
 def user_login(request):
