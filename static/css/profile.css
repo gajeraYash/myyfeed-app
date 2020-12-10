@@ -37,3 +37,17 @@
     background-color: var(--main-bg-shade);
     border-radius: 15px;
 }
+
+#profile .btn{
+    color: var(--main-primary);
+    line-height: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--main-primary);
+    padding: 0.7rem 1rem;
+    transition: all 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67) 0s;
+}
+
+#profile .btn:hover {
+    background-color: var(--main-primary-hover);
+}
