@@ -190,25 +190,7 @@ def feed(request):
             announcement_form = UserTweet()
     return render(request, 'app/feed.html', {"announcement_form": announcement_form, })
 
-
-def like(request, post):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect('/')
-    else:
-        if UserAnnoucement.objects.get(id=post):
-            post_obj = UserAnnoucement.objects.get(id=post)
-            user = request.user
-            new_like, created = Like.objects.get_or_create(user=user, post=post_obj)
-            if not created:
-                instance = Like.objects.get(user=user, post=post_obj)
-                instance.delete()
-                return HttpResponseRedirect("/feed")
-            else:
-                return HttpResponseRedirect("/feed")
-        else:
-            print("error")
-                
-
+            
 @login_required
 def user_post(request, post):
     if not request.user.is_authenticated:
