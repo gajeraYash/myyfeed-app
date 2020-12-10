@@ -32,6 +32,21 @@
             {% endif %}
             <div class="row comment no-gutters justify-content-center">
                 <div class="col">
+                    <a href="{%url 'app:like' post=feed.id%}">
+                        {% if feed.id in liked %}
+                        <div class="post-icons d-inline"><i class='bx bxs-like'></i></div>
+                        {% else %}
+                        <div class="post-icons d-inline"><i class='bx bx-like'></i></div>
+                        {% endif %}
+                        <div class="d-inline">Like</div>
+                        {% for post in like_count %}
+                            {% if post == feed %}
+                                {{post.num_likes}}
+                            {% endif %}
+                        {% endfor %}
+                    </a>
+                </div>
+                <div class="col">
                     <a href="{%url 'app:user_post' post=feed.id%}">
                         <div class="post-icons d-inline"><i class='bx bx-comment-detail'></i></div>
                         <div class="d-inline">Comment</div>
