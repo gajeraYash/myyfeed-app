@@ -39,4 +39,7 @@ urlpatterns = [
 
     #like
     path('post/like/<int:post>', views.like, name='like'),
+
+    #password change
+    path('password', views.change_password, name='password_change'),
 ]
