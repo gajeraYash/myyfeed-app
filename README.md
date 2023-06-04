@@ -16,17 +16,11 @@
   </a>
 </div>
 <div align='center'>
-  <a href="https://www.heroku.com/">
-    <img style='padding:0 5px 0 5px' src='https://img.shields.io/badge/heroku-deployed-green'> 
-  </a>
   <a href="https://cs-490.herokuapp.com/">
     <img style='padding:0 5px 0 5px' src='https://badgen.net/uptime-robot/status/m786106082-0afa007942fb6755090e7e9d'>
   </a>
   <a href="https://cs-490.herokuapp.com/">
     <img style='padding:0 5px 0 5px' src='https://badgen.net/uptime-robot/day/m786106082-0afa007942fb6755090e7e9d'>
-  </a>
-  <a href="https://cs-490.herokuapp.com/">
-    <img style='padding:0 5px 0 5px' src='https://badgen.net/uptime-robot/response/m786106082-0afa007942fb6755090e7e9d'>
   </a>
 </div>
 <div align='center'>
@@ -36,19 +30,11 @@
   <a href="https://github.com/gajeraYash/app-cs490">
     <img style='padding:0 5px 0 5px' src='https://badgen.net/github/last-commit/gajeraYash/app-cs490'>
   </a>
-  <a href="https://github.com/gajeraYash/app-cs490">
-    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/issues/gajeraYash/app-cs490'>
-  </a>
-  <a href="https://github.com/gajeraYash/app-cs490">
-    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/open-issues/gajeraYash/app-cs490'>
-  </a>
-  <a href="https://github.com/gajeraYash/app-cs490">
-    <img style='padding:0 5px 0 5px' src='https://badgen.net/github/closed-issues/gajeraYash/app-cs490'>
-  </a>
 </div>
   
 ## Info
 
+Project has been archived as underlying free hosting service as expired and code will not be updated. 
 This project was generated with [Django](https://www.djangoproject.com/) version 3.1.2.
 
 ## Environment Setup
